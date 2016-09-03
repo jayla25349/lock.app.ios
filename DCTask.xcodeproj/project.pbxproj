@@ -1,0 +1,638 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6DF1CE52FF399A68C8689C5B /* libPods-DCTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9B8C195E49DB8A6F49BBBF /* libPods-DCTask.a */; };
+		E352D5B41D7B222A00CB4B93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5B31D7B222A00CB4B93 /* main.m */; };
+		E352D5B71D7B222A00CB4B93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5B61D7B222A00CB4B93 /* AppDelegate.m */; };
+		E352D5BA1D7B222A00CB4B93 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5B91D7B222A00CB4B93 /* ViewController.m */; };
+		E352D5BD1D7B222A00CB4B93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E352D5BB1D7B222A00CB4B93 /* Main.storyboard */; };
+		E352D5BF1D7B222A00CB4B93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E352D5BE1D7B222A00CB4B93 /* Assets.xcassets */; };
+		E352D5EC1D7B23AC00CB4B93 /* AppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5CC1D7B23AC00CB4B93 /* AppEngine.m */; };
+		E352D5ED1D7B23AC00CB4B93 /* NSString+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5D01D7B23AC00CB4B93 /* NSString+Core.m */; };
+		E352D5EE1D7B23AC00CB4B93 /* DebugAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5D31D7B23AC00CB4B93 /* DebugAlert.m */; };
+		E352D5EF1D7B23AC00CB4B93 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5D51D7B23AC00CB4B93 /* NetworkManager.m */; };
+		E352D5F01D7B23AC00CB4B93 /* NetworkUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5D71D7B23AC00CB4B93 /* NetworkUtil.m */; };
+		E352D5F11D7B23AC00CB4B93 /* NSError+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5D91D7B23AC00CB4B93 /* NSError+HTTP.m */; };
+		E352D5F21D7B23AC00CB4B93 /* NSMutableDictionary+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5DB1D7B23AC00CB4B93 /* NSMutableDictionary+HTTP.m */; };
+		E352D5F31D7B23AC00CB4B93 /* UIView+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5DF1D7B23AC00CB4B93 /* UIView+Blank.m */; };
+		E352D5F41D7B23AC00CB4B93 /* WQBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5E11D7B23AC00CB4B93 /* WQBlankView.m */; };
+		E352D5F51D7B23AC00CB4B93 /* WQRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5E41D7B23AC00CB4B93 /* WQRefreshFooter.m */; };
+		E352D5F61D7B23AC00CB4B93 /* WQRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5E61D7B23AC00CB4B93 /* WQRefreshHeader.m */; };
+		E352D5F71D7B23AC00CB4B93 /* WQRefreshCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5E91D7B23AC00CB4B93 /* WQRefreshCollectionView.m */; };
+		E352D5F81D7B23AC00CB4B93 /* WQRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5EB1D7B23AC00CB4B93 /* WQRefreshTableView.m */; };
+		E352D6E01D7B26FF00CB4B93 /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D6DF1D7B26FF00CB4B93 /* BSViewController.m */; };
+		E352D6E31D7B271E00CB4B93 /* BSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D6E21D7B271E00CB4B93 /* BSNavigationController.m */; };
+		E352D6E61D7B275300CB4B93 /* DCLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D6E51D7B275300CB4B93 /* DCLoginVC.m */; };
+		E352D6E91D7B278200CB4B93 /* DCRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D6E81D7B278200CB4B93 /* DCRegisterVC.m */; };
+		E352D6EC1D7B279000CB4B93 /* DCHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D6EB1D7B279000CB4B93 /* DCHomeVC.m */; };
+		E352D6F01D7B27F200CB4B93 /* DCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D6EF1D7B27F200CB4B93 /* DCSettingVC.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		395DEC497A25828EF1B533CB /* Pods-DCTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DCTask/Pods-DCTask.debug.xcconfig"; sourceTree = "<group>"; };
+		BE9B8C195E49DB8A6F49BBBF /* libPods-DCTask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DCTask.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D986234972209DE9D17A34F4 /* Pods-DCTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-DCTask/Pods-DCTask.release.xcconfig"; sourceTree = "<group>"; };
+		E352D5AF1D7B222A00CB4B93 /* DCTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E352D5B31D7B222A00CB4B93 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E352D5B51D7B222A00CB4B93 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E352D5B61D7B222A00CB4B93 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E352D5B81D7B222A00CB4B93 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E352D5B91D7B222A00CB4B93 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E352D5BC1D7B222A00CB4B93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E352D5BE1D7B222A00CB4B93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E352D5C31D7B222A00CB4B93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E352D5CB1D7B23AC00CB4B93 /* AppEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppEngine.h; sourceTree = "<group>"; };
+		E352D5CC1D7B23AC00CB4B93 /* AppEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppEngine.m; sourceTree = "<group>"; };
+		E352D5CF1D7B23AC00CB4B93 /* NSString+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Core.h"; sourceTree = "<group>"; };
+		E352D5D01D7B23AC00CB4B93 /* NSString+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Core.m"; sourceTree = "<group>"; };
+		E352D5D21D7B23AC00CB4B93 /* DebugAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugAlert.h; sourceTree = "<group>"; };
+		E352D5D31D7B23AC00CB4B93 /* DebugAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugAlert.m; sourceTree = "<group>"; };
+		E352D5D41D7B23AC00CB4B93 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		E352D5D51D7B23AC00CB4B93 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		E352D5D61D7B23AC00CB4B93 /* NetworkUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtil.h; sourceTree = "<group>"; };
+		E352D5D71D7B23AC00CB4B93 /* NetworkUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtil.m; sourceTree = "<group>"; };
+		E352D5D81D7B23AC00CB4B93 /* NSError+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+HTTP.h"; sourceTree = "<group>"; };
+		E352D5D91D7B23AC00CB4B93 /* NSError+HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+HTTP.m"; sourceTree = "<group>"; };
+		E352D5DA1D7B23AC00CB4B93 /* NSMutableDictionary+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+HTTP.h"; sourceTree = "<group>"; };
+		E352D5DB1D7B23AC00CB4B93 /* NSMutableDictionary+HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+HTTP.m"; sourceTree = "<group>"; };
+		E352D5DE1D7B23AC00CB4B93 /* UIView+Blank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Blank.h"; sourceTree = "<group>"; };
+		E352D5DF1D7B23AC00CB4B93 /* UIView+Blank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Blank.m"; sourceTree = "<group>"; };
+		E352D5E01D7B23AC00CB4B93 /* WQBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQBlankView.h; sourceTree = "<group>"; };
+		E352D5E11D7B23AC00CB4B93 /* WQBlankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQBlankView.m; sourceTree = "<group>"; };
+		E352D5E31D7B23AC00CB4B93 /* WQRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQRefreshFooter.h; sourceTree = "<group>"; };
+		E352D5E41D7B23AC00CB4B93 /* WQRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQRefreshFooter.m; sourceTree = "<group>"; };
+		E352D5E51D7B23AC00CB4B93 /* WQRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQRefreshHeader.h; sourceTree = "<group>"; };
+		E352D5E61D7B23AC00CB4B93 /* WQRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQRefreshHeader.m; sourceTree = "<group>"; };
+		E352D5E81D7B23AC00CB4B93 /* WQRefreshCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQRefreshCollectionView.h; sourceTree = "<group>"; };
+		E352D5E91D7B23AC00CB4B93 /* WQRefreshCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQRefreshCollectionView.m; sourceTree = "<group>"; };
+		E352D5EA1D7B23AC00CB4B93 /* WQRefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQRefreshTableView.h; sourceTree = "<group>"; };
+		E352D5EB1D7B23AC00CB4B93 /* WQRefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQRefreshTableView.m; sourceTree = "<group>"; };
+		E352D6DD1D7B256500CB4B93 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		E352D6DE1D7B26FF00CB4B93 /* BSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSViewController.h; sourceTree = "<group>"; };
+		E352D6DF1D7B26FF00CB4B93 /* BSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSViewController.m; sourceTree = "<group>"; };
+		E352D6E11D7B271E00CB4B93 /* BSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNavigationController.h; sourceTree = "<group>"; };
+		E352D6E21D7B271E00CB4B93 /* BSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNavigationController.m; sourceTree = "<group>"; };
+		E352D6E41D7B275300CB4B93 /* DCLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCLoginVC.h; sourceTree = "<group>"; };
+		E352D6E51D7B275300CB4B93 /* DCLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCLoginVC.m; sourceTree = "<group>"; };
+		E352D6E71D7B278200CB4B93 /* DCRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRegisterVC.h; sourceTree = "<group>"; };
+		E352D6E81D7B278200CB4B93 /* DCRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRegisterVC.m; sourceTree = "<group>"; };
+		E352D6EA1D7B279000CB4B93 /* DCHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHomeVC.h; sourceTree = "<group>"; };
+		E352D6EB1D7B279000CB4B93 /* DCHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHomeVC.m; sourceTree = "<group>"; };
+		E352D6EE1D7B27F200CB4B93 /* DCSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSettingVC.h; sourceTree = "<group>"; };
+		E352D6EF1D7B27F200CB4B93 /* DCSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSettingVC.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E352D5AC1D7B222A00CB4B93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DF1CE52FF399A68C8689C5B /* libPods-DCTask.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7EE1D667B7904C7327E03A5B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE9B8C195E49DB8A6F49BBBF /* libPods-DCTask.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A976E56265B68B076D2EDB3F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				395DEC497A25828EF1B533CB /* Pods-DCTask.debug.xcconfig */,
+				D986234972209DE9D17A34F4 /* Pods-DCTask.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E352D5A61D7B222A00CB4B93 = {
+			isa = PBXGroup;
+			children = (
+				E352D5C91D7B23AC00CB4B93 /* Core */,
+				E352D5B11D7B222A00CB4B93 /* DCTask */,
+				E352D5B01D7B222A00CB4B93 /* Products */,
+				A976E56265B68B076D2EDB3F /* Pods */,
+				7EE1D667B7904C7327E03A5B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E352D5B01D7B222A00CB4B93 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E352D5AF1D7B222A00CB4B93 /* DCTask.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E352D5B11D7B222A00CB4B93 /* DCTask */ = {
+			isa = PBXGroup;
+			children = (
+				E352D6D61D7B24B800CB4B93 /* Classes */,
+				E352D5B51D7B222A00CB4B93 /* AppDelegate.h */,
+				E352D5B61D7B222A00CB4B93 /* AppDelegate.m */,
+				E352D5B81D7B222A00CB4B93 /* ViewController.h */,
+				E352D5B91D7B222A00CB4B93 /* ViewController.m */,
+				E352D5BB1D7B222A00CB4B93 /* Main.storyboard */,
+				E352D5BE1D7B222A00CB4B93 /* Assets.xcassets */,
+				E352D5B21D7B222A00CB4B93 /* Supporting Files */,
+			);
+			path = DCTask;
+			sourceTree = "<group>";
+		};
+		E352D5B21D7B222A00CB4B93 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E352D5C31D7B222A00CB4B93 /* Info.plist */,
+				E352D5B31D7B222A00CB4B93 /* main.m */,
+				E352D6DD1D7B256500CB4B93 /* PrefixHeader.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E352D5C91D7B23AC00CB4B93 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E352D5CA1D7B23AC00CB4B93 /* Engine */,
+				E352D5CD1D7B23AC00CB4B93 /* Fundation */,
+				E352D5DC1D7B23AC00CB4B93 /* UIKit */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E352D5CA1D7B23AC00CB4B93 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				E352D5CB1D7B23AC00CB4B93 /* AppEngine.h */,
+				E352D5CC1D7B23AC00CB4B93 /* AppEngine.m */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		E352D5CD1D7B23AC00CB4B93 /* Fundation */ = {
+			isa = PBXGroup;
+			children = (
+				E352D5CE1D7B23AC00CB4B93 /* Extension */,
+				E352D5D11D7B23AC00CB4B93 /* Network */,
+			);
+			path = Fundation;
+			sourceTree = "<group>";
+		};
+		E352D5CE1D7B23AC00CB4B93 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E352D5CF1D7B23AC00CB4B93 /* NSString+Core.h */,
+				E352D5D01D7B23AC00CB4B93 /* NSString+Core.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		E352D5D11D7B23AC00CB4B93 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E352D5D21D7B23AC00CB4B93 /* DebugAlert.h */,
+				E352D5D31D7B23AC00CB4B93 /* DebugAlert.m */,
+				E352D5D41D7B23AC00CB4B93 /* NetworkManager.h */,
+				E352D5D51D7B23AC00CB4B93 /* NetworkManager.m */,
+				E352D5D61D7B23AC00CB4B93 /* NetworkUtil.h */,
+				E352D5D71D7B23AC00CB4B93 /* NetworkUtil.m */,
+				E352D5D81D7B23AC00CB4B93 /* NSError+HTTP.h */,
+				E352D5D91D7B23AC00CB4B93 /* NSError+HTTP.m */,
+				E352D5DA1D7B23AC00CB4B93 /* NSMutableDictionary+HTTP.h */,
+				E352D5DB1D7B23AC00CB4B93 /* NSMutableDictionary+HTTP.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E352D5DC1D7B23AC00CB4B93 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				E352D6F11D7B28CE00CB4B93 /* Extention */,
+				E352D5DD1D7B23AC00CB4B93 /* WQBlankView */,
+				E352D5E21D7B23AC00CB4B93 /* WQRefreshHeader */,
+				E352D5E71D7B23AC00CB4B93 /* WQRefreshTableView */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		E352D5DD1D7B23AC00CB4B93 /* WQBlankView */ = {
+			isa = PBXGroup;
+			children = (
+				E352D5DE1D7B23AC00CB4B93 /* UIView+Blank.h */,
+				E352D5DF1D7B23AC00CB4B93 /* UIView+Blank.m */,
+				E352D5E01D7B23AC00CB4B93 /* WQBlankView.h */,
+				E352D5E11D7B23AC00CB4B93 /* WQBlankView.m */,
+			);
+			path = WQBlankView;
+			sourceTree = "<group>";
+		};
+		E352D5E21D7B23AC00CB4B93 /* WQRefreshHeader */ = {
+			isa = PBXGroup;
+			children = (
+				E352D5E31D7B23AC00CB4B93 /* WQRefreshFooter.h */,
+				E352D5E41D7B23AC00CB4B93 /* WQRefreshFooter.m */,
+				E352D5E51D7B23AC00CB4B93 /* WQRefreshHeader.h */,
+				E352D5E61D7B23AC00CB4B93 /* WQRefreshHeader.m */,
+			);
+			path = WQRefreshHeader;
+			sourceTree = "<group>";
+		};
+		E352D5E71D7B23AC00CB4B93 /* WQRefreshTableView */ = {
+			isa = PBXGroup;
+			children = (
+				E352D5E81D7B23AC00CB4B93 /* WQRefreshCollectionView.h */,
+				E352D5E91D7B23AC00CB4B93 /* WQRefreshCollectionView.m */,
+				E352D5EA1D7B23AC00CB4B93 /* WQRefreshTableView.h */,
+				E352D5EB1D7B23AC00CB4B93 /* WQRefreshTableView.m */,
+			);
+			path = WQRefreshTableView;
+			sourceTree = "<group>";
+		};
+		E352D6D61D7B24B800CB4B93 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E352D6D71D7B24B800CB4B93 /* Common */,
+				E352D6DB1D7B24B800CB4B93 /* Home */,
+				E352D6DC1D7B24B800CB4B93 /* Login */,
+				E352D6ED1D7B27E400CB4B93 /* Setting */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		E352D6D71D7B24B800CB4B93 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E352D6D81D7B24B800CB4B93 /* Controller */,
+				E352D6D91D7B24B800CB4B93 /* Extension */,
+				E352D6DA1D7B24B800CB4B93 /* Widget */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E352D6D81D7B24B800CB4B93 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E352D6DE1D7B26FF00CB4B93 /* BSViewController.h */,
+				E352D6DF1D7B26FF00CB4B93 /* BSViewController.m */,
+				E352D6E11D7B271E00CB4B93 /* BSNavigationController.h */,
+				E352D6E21D7B271E00CB4B93 /* BSNavigationController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E352D6D91D7B24B800CB4B93 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		E352D6DA1D7B24B800CB4B93 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		E352D6DB1D7B24B800CB4B93 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E352D6EA1D7B279000CB4B93 /* DCHomeVC.h */,
+				E352D6EB1D7B279000CB4B93 /* DCHomeVC.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E352D6DC1D7B24B800CB4B93 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E352D6E41D7B275300CB4B93 /* DCLoginVC.h */,
+				E352D6E51D7B275300CB4B93 /* DCLoginVC.m */,
+				E352D6E71D7B278200CB4B93 /* DCRegisterVC.h */,
+				E352D6E81D7B278200CB4B93 /* DCRegisterVC.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E352D6ED1D7B27E400CB4B93 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				E352D6EE1D7B27F200CB4B93 /* DCSettingVC.h */,
+				E352D6EF1D7B27F200CB4B93 /* DCSettingVC.m */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		E352D6F11D7B28CE00CB4B93 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E352D5AE1D7B222A00CB4B93 /* DCTask */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E352D5C61D7B222A00CB4B93 /* Build configuration list for PBXNativeTarget "DCTask" */;
+			buildPhases = (
+				D14534D9767022BDBCF75606 /* [CP] Check Pods Manifest.lock */,
+				E352D5AB1D7B222A00CB4B93 /* Sources */,
+				E352D5AC1D7B222A00CB4B93 /* Frameworks */,
+				E352D5AD1D7B222A00CB4B93 /* Resources */,
+				543EA91E1B33BB274630076D /* [CP] Embed Pods Frameworks */,
+				19986B381F0B525ACAE7FB49 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DCTask;
+			productName = DCTask;
+			productReference = E352D5AF1D7B222A00CB4B93 /* DCTask.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E352D5A71D7B222A00CB4B93 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DC;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = kylincc;
+				TargetAttributes = {
+					E352D5AE1D7B222A00CB4B93 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = E352D5AA1D7B222A00CB4B93 /* Build configuration list for PBXProject "DCTask" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E352D5A61D7B222A00CB4B93;
+			productRefGroup = E352D5B01D7B222A00CB4B93 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E352D5AE1D7B222A00CB4B93 /* DCTask */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E352D5AD1D7B222A00CB4B93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E352D5BF1D7B222A00CB4B93 /* Assets.xcassets in Resources */,
+				E352D5BD1D7B222A00CB4B93 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19986B381F0B525ACAE7FB49 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DCTask/Pods-DCTask-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		543EA91E1B33BB274630076D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DCTask/Pods-DCTask-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D14534D9767022BDBCF75606 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E352D5AB1D7B222A00CB4B93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E352D6F01D7B27F200CB4B93 /* DCSettingVC.m in Sources */,
+				E352D6E01D7B26FF00CB4B93 /* BSViewController.m in Sources */,
+				E352D5F01D7B23AC00CB4B93 /* NetworkUtil.m in Sources */,
+				E352D6E91D7B278200CB4B93 /* DCRegisterVC.m in Sources */,
+				E352D5EE1D7B23AC00CB4B93 /* DebugAlert.m in Sources */,
+				E352D5EF1D7B23AC00CB4B93 /* NetworkManager.m in Sources */,
+				E352D6E31D7B271E00CB4B93 /* BSNavigationController.m in Sources */,
+				E352D6EC1D7B279000CB4B93 /* DCHomeVC.m in Sources */,
+				E352D6E61D7B275300CB4B93 /* DCLoginVC.m in Sources */,
+				E352D5F51D7B23AC00CB4B93 /* WQRefreshFooter.m in Sources */,
+				E352D5F61D7B23AC00CB4B93 /* WQRefreshHeader.m in Sources */,
+				E352D5F41D7B23AC00CB4B93 /* WQBlankView.m in Sources */,
+				E352D5F71D7B23AC00CB4B93 /* WQRefreshCollectionView.m in Sources */,
+				E352D5F11D7B23AC00CB4B93 /* NSError+HTTP.m in Sources */,
+				E352D5BA1D7B222A00CB4B93 /* ViewController.m in Sources */,
+				E352D5F81D7B23AC00CB4B93 /* WQRefreshTableView.m in Sources */,
+				E352D5F21D7B23AC00CB4B93 /* NSMutableDictionary+HTTP.m in Sources */,
+				E352D5EC1D7B23AC00CB4B93 /* AppEngine.m in Sources */,
+				E352D5B71D7B222A00CB4B93 /* AppDelegate.m in Sources */,
+				E352D5B41D7B222A00CB4B93 /* main.m in Sources */,
+				E352D5F31D7B23AC00CB4B93 /* UIView+Blank.m in Sources */,
+				E352D5ED1D7B23AC00CB4B93 /* NSString+Core.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E352D5BB1D7B222A00CB4B93 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E352D5BC1D7B222A00CB4B93 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E352D5C41D7B222A00CB4B93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E352D5C51D7B222A00CB4B93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E352D5C71D7B222A00CB4B93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 395DEC497A25828EF1B533CB /* Pods-DCTask.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				GCC_PREFIX_HEADER = DCTask/PrefixHeader.pch;
+				INFOPLIST_FILE = DCTask/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kylincc.DCTask;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E352D5C81D7B222A00CB4B93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D986234972209DE9D17A34F4 /* Pods-DCTask.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				GCC_PREFIX_HEADER = DCTask/PrefixHeader.pch;
+				INFOPLIST_FILE = DCTask/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kylincc.DCTask;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E352D5AA1D7B222A00CB4B93 /* Build configuration list for PBXProject "DCTask" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E352D5C41D7B222A00CB4B93 /* Debug */,
+				E352D5C51D7B222A00CB4B93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E352D5C61D7B222A00CB4B93 /* Build configuration list for PBXNativeTarget "DCTask" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E352D5C71D7B222A00CB4B93 /* Debug */,
+				E352D5C81D7B222A00CB4B93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E352D5A71D7B222A00CB4B93 /* Project object */;
+}

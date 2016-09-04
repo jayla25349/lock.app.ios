@@ -10,4 +10,5 @@ target 'DCTask' do
     pod 'MJRefresh'
     pod 'SVProgressHUD'
     pod 'RACSRWebSocket'
+    pod 'UITableView+FDTemplateLayoutCell'
 end

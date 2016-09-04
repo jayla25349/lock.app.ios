@@ -2,8 +2,8 @@
 //  NSError+HTTP.h
 //  CoreFramework
 //
-//  Created by Jayla on 16/1/14.
-//  Copyright © 2016年 Anzogame. All rights reserved.
+//  Created by 青秀斌 on 16/1/14.
+//  Copyright © 2016年 kylincc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

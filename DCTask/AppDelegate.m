@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "DCHomeVC.h"
+#import "BSNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [AppEngine shareEngine];
+    
+    DCHomeVC *vc = [[DCHomeVC alloc] init];
+    BSNavigationController *nav = [[BSNavigationController alloc] initWithRootViewController:vc];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor blackColor];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

@@ -1,9 +1,9 @@
 //
 //  WQRefreshTableView.h
-//  DNF
+//  Kylin
 //
-//  Created by Jayla on 16/2/3.
-//  Copyright © 2016年 anzogame. All rights reserved.
+//  Created by 青秀斌 on 16/2/3.
+//  Copyright © 2016年 kylincc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

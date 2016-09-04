@@ -6,8 +6,9 @@
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BSTableViewCell.h"
 
-@interface DCChangePwdCell : UITableViewCell
+@interface DCChangePwdCell : BSTableViewCell
+@property (nonatomic, readonly) UITextField *inputTextField;
 
 @end

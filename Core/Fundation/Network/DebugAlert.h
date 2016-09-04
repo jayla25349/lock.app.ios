@@ -1,8 +1,8 @@
 //
 //  DebugAlert.h
-//  JSPatchSDK
+//  Kylin
 //
-//  Created by Jayla on 16/8/11.
+//  Created by 青秀斌 on 16/8/11.
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 

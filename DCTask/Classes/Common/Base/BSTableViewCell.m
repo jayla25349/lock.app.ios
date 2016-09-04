@@ -10,4 +10,30 @@
 
 @implementation BSTableViewCell
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initView];
+    }
+    return self;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self initView];
+    }
+    return self;
+}
+
+- (void)initView {
+    self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableview_cell_arrow"]];
+    
+    self.backgroundView = [[UIView alloc] init];
+    self.backgroundView.backgroundColor = [UIColor whiteColor];
+    
+    self.selectedBackgroundView = [[UIView alloc] init];
+    self.selectedBackgroundView.backgroundColor = [UIColor grayColor];
+}
+
 @end

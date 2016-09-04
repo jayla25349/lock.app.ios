@@ -1,14 +1,14 @@
 //
-//  DCHomeListCell.m
+//  DCHomeCell.m
 //  DCTask
 //
 //  Created by 青秀斌 on 16/9/4.
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import "DCHomeListCell.h"
+#import "DCHomeCell.h"
 
-@interface DCHomeListCell ()
+@interface DCHomeCell ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *senderIcon;
 @property (nonatomic, strong) UILabel *senderLabel;
@@ -17,33 +17,11 @@
 @property (nonatomic, strong) UIImageView *lineView;
 @end
 
-@implementation DCHomeListCell
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self initView];
-    }
-    return self;
-}
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self initView];
-    }
-    return self;
-}
+@implementation DCHomeCell
 
 - (void)initView {
-    self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableview_cell_arrow"]];
+    [super initView];
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    self.backgroundView = [[UIView alloc] init];
-    self.backgroundView.backgroundColor = [UIColor whiteColor];
-    
-    self.selectedBackgroundView = [[UIView alloc] init];
-    self.selectedBackgroundView.backgroundColor = RGB(242, 242, 242);
     
     if (self.titleLabel == nil) {
         self.titleLabel = [[UILabel alloc] init];

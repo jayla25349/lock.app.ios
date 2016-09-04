@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'EE9EDB67553F212123B6DC82BB832426'
+               BlueprintIdentifier = '49F70F1F61D9322E515F29C1D3683BBA'
                BlueprintName = 'RACSRWebSocket'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libRACSRWebSocket.a'>

@@ -1,8 +1,8 @@
 //
 //  WQRefreshFooter.h
-//  Pods
+//  Kylin
 //
-//  Created by Jayla on 15/12/14.
+//  Created by 青秀斌 on 15/12/14.
 //
 //
 

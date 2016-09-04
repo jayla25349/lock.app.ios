@@ -1,8 +1,8 @@
 //
 //  WQBlankView.m
-//  Pods
+//  Kylin
 //
-//  Created by Jayla on 16/4/22.
+//  Created by 青秀斌 on 16/4/22.
 //
 //
 

@@ -36,6 +36,7 @@ PODS:
     - ReactiveCocoa/Core
   - SocketRocket (0.4)
   - SVProgressHUD (2.0.3)
+  - UITableView+FDTemplateLayoutCell (1.4)
   - YYCache (1.0.3)
   - YYCategories (1.0.3):
     - YYCategories/no-arc (= 1.0.3)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - MJRefresh
   - RACSRWebSocket
   - SVProgressHUD
+  - UITableView+FDTemplateLayoutCell
   - YYCategories
   - YYModel
   - YYWebImage
@@ -68,12 +70,13 @@ SPEC CHECKSUMS:
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SocketRocket: 01443933b7bc362621325f4607b80b4286a99707
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
   YYCache: 282f35b5b0990833d0b7a06d864a87141a021da2
   YYCategories: 0fd4d9eb0994d8d0e355beb4081c8f7202a82b7b
   YYImage: 362f44ffba1fc498f2152060f3bb54ed84600981
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYWebImage: 0431ed108e104527669b86f75efd58958425cca2
 
-PODFILE CHECKSUM: a7bf5daefb705d71f21c1aa02adaee33433a7a7b
+PODFILE CHECKSUM: 7a1e9e01c24071cad5ec589a861dc9e850b10a89
 
 COCOAPODS: 1.0.1

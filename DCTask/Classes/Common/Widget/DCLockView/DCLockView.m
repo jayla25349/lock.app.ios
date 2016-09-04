@@ -1,14 +1,14 @@
 //
-//  KYLockView.m
-//  KyApp
+//  DCLockView.m
+//  DCTask
 //
 //  Created by 青秀斌 on 16/7/21.
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import "KYLockView.h"
+#import "DCLockView.h"
 
-@interface KYLockView ()
+@interface DCLockView ()
 @property (nonatomic, strong) NSMutableArray<UIImageView *> *imageViews;
 @property (nonatomic, strong) NSMutableArray<UIImageView *> *selectedImageViews;
 
@@ -16,7 +16,7 @@
 @property (nonatomic, assign) BOOL isTouching;
 @end
 
-@implementation KYLockView
+@implementation DCLockView
 
 - (instancetype)init {
     self = [super init];
@@ -43,50 +43,47 @@
 }
 
 - (void)initView {
-    _rowSpace = 20.0f;
-    _colSpace = 20.0f;
-    _itemSize = CGSizeMake(70.0f, 70.0f);
+    _rowSpace = 30.0f;
+    _colSpace = 30.0f;
     _edgeInsets = UIEdgeInsetsMake(30.0f, 30.0f, 30.0f, 30.0f);
-    _imageViews = [NSMutableArray arrayWithCapacity:9];
     
-    _minLengh = 3;
     _showPath = YES;
-    _lineWidth = 10.0f;
+    _lineWidth = 1.0f;
     _lineColor = [UIColor redColor];
-    _normalImage = nil;
-    _selectedImage = nil;
+    _normalImage = [UIImage imageNamed:@"lock_nor"];
+    _selectedImage = [UIImage imageNamed:@"lock_sel"];
+    
+    _imageViews = [NSMutableArray arrayWithCapacity:9];
     _selectedImageViews = [NSMutableArray array];
     
     self.backgroundColor = [UIColor grayColor];
-    __weak typeof(self) weakSelf = self;
     __weak __block UIView *topView = nil;
     __weak __block UIView *leftView = nil;
     
     for (int i=0; i<9; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.tag = i;
-        imageView.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.4];
+        imageView.image = self.normalImage;
+        imageView.highlightedImage = self.selectedImage;
         [self addSubview:imageView];
         [self.imageViews addObject:imageView];
         
         __weak UIImageView *weakImageView = imageView;
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             if (topView) {
-                make.top.equalTo(topView.mas_bottom).offset(weakSelf.rowSpace);
+                make.top.equalTo(topView.mas_bottom).offset(self.rowSpace);
             } else {
-                make.top.equalTo(weakSelf).offset(weakSelf.edgeInsets.top);
+                make.top.equalTo(self).offset(self.edgeInsets.top);
             }
             
             if (leftView) {
-                make.left.equalTo(leftView.mas_right).offset(weakSelf.colSpace);
+                make.left.equalTo(leftView.mas_right).offset(self.colSpace);
             } else {
-                make.left.equalTo(weakSelf).offset(weakSelf.edgeInsets.left);
+                make.left.equalTo(self).offset(self.edgeInsets.left);
             }
             
-            if (i==0) {
-                make.size.mas_equalTo(weakSelf.itemSize).priorityHigh();
-            } else {
-                make.size.equalTo(weakSelf.imageViews.firstObject);
+            if (i>0) {
+                make.size.equalTo(self.imageViews.firstObject);
             }
             
             if (i%3==2) {
@@ -99,13 +96,12 @@
     }
     
     [self.imageViews.lastObject mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf).offset(-weakSelf.edgeInsets.right);
-        make.bottom.equalTo(weakSelf).offset(-weakSelf.edgeInsets.bottom);
+        make.right.equalTo(self).offset(-self.edgeInsets.right);
+        make.bottom.equalTo(self).offset(-self.edgeInsets.bottom);
     }];
 }
 
 - (void)drawRect:(CGRect)rect {
-    
     
     if (self.isTouching && self.selectedImageViews.count>0) {
         CGContextRef context = UIGraphicsGetCurrentContext();
@@ -142,6 +138,7 @@
     for (UIImageView *imageView in self.imageViews) {
         CGPoint touchPoint = [touch locationInView:imageView];
         if ([imageView pointInside:touchPoint withEvent:nil]) {
+            imageView.highlighted = YES;
             [self.selectedImageViews addObject:imageView];
             
             self.isTouching = YES;
@@ -162,6 +159,7 @@
         
         CGPoint touchPoint = [touch locationInView:imageView];
         if ([imageView pointInside:touchPoint withEvent:nil]) {
+            imageView.highlighted = YES;
             [self.selectedImageViews addObject:imageView];
         }
     }

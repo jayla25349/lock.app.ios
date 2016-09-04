@@ -10,4 +10,6 @@
 
 @interface BSTableViewCell : UITableViewCell
 
+- (void)initView;
+
 @end

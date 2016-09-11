@@ -14,8 +14,11 @@ const int ddLogLevel = DDLogLevelVerbose;
 const int ddLogLevel = DDLogLevelWarning;
 #endif
 
+static NSMutableArray<id<UIApplicationDelegate>> *managers = nil;
+
 @interface AppEngine ()
 @property (nonatomic, strong) NetworkManager *networkManager;
+@property (nonatomic, strong) PushManager *pushManager;
 @end
 
 @implementation AppEngine
@@ -28,19 +31,54 @@ const int ddLogLevel = DDLogLevelWarning;
         [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:DDLogLevelVerbose];
         [DDLog addLogger:[DDASLLogger sharedInstance] withLevel:DDLogLevelInfo];
         
-        self.networkManager =[NetworkManager new];
+        self.networkManager = [NetworkManager new];
+        self.pushManager = [PushManager new];
     }
     return self;
 }
 
-+ (instancetype)shareEngine {
-    static AppEngine *instance;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        instance = [[AppEngine alloc] init];
-    });
-    return instance;
+//消息分发
+- (void)forwardInvocation:(NSInvocation *)anInvocation {
+    NSString *selector = NSStringFromSelector(anInvocation.selector);
+    if (![selector hasPrefix:@"application"]) {
+        return;
+    }
+    [managers enumerateObjectsUsingBlock:^(id<UIApplicationDelegate>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj respondsToSelector:anInvocation.selector]) {
+            DDLogDebug(@"-[%@ %@]", obj, selector);
+            [anInvocation invokeWithTarget:obj];
+        }
+    }];
 }
+
+/**********************************************************************/
+#pragma mark - Public
+/**********************************************************************/
+
++ (BOOL)registerManager:(id<UIApplicationDelegate>)manager {
+    if (!manager) {
+        return NO;
+    }
+    if (managers == nil) {
+        managers = [NSMutableArray array];
+    }
+    DDLogDebug(@"已注册：%@", manager);
+    [managers addObject:manager];
+    return YES;
+}
+
++ (BOOL)unRegisterManager:(id<UIApplicationDelegate>)manager {
+    if (managers && [managers containsObject:manager]) {
+        DDLogDebug(@"已卸载：%@", manager);
+        [managers removeObject:manager];
+        return YES;
+    }
+    return NO;
+}
+
+/**********************************************************************/
+#pragma mark - UIApplicationDelegate
+/**********************************************************************/
 
 
 @end

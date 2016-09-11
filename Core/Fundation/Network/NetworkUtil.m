@@ -99,18 +99,7 @@ NSString * HttpQueryStringFromParametersWithEncoding(NSDictionary *parameters, N
 //请求参数
 + (NSDictionary *)requestParamatersWithDic:(NSDictionary *)paramDic {
     NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] init];
-//    [tempDic setObject:@"sfsfsfsfs" forField:@"sign"];
-//    [tempDic setObject:@"ios" forField:@"os"];
-//    [tempDic setObject:[WQDevice osVersion] forField:@"osVersion"];
-//    [tempDic setObject:[WQDevice appBuild] forField:@"platformVersion"];
-//    [tempDic setObject:[WQAppEngine stringForSystemKey:@"GAME"] forField:@"game"];
-//    [tempDic setObject:[WQAppEngine stringForSystemKey:@"APP_FULL_NAME"] forField:@"platform"];
-//    [tempDic setObject:[WQUser me].token forField:@"userToken"];
-//    [tempDic setObject:[WQUser me].user_id?:[WQUser me].userid forField:@"userId"];//用[WQUser me].userid是为了兼容lol
-//    [tempDic setObject:[WQUtility deviceId]?:[WQUser me].userid forField:@"deviceId"];//为什么用[WQUser me].userid？原作者说不记得了
-//    [tempDic setInteger:[[NSDate date] timeIntervalSince1970] forField:@"time"];
-//    [tempDic setObject:@"v1" forField:@"apiVersion"];
-//    [tempDic setObject:api forField:@"api"];
+    
     if ([paramDic isKindOfClass:[NSDictionary class]]) {
         [tempDic addEntriesFromDictionary:paramDic];
     }

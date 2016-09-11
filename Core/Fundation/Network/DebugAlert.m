@@ -16,8 +16,6 @@
 @property (nonatomic, strong) UIButton *dismissAllButton;
 
 @property (nonatomic, assign) DebugAlertStyle alertStyle;
-@property (nonatomic, assign) DebugAlertStatus alertStatus;
-@property (nonatomic, assign) DebugAlertStatus alertShowStatus;
 @property (nonatomic, assign) BOOL isAutoDismiss;
 @property (nonatomic, assign) BOOL isAddTimer;
 @end
@@ -33,8 +31,6 @@
 - (void)initView{
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8f];
     self.alertStyle = DebugAlertStyleInfo;
-    self.alertStatus = DebugAlertStatusHide;
-    self.alertShowStatus = DebugAlertStatusShowFull;
     self.isAutoDismiss = NO;
     self.isAddTimer = NO;
     
@@ -48,9 +44,6 @@
             make.top.left.right.equalTo(weakSelf);
             make.height.mas_greaterThanOrEqualTo(49);
         }];
-        
-        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-        [_scrollView addGestureRecognizer:gesture];
     }
     
     if (_textView == nil) {
@@ -134,27 +127,7 @@ static NSMutableArray<DebugAlert *> *alertArray = nil;
     }
 }
 
-- (void)_showHalf:(void (^)(BOOL finished))completion {
-    [self _addToWindow];
-    
-    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
-        __weak UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(window);
-            make.bottom.equalTo(window).offset(41);
-            make.height.lessThanOrEqualTo(window);
-        }];
-        [window layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        [self _addTimer];
-        self.alertStatus = DebugAlertStatusShowHalf;
-        if (completion) {
-            completion(finished);
-        }
-    }];
-}
-
-- (void)_showFull:(void (^)(BOOL finished))completion {
+- (void)_show:(void (^)(BOOL finished))completion {
     [self _addToWindow];
     
     [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -167,7 +140,6 @@ static NSMutableArray<DebugAlert *> *alertArray = nil;
         [window layoutIfNeeded];
     } completion:^(BOOL finished) {
         [self _addTimer];
-        self.alertStatus = DebugAlertStatusShowFull;
         if (completion) {
             completion(finished);
         }
@@ -186,7 +158,6 @@ static NSMutableArray<DebugAlert *> *alertArray = nil;
         }];
         [window layoutIfNeeded];
     } completion:^(BOOL finished) {
-        self.alertStatus = DebugAlertStatusHide;
         [self removeFromSuperview];
         if (completion) {
             completion(finished);
@@ -197,11 +168,7 @@ static NSMutableArray<DebugAlert *> *alertArray = nil;
 
 - (void)showAlert {
     if (alertArray.count==0) {
-        if (self.alertShowStatus==DebugAlertStatusShowFull) {
-            [self _showFull:nil];
-        } else if (self.alertShowStatus==DebugAlertStatusShowHalf) {
-            [self _showHalf:nil];
-        }
+        [self _show:nil];
     }
     if (alertArray == nil) {
         alertArray = [NSMutableArray array];
@@ -218,11 +185,7 @@ static NSMutableArray<DebugAlert *> *alertArray = nil;
         
         DebugAlert *alert = alertArray.firstObject;
         if (alert) {
-            if (alert.alertShowStatus==DebugAlertStatusShowFull) {
-                [alert _showFull:nil];
-            } else if (alert.alertShowStatus==DebugAlertStatusShowHalf) {
-                [alert _showHalf:nil];
-            }
+            [self _show:nil];
         }
     }];
 }
@@ -263,13 +226,6 @@ static NSMutableArray<DebugAlert *> *alertArray = nil;
     };
 }
 
-- (DebugAlertStatusBlock)status {
-    return ^DebugAlert *(DebugAlertStatus status) {
-        self.alertShowStatus = status;
-        return self;
-    };
-}
-
 - (DebugAlertBoolBlock)autoDismiss {
     return ^DebugAlert *(BOOL autoDismiss) {
         self.isAutoDismiss = autoDismiss;
@@ -286,17 +242,6 @@ static NSMutableArray<DebugAlert *> *alertArray = nil;
 /**********************************************************************/
 #pragma mark - Action
 /**********************************************************************/
-
-- (void)tapAction:(UITapGestureRecognizer *)gesture {
-    if (gesture.state != UIGestureRecognizerStateEnded) {
-        return;
-    }
-    if (self.alertStatus == DebugAlertStatusShowHalf) {
-        [self _showFull:nil];
-    } else if (self.alertStatus == DebugAlertStatusShowFull) {
-        [self _showHalf:nil];
-    }
-}
 
 - (void)dismissAction:(UIButton *)sender {
     [self dismissAlert];

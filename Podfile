@@ -8,7 +8,8 @@ target 'DCTask' do
     pod 'YYCategories'
 	pod 'Masonry'
     pod 'MJRefresh'
+    pod 'SocketRocket'
+    pod 'MagicalRecord'
     pod 'SVProgressHUD'
-    pod 'RACSRWebSocket'
     pod 'UITableView+FDTemplateLayoutCell'
 end

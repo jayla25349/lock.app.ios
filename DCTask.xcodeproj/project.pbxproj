@@ -8,7 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		6DF1CE52FF399A68C8689C5B /* libPods-DCTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9B8C195E49DB8A6F49BBBF /* libPods-DCTask.a */; };
-		E349A3791D7BDAF700041338 /* DCLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = E349A3781D7BDAF700041338 /* DCLockView.m */; };
+		E3109F9F1D8535D9006DD8EF /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109F9E1D8535D9006DD8EF /* PushManager.m */; };
+		E3109FA21D854EB3006DD8EF /* plan.json in Resources */ = {isa = PBXBuildFile; fileRef = E3109FA11D854EB3006DD8EF /* plan.json */; };
+		E3109FB61D854FEA006DD8EF /* DCTaskModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3109FA31D854FEA006DD8EF /* DCTaskModel.xcdatamodeld */; };
+		E3109FB71D854FEA006DD8EF /* Picture+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109FA71D854FEA006DD8EF /* Picture+CoreDataProperties.m */; };
+		E3109FB81D854FEA006DD8EF /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109FA91D854FEA006DD8EF /* Picture.m */; };
+		E3109FB91D854FEA006DD8EF /* Plan+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109FAB1D854FEA006DD8EF /* Plan+CoreDataProperties.m */; };
+		E3109FBA1D854FEA006DD8EF /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109FAD1D854FEA006DD8EF /* Plan.m */; };
+		E3109FBB1D854FEA006DD8EF /* PlanItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109FAF1D854FEA006DD8EF /* PlanItem+CoreDataProperties.m */; };
+		E3109FBC1D854FEA006DD8EF /* PlanItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109FB11D854FEA006DD8EF /* PlanItem.m */; };
+		E3109FBD1D854FEA006DD8EF /* TaskItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109FB31D854FEA006DD8EF /* TaskItem+CoreDataProperties.m */; };
+		E3109FBE1D854FEA006DD8EF /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109FB51D854FEA006DD8EF /* TaskItem.m */; };
 		E352D5B41D7B222A00CB4B93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5B31D7B222A00CB4B93 /* main.m */; };
 		E352D5B71D7B222A00CB4B93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5B61D7B222A00CB4B93 /* AppDelegate.m */; };
 		E352D5BF1D7B222A00CB4B93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E352D5BE1D7B222A00CB4B93 /* Assets.xcassets */; };
@@ -25,27 +35,48 @@
 		E352D5F61D7B23AC00CB4B93 /* WQRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5E61D7B23AC00CB4B93 /* WQRefreshHeader.m */; };
 		E352D5F71D7B23AC00CB4B93 /* WQRefreshCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5E91D7B23AC00CB4B93 /* WQRefreshCollectionView.m */; };
 		E352D5F81D7B23AC00CB4B93 /* WQRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5EB1D7B23AC00CB4B93 /* WQRefreshTableView.m */; };
-		E352D6E61D7B275300CB4B93 /* DCLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D6E51D7B275300CB4B93 /* DCLoginVC.m */; };
-		E352D6E91D7B278200CB4B93 /* DCRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D6E81D7B278200CB4B93 /* DCRegisterVC.m */; };
-		E352D6EC1D7B279000CB4B93 /* DCHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D6EB1D7B279000CB4B93 /* DCHomeVC.m */; };
-		E352D6F01D7B27F200CB4B93 /* DCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D6EF1D7B27F200CB4B93 /* DCSettingVC.m */; };
-		E3719D6B1D7C3649002C13F9 /* DCCheckVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719D6A1D7C3649002C13F9 /* DCCheckVC.m */; };
-		E3719D721D7C3F30002C13F9 /* DCOpenDoorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719D711D7C3F30002C13F9 /* DCOpenDoorVC.m */; };
-		E3719D751D7C5F59002C13F9 /* DCChangePwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719D741D7C5F59002C13F9 /* DCChangePwdVC.m */; };
-		E3719D781D7C605C002C13F9 /* DCChangePwdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719D771D7C605C002C13F9 /* DCChangePwdCell.m */; };
-		E3719D7E1D7C632F002C13F9 /* BSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719D7B1D7C632F002C13F9 /* BSNavigationController.m */; };
-		E3719D7F1D7C632F002C13F9 /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719D7D1D7C632F002C13F9 /* BSViewController.m */; };
-		E3719D821D7C633D002C13F9 /* BSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719D811D7C633D002C13F9 /* BSTableViewCell.m */; };
+		E3A331661D845E0700CA36DF /* BSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331461D845E0700CA36DF /* BSNavigationController.m */; };
+		E3A331671D845E0700CA36DF /* BSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331481D845E0700CA36DF /* BSTableViewCell.m */; };
+		E3A331681D845E0700CA36DF /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A3314A1D845E0700CA36DF /* BSViewController.m */; };
+		E3A331691D845E0700CA36DF /* DCLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A3314F1D845E0700CA36DF /* DCLockView.m */; };
+		E3A3316A1D845E0700CA36DF /* DCCheckVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331521D845E0700CA36DF /* DCCheckVC.m */; };
+		E3A3316B1D845E0700CA36DF /* DCHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331541D845E0700CA36DF /* DCHomeCell.m */; };
+		E3A3316C1D845E0700CA36DF /* DCHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331561D845E0700CA36DF /* DCHomeVC.m */; };
+		E3A3316D1D845E0700CA36DF /* DCLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331591D845E0700CA36DF /* DCLoginVC.m */; };
+		E3A3316E1D845E0700CA36DF /* DCRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A3315B1D845E0700CA36DF /* DCRegisterVC.m */; };
+		E3A3316F1D845E0700CA36DF /* DCOpenDoorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A3315E1D845E0700CA36DF /* DCOpenDoorVC.m */; };
+		E3A331701D845E0700CA36DF /* DCChangePwdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331611D845E0700CA36DF /* DCChangePwdCell.m */; };
+		E3A331711D845E0700CA36DF /* DCChangePwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331631D845E0700CA36DF /* DCChangePwdVC.m */; };
+		E3A331721D845E0700CA36DF /* DCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331651D845E0700CA36DF /* DCSettingVC.m */; };
+		E3A331761D845E2F00CA36DF /* DCSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331751D845E2F00CA36DF /* DCSyncManager.m */; };
+		E3A3317A1D847E4700CA36DF /* DCAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331791D847E4700CA36DF /* DCAppEngine.m */; };
 		E3F5F1F61D7C15DE00697607 /* UIColor+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F5F1F51D7C15DE00697607 /* UIColor+Core.m */; };
-		E3F5F1F91D7C190B00697607 /* DCHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F5F1F81D7C190B00697607 /* DCHomeCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		395DEC497A25828EF1B533CB /* Pods-DCTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DCTask/Pods-DCTask.debug.xcconfig"; sourceTree = "<group>"; };
 		BE9B8C195E49DB8A6F49BBBF /* libPods-DCTask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DCTask.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D986234972209DE9D17A34F4 /* Pods-DCTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-DCTask/Pods-DCTask.release.xcconfig"; sourceTree = "<group>"; };
-		E349A3771D7BDAF700041338 /* DCLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCLockView.h; sourceTree = "<group>"; };
-		E349A3781D7BDAF700041338 /* DCLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCLockView.m; sourceTree = "<group>"; };
+		E3109F9D1D8535D9006DD8EF /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
+		E3109F9E1D8535D9006DD8EF /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
+		E3109FA11D854EB3006DD8EF /* plan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plan.json; sourceTree = "<group>"; };
+		E3109FA41D854FEA006DD8EF /* DCTaskModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DCTaskModel.xcdatamodel; sourceTree = "<group>"; };
+		E3109FA61D854FEA006DD8EF /* Picture+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Picture+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E3109FA71D854FEA006DD8EF /* Picture+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Picture+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E3109FA81D854FEA006DD8EF /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
+		E3109FA91D854FEA006DD8EF /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
+		E3109FAA1D854FEA006DD8EF /* Plan+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Plan+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E3109FAB1D854FEA006DD8EF /* Plan+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Plan+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E3109FAC1D854FEA006DD8EF /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
+		E3109FAD1D854FEA006DD8EF /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
+		E3109FAE1D854FEA006DD8EF /* PlanItem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlanItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E3109FAF1D854FEA006DD8EF /* PlanItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlanItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E3109FB01D854FEA006DD8EF /* PlanItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanItem.h; sourceTree = "<group>"; };
+		E3109FB11D854FEA006DD8EF /* PlanItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanItem.m; sourceTree = "<group>"; };
+		E3109FB21D854FEA006DD8EF /* TaskItem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TaskItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E3109FB31D854FEA006DD8EF /* TaskItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TaskItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E3109FB41D854FEA006DD8EF /* TaskItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskItem.h; sourceTree = "<group>"; };
+		E3109FB51D854FEA006DD8EF /* TaskItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskItem.m; sourceTree = "<group>"; };
 		E352D5AF1D7B222A00CB4B93 /* DCTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E352D5B31D7B222A00CB4B93 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E352D5B51D7B222A00CB4B93 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -79,32 +110,38 @@
 		E352D5EA1D7B23AC00CB4B93 /* WQRefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQRefreshTableView.h; sourceTree = "<group>"; };
 		E352D5EB1D7B23AC00CB4B93 /* WQRefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQRefreshTableView.m; sourceTree = "<group>"; };
 		E352D6DD1D7B256500CB4B93 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		E352D6E41D7B275300CB4B93 /* DCLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCLoginVC.h; sourceTree = "<group>"; };
-		E352D6E51D7B275300CB4B93 /* DCLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCLoginVC.m; sourceTree = "<group>"; };
-		E352D6E71D7B278200CB4B93 /* DCRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRegisterVC.h; sourceTree = "<group>"; };
-		E352D6E81D7B278200CB4B93 /* DCRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRegisterVC.m; sourceTree = "<group>"; };
-		E352D6EA1D7B279000CB4B93 /* DCHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHomeVC.h; sourceTree = "<group>"; };
-		E352D6EB1D7B279000CB4B93 /* DCHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHomeVC.m; sourceTree = "<group>"; };
-		E352D6EE1D7B27F200CB4B93 /* DCSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSettingVC.h; sourceTree = "<group>"; };
-		E352D6EF1D7B27F200CB4B93 /* DCSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSettingVC.m; sourceTree = "<group>"; };
-		E3719D691D7C3649002C13F9 /* DCCheckVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCheckVC.h; sourceTree = "<group>"; };
-		E3719D6A1D7C3649002C13F9 /* DCCheckVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCheckVC.m; sourceTree = "<group>"; };
-		E3719D701D7C3F30002C13F9 /* DCOpenDoorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCOpenDoorVC.h; sourceTree = "<group>"; };
-		E3719D711D7C3F30002C13F9 /* DCOpenDoorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCOpenDoorVC.m; sourceTree = "<group>"; };
-		E3719D731D7C5F59002C13F9 /* DCChangePwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCChangePwdVC.h; sourceTree = "<group>"; };
-		E3719D741D7C5F59002C13F9 /* DCChangePwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCChangePwdVC.m; sourceTree = "<group>"; };
-		E3719D761D7C605C002C13F9 /* DCChangePwdCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCChangePwdCell.h; sourceTree = "<group>"; };
-		E3719D771D7C605C002C13F9 /* DCChangePwdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCChangePwdCell.m; sourceTree = "<group>"; };
-		E3719D7A1D7C632F002C13F9 /* BSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNavigationController.h; sourceTree = "<group>"; };
-		E3719D7B1D7C632F002C13F9 /* BSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNavigationController.m; sourceTree = "<group>"; };
-		E3719D7C1D7C632F002C13F9 /* BSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSViewController.h; sourceTree = "<group>"; };
-		E3719D7D1D7C632F002C13F9 /* BSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSViewController.m; sourceTree = "<group>"; };
-		E3719D801D7C633D002C13F9 /* BSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTableViewCell.h; sourceTree = "<group>"; };
-		E3719D811D7C633D002C13F9 /* BSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTableViewCell.m; sourceTree = "<group>"; };
+		E3A331451D845E0700CA36DF /* BSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNavigationController.h; sourceTree = "<group>"; };
+		E3A331461D845E0700CA36DF /* BSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNavigationController.m; sourceTree = "<group>"; };
+		E3A331471D845E0700CA36DF /* BSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTableViewCell.h; sourceTree = "<group>"; };
+		E3A331481D845E0700CA36DF /* BSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTableViewCell.m; sourceTree = "<group>"; };
+		E3A331491D845E0700CA36DF /* BSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSViewController.h; sourceTree = "<group>"; };
+		E3A3314A1D845E0700CA36DF /* BSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSViewController.m; sourceTree = "<group>"; };
+		E3A3314E1D845E0700CA36DF /* DCLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCLockView.h; sourceTree = "<group>"; };
+		E3A3314F1D845E0700CA36DF /* DCLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCLockView.m; sourceTree = "<group>"; };
+		E3A331511D845E0700CA36DF /* DCCheckVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCheckVC.h; sourceTree = "<group>"; };
+		E3A331521D845E0700CA36DF /* DCCheckVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCheckVC.m; sourceTree = "<group>"; };
+		E3A331531D845E0700CA36DF /* DCHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHomeCell.h; sourceTree = "<group>"; };
+		E3A331541D845E0700CA36DF /* DCHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHomeCell.m; sourceTree = "<group>"; };
+		E3A331551D845E0700CA36DF /* DCHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHomeVC.h; sourceTree = "<group>"; };
+		E3A331561D845E0700CA36DF /* DCHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHomeVC.m; sourceTree = "<group>"; };
+		E3A331581D845E0700CA36DF /* DCLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCLoginVC.h; sourceTree = "<group>"; };
+		E3A331591D845E0700CA36DF /* DCLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCLoginVC.m; sourceTree = "<group>"; };
+		E3A3315A1D845E0700CA36DF /* DCRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRegisterVC.h; sourceTree = "<group>"; };
+		E3A3315B1D845E0700CA36DF /* DCRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRegisterVC.m; sourceTree = "<group>"; };
+		E3A3315D1D845E0700CA36DF /* DCOpenDoorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCOpenDoorVC.h; sourceTree = "<group>"; };
+		E3A3315E1D845E0700CA36DF /* DCOpenDoorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCOpenDoorVC.m; sourceTree = "<group>"; };
+		E3A331601D845E0700CA36DF /* DCChangePwdCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCChangePwdCell.h; sourceTree = "<group>"; };
+		E3A331611D845E0700CA36DF /* DCChangePwdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCChangePwdCell.m; sourceTree = "<group>"; };
+		E3A331621D845E0700CA36DF /* DCChangePwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCChangePwdVC.h; sourceTree = "<group>"; };
+		E3A331631D845E0700CA36DF /* DCChangePwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCChangePwdVC.m; sourceTree = "<group>"; };
+		E3A331641D845E0700CA36DF /* DCSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSettingVC.h; sourceTree = "<group>"; };
+		E3A331651D845E0700CA36DF /* DCSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSettingVC.m; sourceTree = "<group>"; };
+		E3A331741D845E2F00CA36DF /* DCSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSyncManager.h; sourceTree = "<group>"; };
+		E3A331751D845E2F00CA36DF /* DCSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSyncManager.m; sourceTree = "<group>"; };
+		E3A331781D847E4700CA36DF /* DCAppEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCAppEngine.h; sourceTree = "<group>"; };
+		E3A331791D847E4700CA36DF /* DCAppEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCAppEngine.m; sourceTree = "<group>"; };
 		E3F5F1F41D7C15DE00697607 /* UIColor+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Core.h"; sourceTree = "<group>"; };
 		E3F5F1F51D7C15DE00697607 /* UIColor+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Core.m"; sourceTree = "<group>"; };
-		E3F5F1F71D7C190B00697607 /* DCHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHomeCell.h; sourceTree = "<group>"; };
-		E3F5F1F81D7C190B00697607 /* DCHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHomeCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,13 +173,44 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E349A3761D7BDAF700041338 /* DCLockView */ = {
+		E3109F9C1D8535BC006DD8EF /* Push */ = {
 			isa = PBXGroup;
 			children = (
-				E349A3771D7BDAF700041338 /* DCLockView.h */,
-				E349A3781D7BDAF700041338 /* DCLockView.m */,
+				E3109F9D1D8535D9006DD8EF /* PushManager.h */,
+				E3109F9E1D8535D9006DD8EF /* PushManager.m */,
 			);
-			path = DCLockView;
+			path = Push;
+			sourceTree = "<group>";
+		};
+		E3109FA01D854EB3006DD8EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E3109FA11D854EB3006DD8EF /* plan.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E3109FA51D854FEA006DD8EF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E3109FA61D854FEA006DD8EF /* Picture+CoreDataProperties.h */,
+				E3109FA71D854FEA006DD8EF /* Picture+CoreDataProperties.m */,
+				E3109FA81D854FEA006DD8EF /* Picture.h */,
+				E3109FA91D854FEA006DD8EF /* Picture.m */,
+				E3109FAA1D854FEA006DD8EF /* Plan+CoreDataProperties.h */,
+				E3109FAB1D854FEA006DD8EF /* Plan+CoreDataProperties.m */,
+				E3109FAC1D854FEA006DD8EF /* Plan.h */,
+				E3109FAD1D854FEA006DD8EF /* Plan.m */,
+				E3109FAE1D854FEA006DD8EF /* PlanItem+CoreDataProperties.h */,
+				E3109FAF1D854FEA006DD8EF /* PlanItem+CoreDataProperties.m */,
+				E3109FB01D854FEA006DD8EF /* PlanItem.h */,
+				E3109FB11D854FEA006DD8EF /* PlanItem.m */,
+				E3109FB21D854FEA006DD8EF /* TaskItem+CoreDataProperties.h */,
+				E3109FB31D854FEA006DD8EF /* TaskItem+CoreDataProperties.m */,
+				E3109FB41D854FEA006DD8EF /* TaskItem.h */,
+				E3109FB51D854FEA006DD8EF /* TaskItem.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E352D5A61D7B222A00CB4B93 = {
@@ -167,7 +235,9 @@
 		E352D5B11D7B222A00CB4B93 /* DCTask */ = {
 			isa = PBXGroup;
 			children = (
-				E352D6D61D7B24B800CB4B93 /* Classes */,
+				E3109FA01D854EB3006DD8EF /* Resources */,
+				E3A331411D845E0700CA36DF /* Logic */,
+				E3A331421D845E0700CA36DF /* UI */,
 				E352D5B51D7B222A00CB4B93 /* AppDelegate.h */,
 				E352D5B61D7B222A00CB4B93 /* AppDelegate.m */,
 				E352D5BE1D7B222A00CB4B93 /* Assets.xcassets */,
@@ -208,6 +278,7 @@
 		E352D5CD1D7B23AC00CB4B93 /* Fundation */ = {
 			isa = PBXGroup;
 			children = (
+				E3109F9C1D8535BC006DD8EF /* Push */,
 				E352D5CE1D7B23AC00CB4B93 /* Extension */,
 				E352D5D11D7B23AC00CB4B93 /* Network */,
 			);
@@ -284,80 +355,6 @@
 			path = WQRefreshTableView;
 			sourceTree = "<group>";
 		};
-		E352D6D61D7B24B800CB4B93 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				E352D6D71D7B24B800CB4B93 /* Common */,
-				E352D6DB1D7B24B800CB4B93 /* Home */,
-				E352D6DC1D7B24B800CB4B93 /* Login */,
-				E3719D6F1D7C3BCC002C13F9 /* Open */,
-				E352D6ED1D7B27E400CB4B93 /* Setting */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		E352D6D71D7B24B800CB4B93 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				E3719D791D7C632F002C13F9 /* Base */,
-				E352D6D91D7B24B800CB4B93 /* Extension */,
-				E352D6DA1D7B24B800CB4B93 /* Widget */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		E352D6D91D7B24B800CB4B93 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		E352D6DA1D7B24B800CB4B93 /* Widget */ = {
-			isa = PBXGroup;
-			children = (
-				E349A3761D7BDAF700041338 /* DCLockView */,
-			);
-			path = Widget;
-			sourceTree = "<group>";
-		};
-		E352D6DB1D7B24B800CB4B93 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				E352D6EA1D7B279000CB4B93 /* DCHomeVC.h */,
-				E352D6EB1D7B279000CB4B93 /* DCHomeVC.m */,
-				E3F5F1F71D7C190B00697607 /* DCHomeCell.h */,
-				E3F5F1F81D7C190B00697607 /* DCHomeCell.m */,
-				E3719D691D7C3649002C13F9 /* DCCheckVC.h */,
-				E3719D6A1D7C3649002C13F9 /* DCCheckVC.m */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		E352D6DC1D7B24B800CB4B93 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				E352D6E41D7B275300CB4B93 /* DCLoginVC.h */,
-				E352D6E51D7B275300CB4B93 /* DCLoginVC.m */,
-				E352D6E71D7B278200CB4B93 /* DCRegisterVC.h */,
-				E352D6E81D7B278200CB4B93 /* DCRegisterVC.m */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		E352D6ED1D7B27E400CB4B93 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				E352D6EE1D7B27F200CB4B93 /* DCSettingVC.h */,
-				E352D6EF1D7B27F200CB4B93 /* DCSettingVC.m */,
-				E3719D731D7C5F59002C13F9 /* DCChangePwdVC.h */,
-				E3719D741D7C5F59002C13F9 /* DCChangePwdVC.m */,
-				E3719D761D7C605C002C13F9 /* DCChangePwdCell.h */,
-				E3719D771D7C605C002C13F9 /* DCChangePwdCell.m */,
-			);
-			path = Setting;
-			sourceTree = "<group>";
-		};
 		E352D6F11D7B28CE00CB4B93 /* Extention */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,26 +364,138 @@
 			path = Extention;
 			sourceTree = "<group>";
 		};
-		E3719D6F1D7C3BCC002C13F9 /* Open */ = {
+		E3A331411D845E0700CA36DF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				E3719D701D7C3F30002C13F9 /* DCOpenDoorVC.h */,
-				E3719D711D7C3F30002C13F9 /* DCOpenDoorVC.m */,
+				E3A331771D847E2E00CA36DF /* Engine */,
+				E3A331731D845E2200CA36DF /* SyncManager */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		E3A331421D845E0700CA36DF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E3A331431D845E0700CA36DF /* Common */,
+				E3A331501D845E0700CA36DF /* Home */,
+				E3A331571D845E0700CA36DF /* Login */,
+				E3A3315C1D845E0700CA36DF /* Open */,
+				E3A3315F1D845E0700CA36DF /* Setting */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E3A331431D845E0700CA36DF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E3A331441D845E0700CA36DF /* Base */,
+				E3A3314B1D845E0700CA36DF /* Extension */,
+				E3A3314C1D845E0700CA36DF /* Widget */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E3A331441D845E0700CA36DF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E3A331451D845E0700CA36DF /* BSNavigationController.h */,
+				E3A331461D845E0700CA36DF /* BSNavigationController.m */,
+				E3A331471D845E0700CA36DF /* BSTableViewCell.h */,
+				E3A331481D845E0700CA36DF /* BSTableViewCell.m */,
+				E3A331491D845E0700CA36DF /* BSViewController.h */,
+				E3A3314A1D845E0700CA36DF /* BSViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		E3A3314B1D845E0700CA36DF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		E3A3314C1D845E0700CA36DF /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				E3A3314D1D845E0700CA36DF /* DCLockView */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		E3A3314D1D845E0700CA36DF /* DCLockView */ = {
+			isa = PBXGroup;
+			children = (
+				E3A3314E1D845E0700CA36DF /* DCLockView.h */,
+				E3A3314F1D845E0700CA36DF /* DCLockView.m */,
+			);
+			path = DCLockView;
+			sourceTree = "<group>";
+		};
+		E3A331501D845E0700CA36DF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E3A331511D845E0700CA36DF /* DCCheckVC.h */,
+				E3A331521D845E0700CA36DF /* DCCheckVC.m */,
+				E3A331531D845E0700CA36DF /* DCHomeCell.h */,
+				E3A331541D845E0700CA36DF /* DCHomeCell.m */,
+				E3A331551D845E0700CA36DF /* DCHomeVC.h */,
+				E3A331561D845E0700CA36DF /* DCHomeVC.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E3A331571D845E0700CA36DF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E3A331581D845E0700CA36DF /* DCLoginVC.h */,
+				E3A331591D845E0700CA36DF /* DCLoginVC.m */,
+				E3A3315A1D845E0700CA36DF /* DCRegisterVC.h */,
+				E3A3315B1D845E0700CA36DF /* DCRegisterVC.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E3A3315C1D845E0700CA36DF /* Open */ = {
+			isa = PBXGroup;
+			children = (
+				E3A3315D1D845E0700CA36DF /* DCOpenDoorVC.h */,
+				E3A3315E1D845E0700CA36DF /* DCOpenDoorVC.m */,
 			);
 			path = Open;
 			sourceTree = "<group>";
 		};
-		E3719D791D7C632F002C13F9 /* Base */ = {
+		E3A3315F1D845E0700CA36DF /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				E3719D7A1D7C632F002C13F9 /* BSNavigationController.h */,
-				E3719D7B1D7C632F002C13F9 /* BSNavigationController.m */,
-				E3719D7C1D7C632F002C13F9 /* BSViewController.h */,
-				E3719D7D1D7C632F002C13F9 /* BSViewController.m */,
-				E3719D801D7C633D002C13F9 /* BSTableViewCell.h */,
-				E3719D811D7C633D002C13F9 /* BSTableViewCell.m */,
+				E3A331601D845E0700CA36DF /* DCChangePwdCell.h */,
+				E3A331611D845E0700CA36DF /* DCChangePwdCell.m */,
+				E3A331621D845E0700CA36DF /* DCChangePwdVC.h */,
+				E3A331631D845E0700CA36DF /* DCChangePwdVC.m */,
+				E3A331641D845E0700CA36DF /* DCSettingVC.h */,
+				E3A331651D845E0700CA36DF /* DCSettingVC.m */,
 			);
-			path = Base;
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		E3A331731D845E2200CA36DF /* SyncManager */ = {
+			isa = PBXGroup;
+			children = (
+				E3109FA51D854FEA006DD8EF /* Models */,
+				E3109FA31D854FEA006DD8EF /* DCTaskModel.xcdatamodeld */,
+				E3A331741D845E2F00CA36DF /* DCSyncManager.h */,
+				E3A331751D845E2F00CA36DF /* DCSyncManager.m */,
+			);
+			path = SyncManager;
+			sourceTree = "<group>";
+		};
+		E3A331771D847E2E00CA36DF /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				E3A331781D847E4700CA36DF /* DCAppEngine.h */,
+				E3A331791D847E4700CA36DF /* DCAppEngine.m */,
+			);
+			path = Engine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,6 +533,11 @@
 				TargetAttributes = {
 					E352D5AE1D7B222A00CB4B93 = {
 						CreatedOnToolsVersion = 7.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -450,6 +564,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3109FA21D854EB3006DD8EF /* plan.json in Resources */,
 				E352D5BF1D7B222A00CB4B93 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,33 +624,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3719D7E1D7C632F002C13F9 /* BSNavigationController.m in Sources */,
 				E3F5F1F61D7C15DE00697607 /* UIColor+Core.m in Sources */,
-				E352D6F01D7B27F200CB4B93 /* DCSettingVC.m in Sources */,
-				E349A3791D7BDAF700041338 /* DCLockView.m in Sources */,
+				E3109FB81D854FEA006DD8EF /* Picture.m in Sources */,
+				E3109FBC1D854FEA006DD8EF /* PlanItem.m in Sources */,
 				E352D5F01D7B23AC00CB4B93 /* NetworkUtil.m in Sources */,
-				E352D6E91D7B278200CB4B93 /* DCRegisterVC.m in Sources */,
-				E3719D781D7C605C002C13F9 /* DCChangePwdCell.m in Sources */,
 				E352D5EE1D7B23AC00CB4B93 /* DebugAlert.m in Sources */,
-				E3719D751D7C5F59002C13F9 /* DCChangePwdVC.m in Sources */,
-				E3F5F1F91D7C190B00697607 /* DCHomeCell.m in Sources */,
+				E3A331661D845E0700CA36DF /* BSNavigationController.m in Sources */,
+				E3109FBE1D854FEA006DD8EF /* TaskItem.m in Sources */,
+				E3109FBB1D854FEA006DD8EF /* PlanItem+CoreDataProperties.m in Sources */,
 				E352D5EF1D7B23AC00CB4B93 /* NetworkManager.m in Sources */,
-				E3719D721D7C3F30002C13F9 /* DCOpenDoorVC.m in Sources */,
-				E352D6EC1D7B279000CB4B93 /* DCHomeVC.m in Sources */,
-				E352D6E61D7B275300CB4B93 /* DCLoginVC.m in Sources */,
+				E3A331701D845E0700CA36DF /* DCChangePwdCell.m in Sources */,
+				E3109FB61D854FEA006DD8EF /* DCTaskModel.xcdatamodeld in Sources */,
+				E3A3316A1D845E0700CA36DF /* DCCheckVC.m in Sources */,
+				E3A331761D845E2F00CA36DF /* DCSyncManager.m in Sources */,
+				E3A331711D845E0700CA36DF /* DCChangePwdVC.m in Sources */,
+				E3A3316C1D845E0700CA36DF /* DCHomeVC.m in Sources */,
+				E3A3316D1D845E0700CA36DF /* DCLoginVC.m in Sources */,
 				E352D5F51D7B23AC00CB4B93 /* WQRefreshFooter.m in Sources */,
+				E3A331691D845E0700CA36DF /* DCLockView.m in Sources */,
 				E352D5F61D7B23AC00CB4B93 /* WQRefreshHeader.m in Sources */,
+				E3109FBA1D854FEA006DD8EF /* Plan.m in Sources */,
+				E3A3317A1D847E4700CA36DF /* DCAppEngine.m in Sources */,
 				E352D5F41D7B23AC00CB4B93 /* WQBlankView.m in Sources */,
+				E3109FBD1D854FEA006DD8EF /* TaskItem+CoreDataProperties.m in Sources */,
+				E3A331671D845E0700CA36DF /* BSTableViewCell.m in Sources */,
 				E352D5F71D7B23AC00CB4B93 /* WQRefreshCollectionView.m in Sources */,
 				E352D5F11D7B23AC00CB4B93 /* NSError+HTTP.m in Sources */,
+				E3A3316B1D845E0700CA36DF /* DCHomeCell.m in Sources */,
+				E3109FB91D854FEA006DD8EF /* Plan+CoreDataProperties.m in Sources */,
 				E352D5F81D7B23AC00CB4B93 /* WQRefreshTableView.m in Sources */,
-				E3719D821D7C633D002C13F9 /* BSTableViewCell.m in Sources */,
-				E3719D7F1D7C632F002C13F9 /* BSViewController.m in Sources */,
+				E3109FB71D854FEA006DD8EF /* Picture+CoreDataProperties.m in Sources */,
+				E3A3316E1D845E0700CA36DF /* DCRegisterVC.m in Sources */,
 				E352D5F21D7B23AC00CB4B93 /* NSMutableDictionary+HTTP.m in Sources */,
 				E352D5EC1D7B23AC00CB4B93 /* AppEngine.m in Sources */,
-				E3719D6B1D7C3649002C13F9 /* DCCheckVC.m in Sources */,
 				E352D5B71D7B222A00CB4B93 /* AppDelegate.m in Sources */,
+				E3109F9F1D8535D9006DD8EF /* PushManager.m in Sources */,
+				E3A3316F1D845E0700CA36DF /* DCOpenDoorVC.m in Sources */,
+				E3A331681D845E0700CA36DF /* BSViewController.m in Sources */,
 				E352D5B41D7B222A00CB4B93 /* main.m in Sources */,
+				E3A331721D845E0700CA36DF /* DCSettingVC.m in Sources */,
 				E352D5F31D7B23AC00CB4B93 /* UIView+Blank.m in Sources */,
 				E352D5ED1D7B23AC00CB4B93 /* NSString+Core.m in Sources */,
 			);
@@ -632,11 +759,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 秀斌 青 (2X6L435CWG)";
 				GCC_PREFIX_HEADER = DCTask/PrefixHeader.pch;
 				INFOPLIST_FILE = DCTask/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kylincc.DCTask;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anzogame.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0fb3ed6e-03c0-4cd3-815d-59ccb1cca21b";
 			};
 			name = Debug;
 		};
@@ -646,11 +775,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 秀斌 青 (2X6L435CWG)";
 				GCC_PREFIX_HEADER = DCTask/PrefixHeader.pch;
 				INFOPLIST_FILE = DCTask/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kylincc.DCTask;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anzogame.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0fb3ed6e-03c0-4cd3-815d-59ccb1cca21b";
 			};
 			name = Release;
 		};
@@ -676,6 +807,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E3109FA31D854FEA006DD8EF /* DCTaskModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E3109FA41D854FEA006DD8EF /* DCTaskModel.xcdatamodel */,
+			);
+			currentVersion = E3109FA41D854FEA006DD8EF /* DCTaskModel.xcdatamodel */;
+			path = DCTaskModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E352D5A71D7B222A00CB4B93 /* Project object */;
 }

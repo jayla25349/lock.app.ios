@@ -36,6 +36,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-#define HTTP_GET(url, action) [AppEngine shareEngine].networkManager HTTP_GET:url api:action
-#define HTTP_POST(url, action) [AppEngine shareEngine].networkManager HTTP_POST:url api:action

@@ -6,29 +6,38 @@
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#ifndef PrefixHeader_pch
+#ifndef PrefixHeader_pch    
 #define PrefixHeader_pch
 
 #import "CocoaLumberjack.h"
-#import "AFNetworking.h"
-#import "YYModel.h"
-#import "YYWebImage.h"
-#import "YYCategories.h"
-#import "Masonry.h"
-#import "MJRefresh.h"
-#import "SVProgressHUD.h"
-#import "UITableView+FDTemplateLayoutCell.h"
+#import <AFNetworking/AFNetworking.h>
+#import <YYModel/YYModel.h>
+#import <YYWebImage/YYWebImage.h>
+#import <YYCategories/YYCategories.h>
+#import <Masonry/Masonry.h>
+#import <MJRefresh/MJRefresh.h>
+#import <SocketRocket/SocketRocket.h>
+#import <MagicalRecord/MagicalRecord.h>
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 
 #import "NSString+Core.h"
 #import "UIColor+Core.h"
-#import "AppEngine.h"
-
 #import "UIView+Blank.h"
 #import "WQRefreshHeader.h"
 #import "WQRefreshFooter.h"
 #import "WQRefreshTableView.h"
 #import "WQRefreshCollectionView.h"
 
+#import "BSViewController.h"
+#import "BSNavigationController.h"
+#import "DCAppEngine.h"
+
 extern const int ddLogLevel;
+
+#define URL_WEB_SERVICE     @"ws://echo.websocket.org"
+#define URL_SERVER          @"http://www.baidu.com"
+#define HTTP_GET(action)    [DCAppEngine shareEngine].networkManager HTTP_GET:URL_SERVER api:action
+#define HTTP_POST(action)   [DCAppEngine shareEngine].networkManager HTTP_POST:URL_SERVER api:action
 
 #endif /* PrefixHeader_pch */

@@ -1,0 +1,24 @@
+{
+    "business": "PLAN",
+    "plan_id": "巡检计划id",
+    "plan_name": "计划名称",
+    "dispatch_man": "派发人",
+    "plan_date": "巡检日期",
+    "room_name": "巡检机房",
+    "lock_mac": "机房门锁mac地址",
+    "items": [{
+        "item_id": "巡检项id",
+        "item_cate_name": "类别",
+        "equipment_name": "巡检设备",
+        "cabinet_name": "巡检机柜名称",
+        "cabinet_lock_mac": "机柜锁mac地址",
+        "item_name": "巡检事项"
+    }, {
+        "item_id": "巡检项id",
+        "item_cate_name": "类别",
+        "equipment_name": "巡检设备",
+        "cabinet_name": "巡检机柜名称",
+        "cabinet_lock_mac": "机柜锁mac地址",
+        "item_name": "巡检事项"
+    }]
+}

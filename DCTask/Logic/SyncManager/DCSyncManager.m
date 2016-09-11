@@ -15,6 +15,17 @@
 @implementation DCSyncManager
 
 /**********************************************************************/
+#pragma mark - Public
+/**********************************************************************/
+
+//同步数据
+- (void)syncData {
+    NSURL *jsonUrl = [[NSBundle mainBundle] URLForResource:@"plan" withExtension:@"json"];
+    NSString *jsonString = [NSString stringWithContentsOfURL:jsonUrl encoding:NSUTF8StringEncoding error:nil];
+    [self.webSocket send:jsonString];
+}
+
+/**********************************************************************/
 #pragma mark - UIApplicationDelegate
 /**********************************************************************/
 
@@ -36,7 +47,7 @@
     }];
     
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-        [localContext MR_saveToPersistentStoreAndWait];
+        
     } completion:^(BOOL success, NSError *error) {
         [application endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;
@@ -49,10 +60,6 @@
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
     DDLogDebug(@"%s", __PRETTY_FUNCTION__);
-    
-    NSURL *jsonUrl = [[NSBundle mainBundle] URLForResource:@"plan" withExtension:@"json"];
-    NSString *jsonString = [NSString stringWithContentsOfURL:jsonUrl encoding:NSUTF8StringEncoding error:nil];
-    [webSocket send:jsonString];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {

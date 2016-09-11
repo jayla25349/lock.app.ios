@@ -13,6 +13,8 @@
 #import "Picture.h"
 
 @interface DCSyncManager : NSObject<UIApplicationDelegate>
-@property (nonatomic, readonly) SRWebSocket *webSocket;
+
+//同步数据
+- (void)syncData;
 
 @end

@@ -15,15 +15,61 @@
 @implementation DCSyncManager
 
 /**********************************************************************/
+#pragma mark - Private
+/**********************************************************************/
+
+//处理消息
+- (void)handleMessage:(NSDictionary *)dic {
+    NSString *business = dic[@"business"];
+    if (!business) {
+        return;
+    }
+    
+    if ([business isEqualToString:@"PLAN"]) {//巡检任务
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+            NSString *plan_id = dic[@"plan_id"];
+            NSString *plan_data = dic[@"plan_date"];
+            Plan *plan = [Plan MR_findFirstOrCreateByAttribute:@"plan_id" withValue:plan_id inContext:localContext];
+            plan.plan_name = dic[@"plan_name"];
+            plan.dispatch_man = dic[@"dispatch_man"];
+            plan.plan_date = plan_data?[NSDate dateWithString:plan_data format:@"yyyy-MM-dd HH:mm"]:nil;
+            plan.room_name = dic[@"room_name"];
+            plan.lock_mac = dic[@"lock_mac"];
+            
+            NSArray<NSDictionary *> * itemDics = dic[@"items"];
+            [itemDics enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSString *item_id = obj[@"item_id"];
+                PlanItem *planItem = [PlanItem MR_findFirstOrCreateByAttribute:@"item_id" withValue:item_id inContext:localContext];
+                planItem.item_cate_name = obj[@"item_cate_name"];
+                planItem.equipment_name = obj[@"equipment_name"];
+                planItem.cabinet_name = obj[@"cabinet_name"];
+                planItem.cabinet_lock_mac = obj[@"cabinet_lock_mac"];
+                planItem.item_name = obj[@"item_name"];
+                [plan addItemsObject:planItem];
+            }];
+        }];
+    } else if ([business isEqualToString:@"RESULT_RETURN"]) {//提交回复
+        
+    } else {
+        DDLogError(@"响应数据类型无法处理：%@", dic);
+    }
+}
+
+/**********************************************************************/
 #pragma mark - Public
 /**********************************************************************/
 
 //同步数据
 - (void)syncData {
+    
+}
+
+- (void)test {
     NSURL *jsonUrl = [[NSBundle mainBundle] URLForResource:@"plan" withExtension:@"json"];
     NSString *jsonString = [NSString stringWithContentsOfURL:jsonUrl encoding:NSUTF8StringEncoding error:nil];
     [self.webSocket send:jsonString];
 }
+
 
 /**********************************************************************/
 #pragma mark - UIApplicationDelegate
@@ -60,20 +106,36 @@
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
     DDLogDebug(@"%s", __PRETTY_FUNCTION__);
+    
+    [self test];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
     DDLogDebug(@"%s %@", __PRETTY_FUNCTION__, message);
     
-    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
-        Plan *plan = [Plan MR_createEntityInContext:localContext];
-        plan.plan_id = @"1";
-        plan.plan_name = @"ups监视输出电压,ups监视输出电压,ups监视输出电压";
-        plan.dispatch_man = @"刘经理";
-        plan.plan_date = [NSDate date];
-        plan.room_name = @"大门1";
-        plan.lock_mac = @"21:43:43:12:56";
-    }];
+    //类型转换
+    NSData *jsonData = nil;
+    if ([message isKindOfClass:[NSString class]]) {
+        jsonData = [message dataUsingEncoding:NSUTF8StringEncoding];
+    } else if ([message isKindOfClass:[NSData class]]) {
+        jsonData = message;
+    } else {
+        DDLogError(@"数据类型错误：%@", NSStringFromClass([message class]));
+        return;
+    }
+    
+    //反序列化
+    NSError *error = nil;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    if (error) {
+        DDLogError(@"解析JSON失败：%@", error);
+        return;
+    }
+    
+    //数据处理
+    if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+        [self handleMessage:jsonObject];
+    }
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {

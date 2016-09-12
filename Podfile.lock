@@ -22,6 +22,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
+  - IQKeyboardManager (3.3.7)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
@@ -45,6 +46,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - CocoaLumberjack
+  - IQKeyboardManager
   - MagicalRecord
   - Masonry
   - MJRefresh
@@ -58,6 +60,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
@@ -70,6 +73,6 @@ SPEC CHECKSUMS:
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYWebImage: 0431ed108e104527669b86f75efd58958425cca2
 
-PODFILE CHECKSUM: f61b7e19743cedc11fe7efb01f4b4a500df85667
+PODFILE CHECKSUM: d6b33bf6a0dc5543568734c6f4505a99477c0e1e
 
 COCOAPODS: 1.0.1

@@ -2,7 +2,7 @@
 //  PlanItem+CoreDataProperties.m
 //  
 //
-//  Created by 青秀斌 on 16/9/11.
+//  Created by 青秀斌 on 16/9/13.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,11 +13,11 @@
 
 @implementation PlanItem (CoreDataProperties)
 
-@dynamic item_id;
-@dynamic item_cate_name;
-@dynamic equipment_name;
-@dynamic cabinet_name;
 @dynamic cabinet_lock_mac;
+@dynamic cabinet_name;
+@dynamic equipment_name;
+@dynamic item_cate_name;
+@dynamic item_id;
 @dynamic item_name;
 @dynamic plan;
 @dynamic taskItem;

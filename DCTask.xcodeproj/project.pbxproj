@@ -50,6 +50,11 @@
 		E3A331721D845E0700CA36DF /* DCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331651D845E0700CA36DF /* DCSettingVC.m */; };
 		E3A331761D845E2F00CA36DF /* DCSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331751D845E2F00CA36DF /* DCSyncManager.m */; };
 		E3A3317A1D847E4700CA36DF /* DCAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331791D847E4700CA36DF /* DCAppEngine.m */; };
+		E3DAA8C91D86E4FB00804EA4 /* DCCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DAA8C81D86E4FB00804EA4 /* DCCheckCell.m */; };
+		E3EC34E91D871EEA00604301 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EC34E81D871EEA00604301 /* AlertView.m */; };
+		E3EC34F31D871F5B00604301 /* WQLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EC34EC1D871F5B00604301 /* WQLineView.m */; };
+		E3EC34F41D871F5B00604301 /* WQTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EC34EF1D871F5B00604301 /* WQTextField.m */; };
+		E3EC34F51D871F5B00604301 /* WQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EC34F21D871F5B00604301 /* WQTextView.m */; };
 		E3F5F1F61D7C15DE00697607 /* UIColor+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F5F1F51D7C15DE00697607 /* UIColor+Core.m */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +145,16 @@
 		E3A331751D845E2F00CA36DF /* DCSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSyncManager.m; sourceTree = "<group>"; };
 		E3A331781D847E4700CA36DF /* DCAppEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCAppEngine.h; sourceTree = "<group>"; };
 		E3A331791D847E4700CA36DF /* DCAppEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCAppEngine.m; sourceTree = "<group>"; };
+		E3DAA8C71D86E4FB00804EA4 /* DCCheckCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCheckCell.h; sourceTree = "<group>"; };
+		E3DAA8C81D86E4FB00804EA4 /* DCCheckCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCheckCell.m; sourceTree = "<group>"; };
+		E3EC34E71D871EEA00604301 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		E3EC34E81D871EEA00604301 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		E3EC34EB1D871F5B00604301 /* WQLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQLineView.h; sourceTree = "<group>"; };
+		E3EC34EC1D871F5B00604301 /* WQLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQLineView.m; sourceTree = "<group>"; };
+		E3EC34EE1D871F5B00604301 /* WQTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQTextField.h; sourceTree = "<group>"; };
+		E3EC34EF1D871F5B00604301 /* WQTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQTextField.m; sourceTree = "<group>"; };
+		E3EC34F11D871F5B00604301 /* WQTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQTextView.h; sourceTree = "<group>"; };
+		E3EC34F21D871F5B00604301 /* WQTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQTextView.m; sourceTree = "<group>"; };
 		E3F5F1F41D7C15DE00697607 /* UIColor+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Core.h"; sourceTree = "<group>"; };
 		E3F5F1F51D7C15DE00697607 /* UIColor+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Core.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -316,8 +331,11 @@
 			children = (
 				E352D6F11D7B28CE00CB4B93 /* Extention */,
 				E352D5DD1D7B23AC00CB4B93 /* WQBlankView */,
+				E3EC34EA1D871F5B00604301 /* WQLineView */,
 				E352D5E21D7B23AC00CB4B93 /* WQRefreshHeader */,
 				E352D5E71D7B23AC00CB4B93 /* WQRefreshTableView */,
+				E3EC34ED1D871F5B00604301 /* WQTextField */,
+				E3EC34F01D871F5B00604301 /* WQTextView */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -418,6 +436,7 @@
 		E3A3314C1D845E0700CA36DF /* Widget */ = {
 			isa = PBXGroup;
 			children = (
+				E3EC34E61D871EEA00604301 /* DCAlertView */,
 				E3A3314D1D845E0700CA36DF /* DCLockView */,
 			);
 			path = Widget;
@@ -435,6 +454,8 @@
 		E3A331501D845E0700CA36DF /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E3DAA8C71D86E4FB00804EA4 /* DCCheckCell.h */,
+				E3DAA8C81D86E4FB00804EA4 /* DCCheckCell.m */,
 				E3A331511D845E0700CA36DF /* DCCheckVC.h */,
 				E3A331521D845E0700CA36DF /* DCCheckVC.m */,
 				E3A331531D845E0700CA36DF /* DCHomeCell.h */,
@@ -496,6 +517,42 @@
 				E3A331791D847E4700CA36DF /* DCAppEngine.m */,
 			);
 			path = Engine;
+			sourceTree = "<group>";
+		};
+		E3EC34E61D871EEA00604301 /* DCAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				E3EC34E71D871EEA00604301 /* AlertView.h */,
+				E3EC34E81D871EEA00604301 /* AlertView.m */,
+			);
+			path = DCAlertView;
+			sourceTree = "<group>";
+		};
+		E3EC34EA1D871F5B00604301 /* WQLineView */ = {
+			isa = PBXGroup;
+			children = (
+				E3EC34EB1D871F5B00604301 /* WQLineView.h */,
+				E3EC34EC1D871F5B00604301 /* WQLineView.m */,
+			);
+			path = WQLineView;
+			sourceTree = "<group>";
+		};
+		E3EC34ED1D871F5B00604301 /* WQTextField */ = {
+			isa = PBXGroup;
+			children = (
+				E3EC34EE1D871F5B00604301 /* WQTextField.h */,
+				E3EC34EF1D871F5B00604301 /* WQTextField.m */,
+			);
+			path = WQTextField;
+			sourceTree = "<group>";
+		};
+		E3EC34F01D871F5B00604301 /* WQTextView */ = {
+			isa = PBXGroup;
+			children = (
+				E3EC34F11D871F5B00604301 /* WQTextView.h */,
+				E3EC34F21D871F5B00604301 /* WQTextView.m */,
+			);
+			path = WQTextView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -627,10 +684,13 @@
 				E3F5F1F61D7C15DE00697607 /* UIColor+Core.m in Sources */,
 				E3109FB81D854FEA006DD8EF /* Picture.m in Sources */,
 				E3109FBC1D854FEA006DD8EF /* PlanItem.m in Sources */,
+				E3EC34E91D871EEA00604301 /* AlertView.m in Sources */,
 				E352D5F01D7B23AC00CB4B93 /* NetworkUtil.m in Sources */,
 				E352D5EE1D7B23AC00CB4B93 /* DebugAlert.m in Sources */,
 				E3A331661D845E0700CA36DF /* BSNavigationController.m in Sources */,
+				E3EC34F51D871F5B00604301 /* WQTextView.m in Sources */,
 				E3109FBE1D854FEA006DD8EF /* TaskItem.m in Sources */,
+				E3DAA8C91D86E4FB00804EA4 /* DCCheckCell.m in Sources */,
 				E3109FBB1D854FEA006DD8EF /* PlanItem+CoreDataProperties.m in Sources */,
 				E352D5EF1D7B23AC00CB4B93 /* NetworkManager.m in Sources */,
 				E3A331701D845E0700CA36DF /* DCChangePwdCell.m in Sources */,
@@ -652,9 +712,11 @@
 				E352D5F11D7B23AC00CB4B93 /* NSError+HTTP.m in Sources */,
 				E3A3316B1D845E0700CA36DF /* DCHomeCell.m in Sources */,
 				E3109FB91D854FEA006DD8EF /* Plan+CoreDataProperties.m in Sources */,
+				E3EC34F31D871F5B00604301 /* WQLineView.m in Sources */,
 				E352D5F81D7B23AC00CB4B93 /* WQRefreshTableView.m in Sources */,
 				E3109FB71D854FEA006DD8EF /* Picture+CoreDataProperties.m in Sources */,
 				E3A3316E1D845E0700CA36DF /* DCRegisterVC.m in Sources */,
+				E3EC34F41D871F5B00604301 /* WQTextField.m in Sources */,
 				E352D5F21D7B23AC00CB4B93 /* NSMutableDictionary+HTTP.m in Sources */,
 				E352D5EC1D7B23AC00CB4B93 /* AppEngine.m in Sources */,
 				E352D5B71D7B222A00CB4B93 /* AppDelegate.m in Sources */,

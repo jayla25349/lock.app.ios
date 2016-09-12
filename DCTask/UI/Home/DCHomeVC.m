@@ -214,7 +214,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     }
     _fetchedResultsController1 = [Plan MR_fetchAllSortedBy:@"plan_date"
                                                  ascending:NO
-                                             withPredicate:nil
+                                             withPredicate:[NSPredicate predicateWithFormat:@"plan_status=0"]
                                                    groupBy:nil
                                                   delegate:self];
     return _fetchedResultsController1;
@@ -226,7 +226,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     }
     _fetchedResultsController2 = [Plan MR_fetchAllSortedBy:@"plan_date"
                                                  ascending:NO
-                                             withPredicate:nil
+                                             withPredicate:[NSPredicate predicateWithFormat:@"plan_status=1"]
                                                    groupBy:nil
                                                   delegate:self];
     return _fetchedResultsController2;
@@ -238,7 +238,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     }
     _fetchedResultsController3 = [Plan MR_fetchAllSortedBy:@"plan_date"
                                                  ascending:NO
-                                             withPredicate:nil
+                                             withPredicate:[NSPredicate predicateWithFormat:@"plan_status=2"]
                                                    groupBy:nil
                                                   delegate:self];
     return _fetchedResultsController3;
@@ -321,9 +321,34 @@ static NSString *cellIdentifier = @"DCHomeCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    DCCheckVC *vc = [[DCCheckVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    Plan *plan = nil;
+    if (tableView == self.tableView1) {
+        plan = [self.fetchedResultsController1 objectAtIndexPath:indexPath];
+        
+        AlertView *alertView = [AlertView alertControllerWithTitle:@"请选择你的操作" message:nil];
+        [alertView addButtonWithTitle:@"接收任务" action:^(AlertView * _Nonnull alertView) {
+            
+        }];
+        [alertView addButtonWithTitle:@"拒绝任务" action:^(AlertView * _Nonnull alertView) {
+            
+        }];
+        [alertView addButtonWithTitle:@"取消" action:nil];
+        [alertView show];
+    } else if (tableView == self.tableView2) {
+        plan = [self.fetchedResultsController2 objectAtIndexPath:indexPath];
+        
+        DCCheckVC *vc = [[DCCheckVC alloc] init];
+        vc.plan = plan;
+        [self.navigationController pushViewController:vc animated:YES];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    } else if (tableView == self.tableView3) {
+        plan = [self.fetchedResultsController3 objectAtIndexPath:indexPath];
+        
+        DCCheckVC *vc = [[DCCheckVC alloc] init];
+        vc.plan = plan;
+        [self.navigationController pushViewController:vc animated:YES];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
 }
 
 /**********************************************************************/

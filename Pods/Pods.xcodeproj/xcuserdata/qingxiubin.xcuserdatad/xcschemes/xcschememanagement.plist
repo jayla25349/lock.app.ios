@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,17 +82,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>07F08B3C2A1EF3C333805C20E634DC60</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0CCC1C3BBB1B0B34536A63DFB3EB1145</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>12E2BC28C62976C425F4B71C2723F0B1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1430A746C98546B1A57637E11F541DA0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>18535C002220D11C5FEAE8CD9A2D6C2C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>493DCD71BB0687E875898190F916B4C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B3BC003503CBA09B2C86E108B60988D</key>
+		<key>55DBDD8B7D446F1D618F303A9FB53209</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6ECFDC35B111911887923ECB9E67F15D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,12 +122,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80C0BB12947A95FC983AF4CD4C44F985</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8F6A2905E4BB49819BB5BC0B4C7027B3</key>
+		<key>7E69E8EC1C166EC518EFB4511332E5B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,17 +132,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9B3A1601C818BB54F2BE762377E3F6FC</key>
+		<key>AF8CABD99BE3C580450A507F09AD2B70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A7D98757F44A7BE6C8B7FE179377E291</key>
+		<key>B3C4EABA2636864421DA76B08CA5A6BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B705A70317455211B47DBAC51A7C2F74</key>
+		<key>BDABF4D9367F8B69873D2AC13DA76BC2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,7 +152,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F4E92F655E5299B968C251BE07272E34</key>
+		<key>FDC3C63F160AF25EED0EF2FCCC8F8B1E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

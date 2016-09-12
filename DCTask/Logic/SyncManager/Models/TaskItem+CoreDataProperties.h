@@ -2,7 +2,7 @@
 //  TaskItem+CoreDataProperties.h
 //  
 //
-//  Created by 青秀斌 on 16/9/11.
+//  Created by 青秀斌 on 16/9/13.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,11 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TaskItem (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *state;
-@property (nullable, nonatomic, retain) NSString *result;
 @property (nullable, nonatomic, retain) NSString *note;
-@property (nullable, nonatomic, retain) PlanItem *planItem;
+@property (nullable, nonatomic, retain) NSString *result;
+@property (nullable, nonatomic, retain) NSNumber *state;
 @property (nullable, nonatomic, retain) NSSet<Picture *> *pics;
+@property (nullable, nonatomic, retain) PlanItem *planItem;
 
 @end
 

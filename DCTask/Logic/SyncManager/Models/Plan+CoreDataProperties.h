@@ -2,7 +2,7 @@
 //  Plan+CoreDataProperties.h
 //  
 //
-//  Created by 青秀斌 on 16/9/11.
+//  Created by 青秀斌 on 16/9/13.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,12 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Plan (CoreDataProperties)
 
+@property (nullable, nonatomic, retain) NSString *dispatch_man;
+@property (nullable, nonatomic, retain) NSString *lock_mac;
+@property (nullable, nonatomic, retain) NSDate *plan_date;
 @property (nullable, nonatomic, retain) NSString *plan_id;
 @property (nullable, nonatomic, retain) NSString *plan_name;
-@property (nullable, nonatomic, retain) NSString *dispatch_man;
-@property (nullable, nonatomic, retain) NSDate *plan_date;
 @property (nullable, nonatomic, retain) NSString *room_name;
-@property (nullable, nonatomic, retain) NSString *lock_mac;
+@property (nullable, nonatomic, retain) NSNumber *plan_status;
 @property (nullable, nonatomic, retain) NSSet<PlanItem *> *items;
 
 @end

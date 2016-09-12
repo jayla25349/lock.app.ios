@@ -30,7 +30,7 @@ typedef void (^DebugAlertVoidBlock)(void);
 
 
 #ifdef DEBUG
-#define InfoAlert(format, ...)  [DebugAlert new].message(format, ##__VA_ARGS__).style(DebugAlertStyleInfo).autoDismiss(YES).show()
+#define InfoAlert(format, ...)  [DebugAlert new].message(format, ##__VA_ARGS__).style(DebugAlertStyleInfo).show()
 #define WarnAlert(format, ...)  [DebugAlert new].message(format, ##__VA_ARGS__).style(DebugAlertStyleWarn).show()
 #define ErrorAlert(format, ...) [DebugAlert new].message(format, ##__VA_ARGS__).style(DebugAlertStyleError).show()
 #else

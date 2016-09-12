@@ -29,11 +29,11 @@
 - (void)initView {
     self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableview_cell_arrow"]];
     
-    self.backgroundView = [[UIView alloc] init];
-    self.backgroundView.backgroundColor = [UIColor whiteColor];
-    
-    self.selectedBackgroundView = [[UIView alloc] init];
-    self.selectedBackgroundView.backgroundColor = [UIColor grayColor];
+//    self.backgroundView = [[UIView alloc] init];
+//    self.backgroundView.backgroundColor = [UIColor whiteColor];
+//    
+//    self.selectedBackgroundView = [[UIView alloc] init];
+//    self.selectedBackgroundView.backgroundColor = [UIColor grayColor];
 }
 
 @end

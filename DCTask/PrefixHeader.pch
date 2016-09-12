@@ -29,6 +29,10 @@
 #import "WQRefreshTableView.h"
 #import "WQRefreshCollectionView.h"
 
+
+#import "DebugAlert.h"
+#import "AlertView.h"
+
 #import "BSViewController.h"
 #import "BSNavigationController.h"
 #import "DCAppEngine.h"

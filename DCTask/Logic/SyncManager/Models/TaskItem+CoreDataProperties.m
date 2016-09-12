@@ -2,7 +2,7 @@
 //  TaskItem+CoreDataProperties.m
 //  
 //
-//  Created by 青秀斌 on 16/9/11.
+//  Created by 青秀斌 on 16/9/13.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,10 +13,10 @@
 
 @implementation TaskItem (CoreDataProperties)
 
-@dynamic state;
-@dynamic result;
 @dynamic note;
-@dynamic planItem;
+@dynamic result;
+@dynamic state;
 @dynamic pics;
+@dynamic planItem;
 
 @end

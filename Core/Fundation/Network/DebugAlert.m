@@ -185,7 +185,7 @@ static NSMutableArray<DebugAlert *> *alertArray = nil;
         
         DebugAlert *alert = alertArray.firstObject;
         if (alert) {
-            [self _show:nil];
+            [alert _show:nil];
         }
     }];
 }

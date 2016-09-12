@@ -12,4 +12,5 @@ target 'DCTask' do
     pod 'MagicalRecord'
     pod 'SVProgressHUD'
     pod 'UITableView+FDTemplateLayoutCell'
+    pod 'IQKeyboardManager'
 end

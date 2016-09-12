@@ -9,5 +9,6 @@
 #import "BSViewController.h"
 
 @interface DCCheckVC : BSViewController
+@property (nonatomic, strong) Plan *plan;
 
 @end

@@ -2,7 +2,7 @@
 //  Plan+CoreDataProperties.m
 //  
 //
-//  Created by 青秀斌 on 16/9/11.
+//  Created by 青秀斌 on 16/9/13.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,12 +13,13 @@
 
 @implementation Plan (CoreDataProperties)
 
+@dynamic dispatch_man;
+@dynamic lock_mac;
+@dynamic plan_date;
 @dynamic plan_id;
 @dynamic plan_name;
-@dynamic dispatch_man;
-@dynamic plan_date;
 @dynamic room_name;
-@dynamic lock_mac;
+@dynamic plan_status;
 @dynamic items;
 
 @end

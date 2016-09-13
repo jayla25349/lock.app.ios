@@ -20,9 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDate *plan_date;
 @property (nullable, nonatomic, retain) NSString *plan_id;
 @property (nullable, nonatomic, retain) NSString *plan_name;
-@property (nullable, nonatomic, retain) NSString *room_name;
 @property (nullable, nonatomic, retain) NSNumber *plan_status;
+@property (nullable, nonatomic, retain) NSString *room_name;
+@property (nullable, nonatomic, retain) NSDate *createDate;
+@property (nullable, nonatomic, retain) NSDate *decideDate;
+@property (nullable, nonatomic, retain) NSDate *submitDate;
 @property (nullable, nonatomic, retain) NSSet<PlanItem *> *items;
+@property (nullable, nonatomic, retain) NSSet<Queue *> *queues;
 
 @end
 
@@ -32,6 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeItemsObject:(PlanItem *)value;
 - (void)addItems:(NSSet<PlanItem *> *)values;
 - (void)removeItems:(NSSet<PlanItem *> *)values;
+
+- (void)addQueuesObject:(Queue *)value;
+- (void)removeQueuesObject:(Queue *)value;
+- (void)addQueues:(NSSet<Queue *> *)values;
+- (void)removeQueues:(NSSet<Queue *> *)values;
 
 @end
 

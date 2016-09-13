@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationBar.translucent = NO;
     self.navigationBar.shadowImage = nil;
     self.interactivePopGestureRecognizer.delegate = self;

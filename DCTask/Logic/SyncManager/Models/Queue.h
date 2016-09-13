@@ -1,20 +1,19 @@
 //
-//  TaskItem.h
+//  Queue.h
 //  
 //
-//  Created by 青秀斌 on 16/9/11.
+//  Created by 青秀斌 on 16/9/13.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class PlanItem;
-@class Picture;
+@class Plan;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TaskItem : NSManagedObject
+@interface Queue : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -22,4 +21,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "TaskItem+CoreDataProperties.h"
+#import "Queue+CoreDataProperties.h"

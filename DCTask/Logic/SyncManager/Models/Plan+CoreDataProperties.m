@@ -18,8 +18,12 @@
 @dynamic plan_date;
 @dynamic plan_id;
 @dynamic plan_name;
-@dynamic room_name;
 @dynamic plan_status;
+@dynamic room_name;
+@dynamic createDate;
+@dynamic decideDate;
+@dynamic submitDate;
 @dynamic items;
+@dynamic queues;
 
 @end

@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Plan.h"
 #import "PlanItem.h"
-#import "TaskItem.h"
 #import "Picture.h"
+#import "Queue.h"
 
 @interface DCSyncManager : NSObject<UIApplicationDelegate>
 

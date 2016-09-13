@@ -19,7 +19,10 @@
 @dynamic item_cate_name;
 @dynamic item_id;
 @dynamic item_name;
+@dynamic check_note;
+@dynamic check_result;
+@dynamic check_state;
 @dynamic plan;
-@dynamic taskItem;
+@dynamic pics;
 
 @end

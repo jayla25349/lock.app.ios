@@ -23,6 +23,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[DCAppEngine shareEngine] application:application didFinishLaunchingWithOptions:launchOptions];
     
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setBackgroundColor:[UIColor darkGrayColor]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setMinimumDismissTimeInterval:3.0f];
+    
     DCHomeVC *vc = [[DCHomeVC alloc] init];
     BSNavigationController *nav = [[BSNavigationController alloc] initWithRootViewController:vc];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

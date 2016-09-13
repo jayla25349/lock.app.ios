@@ -1,5 +1,5 @@
 //
-//  Picture+CoreDataProperties.h
+//  Queue+CoreDataProperties.h
 //  
 //
 //  Created by 青秀斌 on 16/9/13.
@@ -9,15 +9,15 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Picture.h"
+#import "Queue.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Picture (CoreDataProperties)
+@interface Queue (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *data;
+@property (nullable, nonatomic, retain) NSNumber *type;
 @property (nullable, nonatomic, retain) NSDate *createDate;
-@property (nullable, nonatomic, retain) PlanItem *planItem;
+@property (nullable, nonatomic, retain) Plan *plan;
 
 @end
 

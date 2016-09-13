@@ -32,7 +32,10 @@ static NSString * const cellIdentifier = @"DCCheckCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.plan.plan_name;
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交"
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(submitAction:)];
     [self initView];
 }
 
@@ -46,6 +49,8 @@ static NSString * const cellIdentifier = @"DCCheckCell";
         self.tableView = [[UITableView alloc] init];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        self.tableView.backgroundColor = [UIColor clearColor];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.tableView registerClass:[DCCheckCell class] forCellReuseIdentifier:cellIdentifier];
         [self.view addSubview:self.tableView];
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -76,6 +81,7 @@ static NSString * const cellIdentifier = @"DCCheckCell";
     
     if (!self.bottomView) {
         self.bottomView = [[UIView alloc] init];
+        self.bottomView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:self.bottomView];
         [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.tableView.mas_bottom);
@@ -146,6 +152,26 @@ static NSString * const cellIdentifier = @"DCCheckCell";
 }
 
 /**********************************************************************/
+#pragma mark - Action
+/**********************************************************************/
+
+- (void)submitAction:(id)sender {
+    NSArray<PlanItem *> *items = [self.plan unfinishedItems];
+    if (items) {
+        [SVProgressHUD showInfoWithStatus:@"未完成巡检，请完善后再提交"];
+    } else {
+        AlertView *alertView = [AlertView alertControllerWithTitle:@"确认要提交你的操作吗？" message:nil];
+        [alertView addButtonWithTitle:@"确认" action:^(AlertView * _Nonnull alertView) {
+            [self.plan submit];
+            [self.navigationController popViewControllerAnimated:YES];
+            [alertView dismiss];
+        }];
+        [alertView addButtonWithTitle:@"取消" action:nil];
+        [alertView show];
+    }
+}
+
+/**********************************************************************/
 #pragma mark - UITableViewDataSource && UITableViewDelegate
 /**********************************************************************/
 
@@ -173,7 +199,7 @@ static NSString * const cellIdentifier = @"DCCheckCell";
         NSString *category = self.categorys[indexPath.section];
         NSArray<PlanItem *> *items = self.dataSource[category];
         PlanItem *planItem = items[indexPath.row];
-        cell.planItem = planItem;
+        [cell configWithPlanItem:planItem indexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     }];
 }
 
@@ -183,7 +209,7 @@ static NSString * const cellIdentifier = @"DCCheckCell";
     NSString *category = self.categorys[indexPath.section];
     NSArray<PlanItem *> *items = self.dataSource[category];
     PlanItem *planItem = items[indexPath.row];
-    cell.planItem = planItem;
+    [cell configWithPlanItem:planItem indexPath:indexPath];
     
     return cell;
 }

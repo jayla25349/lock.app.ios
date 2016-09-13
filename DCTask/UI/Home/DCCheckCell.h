@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DCCheckCell : UITableViewCell
-@property (nonatomic, strong) PlanItem *planItem;
+@property (nonatomic, readonly) PlanItem *planItem;
+
+- (void)configWithPlanItem:(PlanItem *)planItem indexPath:(NSIndexPath *)indexPath;
 
 @end

@@ -30,6 +30,7 @@
             NSString *plan_id = dic[@"plan_id"];
             NSString *plan_data = dic[@"plan_date"];
             Plan *plan = [Plan MR_findFirstOrCreateByAttribute:@"plan_id" withValue:plan_id inContext:localContext];
+            plan.createDate = plan.createDate?:[NSDate date];
             plan.plan_name = dic[@"plan_name"];
             plan.dispatch_man = dic[@"dispatch_man"];
             plan.plan_date = plan_data?[NSDate dateWithString:plan_data format:@"yyyy-MM-dd HH:mm"]:nil;

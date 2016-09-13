@@ -21,8 +21,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *item_cate_name;
 @property (nullable, nonatomic, retain) NSString *item_id;
 @property (nullable, nonatomic, retain) NSString *item_name;
+@property (nullable, nonatomic, retain) NSString *check_note;
+@property (nullable, nonatomic, retain) NSString *check_result;
+@property (nullable, nonatomic, retain) NSNumber *check_state;
 @property (nullable, nonatomic, retain) Plan *plan;
-@property (nullable, nonatomic, retain) TaskItem *taskItem;
+@property (nullable, nonatomic, retain) NSSet<Picture *> *pics;
+
+@end
+
+@interface PlanItem (CoreDataGeneratedAccessors)
+
+- (void)addPicsObject:(Picture *)value;
+- (void)removePicsObject:(Picture *)value;
+- (void)addPics:(NSSet<Picture *> *)values;
+- (void)removePics:(NSSet<Picture *> *)values;
 
 @end
 

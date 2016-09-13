@@ -1,5 +1,5 @@
 //
-//  TaskItem+CoreDataProperties.m
+//  Queue+CoreDataProperties.m
 //  
 //
 //  Created by 青秀斌 on 16/9/13.
@@ -9,14 +9,12 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "TaskItem+CoreDataProperties.h"
+#import "Queue+CoreDataProperties.h"
 
-@implementation TaskItem (CoreDataProperties)
+@implementation Queue (CoreDataProperties)
 
-@dynamic note;
-@dynamic result;
-@dynamic state;
-@dynamic pics;
-@dynamic planItem;
+@dynamic type;
+@dynamic createDate;
+@dynamic plan;
 
 @end

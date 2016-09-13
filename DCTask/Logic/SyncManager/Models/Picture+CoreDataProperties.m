@@ -13,7 +13,8 @@
 
 @implementation Picture (CoreDataProperties)
 
-@dynamic pic;
-@dynamic taskItem;
+@dynamic data;
+@dynamic createDate;
+@dynamic planItem;
 
 @end

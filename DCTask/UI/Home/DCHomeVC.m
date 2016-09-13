@@ -212,7 +212,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     if (_fetchedResultsController1 != nil) {
         return _fetchedResultsController1;
     }
-    _fetchedResultsController1 = [Plan MR_fetchAllSortedBy:@"plan_date"
+    _fetchedResultsController1 = [Plan MR_fetchAllSortedBy:@"createDate"
                                                  ascending:NO
                                              withPredicate:[NSPredicate predicateWithFormat:@"plan_status=0"]
                                                    groupBy:nil
@@ -224,7 +224,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     if (_fetchedResultsController2 != nil) {
         return _fetchedResultsController2;
     }
-    _fetchedResultsController2 = [Plan MR_fetchAllSortedBy:@"plan_date"
+    _fetchedResultsController2 = [Plan MR_fetchAllSortedBy:@"decideDate"
                                                  ascending:NO
                                              withPredicate:[NSPredicate predicateWithFormat:@"plan_status=1"]
                                                    groupBy:nil
@@ -236,9 +236,9 @@ static NSString *cellIdentifier = @"DCHomeCell";
     if (_fetchedResultsController3 != nil) {
         return _fetchedResultsController3;
     }
-    _fetchedResultsController3 = [Plan MR_fetchAllSortedBy:@"plan_date"
+    _fetchedResultsController3 = [Plan MR_fetchAllSortedBy:@"submitDate"
                                                  ascending:NO
-                                             withPredicate:[NSPredicate predicateWithFormat:@"plan_status=2"]
+                                             withPredicate:[NSPredicate predicateWithFormat:@"plan_status=3"]
                                                    groupBy:nil
                                                   delegate:self];
     return _fetchedResultsController3;
@@ -327,10 +327,12 @@ static NSString *cellIdentifier = @"DCHomeCell";
         
         AlertView *alertView = [AlertView alertControllerWithTitle:@"请选择你的操作" message:nil];
         [alertView addButtonWithTitle:@"接收任务" action:^(AlertView * _Nonnull alertView) {
-            
+            [plan accept];
+            [alertView dismiss];
         }];
         [alertView addButtonWithTitle:@"拒绝任务" action:^(AlertView * _Nonnull alertView) {
-            
+            [plan refuse];
+            [alertView dismiss];
         }];
         [alertView addButtonWithTitle:@"取消" action:nil];
         [alertView show];

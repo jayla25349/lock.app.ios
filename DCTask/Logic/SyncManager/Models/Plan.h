@@ -2,20 +2,30 @@
 //  Plan.h
 //  
 //
-//  Created by 青秀斌 on 16/9/11.
+//  Created by 青秀斌 on 16/9/13.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class PlanItem;
+@class PlanItem, Queue;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Plan : NSManagedObject
 
-- (NSDictionary *)toJSONObject;
+//接受
+- (void)accept;
+
+//拒绝
+- (void)refuse;
+
+//提交
+- (void)submit;
+
+//未完成项
+- (nullable NSArray<PlanItem *> *)unfinishedItems;
 
 @end
 

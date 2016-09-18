@@ -27,8 +27,11 @@
     
     if ([business isEqualToString:@"PLAN"]) {//巡检任务
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+            
+            
             NSString *plan_id = dic[@"plan_id"];
             NSString *plan_data = dic[@"plan_date"];
+            User *user = [[DCAppEngine shareEngine].userManager.user MR_inContext:localContext];
             Plan *plan = [Plan MR_findFirstOrCreateByAttribute:@"plan_id" withValue:plan_id inContext:localContext];
             plan.createDate = plan.createDate?:[NSDate date];
             plan.plan_name = dic[@"plan_name"];
@@ -36,6 +39,7 @@
             plan.plan_date = plan_data?[NSDate dateWithString:plan_data format:@"yyyy-MM-dd HH:mm"]:nil;
             plan.room_name = dic[@"room_name"];
             plan.lock_mac = dic[@"lock_mac"];
+            plan.user = user;
             
             NSArray<NSDictionary *> * itemDics = dic[@"items"];
             [itemDics enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -77,8 +81,6 @@
 /**********************************************************************/
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelWarn];
-    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"DCTaskModel"];
     
     self.webSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:URL_WEB_SERVICE]];
     self.webSocket.delegate = self;

@@ -9,5 +9,9 @@
 #import "BSViewController.h"
 
 @interface DCLoginVC : BSViewController
+@property (nonatomic, strong) NSString *number;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *password;
+@property (nonatomic, assign) NSInteger type;   //类型（0登录，1注册）
 
 @end

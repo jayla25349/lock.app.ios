@@ -6,6 +6,7 @@ target 'DCTask' do
     pod 'YYModel'
     pod 'YYWebImage'
     pod 'YYCategories'
+    pod 'ReactiveCocoa'
 	pod 'Masonry'
     pod 'MJRefresh'
     pod 'SocketRocket'

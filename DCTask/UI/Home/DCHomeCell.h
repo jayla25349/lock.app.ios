@@ -6,9 +6,9 @@
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import "BSTableViewCell.h"
+#import <UIKit/UIKit.h>
 
-@interface DCHomeCell : BSTableViewCell
+@interface DCHomeCell : UITableViewCell
 
 - (void)configWithPlan:(Plan *)plan index:(NSInteger)index;
 

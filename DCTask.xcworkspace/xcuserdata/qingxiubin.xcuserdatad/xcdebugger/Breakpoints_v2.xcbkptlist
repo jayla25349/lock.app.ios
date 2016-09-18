@@ -19,14 +19,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pods/MagicalRecord/MagicalRecord/Core/MagicalRecordInternal.m"
-            timestampString = "495256707.918734"
+            filePath = "DCTask/Logic/BluetoothManager/DCBluetoothManager.m"
+            timestampString = "495522211.555101"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "+defaultStoreName"
-            landmarkType = "5">
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-centralManager:didDiscoverPeripheral:advertisementData:RSSI:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pods/YYModel/YYModel/NSObject+YYModel.m"
-            timestampString = "495260479.373582"
+            filePath = "DCTask/UI/Home/DCHomeVC.m"
+            timestampString = "495917548.538929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1176"
-            endingLineNumber = "1176"
-            landmarkName = "ModelToJSONObjectRecursive()"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "-controllerDidChangeContent:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

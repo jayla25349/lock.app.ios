@@ -12,8 +12,9 @@
 @property (nonatomic, strong) NSMutableArray<UIImageView *> *imageViews;
 @property (nonatomic, strong) NSMutableArray<UIImageView *> *selectedImageViews;
 
-@property (nonatomic, assign) CGPoint lineEndPoint;
+@property (nonatomic, strong) NSString *password;
 @property (nonatomic, assign) BOOL isTouching;
+@property (nonatomic, assign) CGPoint lineEndPoint;
 @end
 
 @implementation DCLockView
@@ -45,26 +46,26 @@
 - (void)initView {
     _rowSpace = 30.0f;
     _colSpace = 30.0f;
-    _edgeInsets = UIEdgeInsetsMake(30.0f, 30.0f, 30.0f, 30.0f);
+    _edgeInsets = UIEdgeInsetsMake(40.0f, 40.0f, 40.0f, 40.0f);
     
     _showPath = YES;
     _lineWidth = 1.0f;
     _lineColor = [UIColor redColor];
-    _normalImage = [UIImage imageNamed:@"lock_nor"];
-    _selectedImage = [UIImage imageNamed:@"lock_sel"];
+    _normalImage = [UIImage imageNamed:@"register_lock_nor"];
+    _selectedImage = [UIImage imageNamed:@"register_lock_sel"];
+    _errorImage = [UIImage imageNamed:@"register_lock_error_sel"];
     
     _imageViews = [NSMutableArray arrayWithCapacity:9];
     _selectedImageViews = [NSMutableArray array];
     
-    self.backgroundColor = [UIColor grayColor];
+    self.backgroundColor = [UIColor clearColor];
     __weak __block UIView *topView = nil;
     __weak __block UIView *leftView = nil;
     
     for (int i=0; i<9; i++) {
-        UIImageView *imageView = [[UIImageView alloc] init];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:self.normalImage
+                                                   highlightedImage:self.selectedImage];
         imageView.tag = i;
-        imageView.image = self.normalImage;
-        imageView.highlightedImage = self.selectedImage;
         [self addSubview:imageView];
         [self.imageViews addObject:imageView];
         
@@ -102,8 +103,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    
-    if (self.isTouching && self.selectedImageViews.count>0) {
+    if (self.selectedImageViews.count>0) {
         CGContextRef context = UIGraphicsGetCurrentContext();
         
         CGContextSetLineCap(context, kCGLineCapRound);
@@ -111,44 +111,84 @@
         CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
         
         CGContextBeginPath(context);
-        
         [self.selectedImageViews enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (idx==0) {
                 CGContextMoveToPoint(context, obj.center.x, obj.center.y);
             } else {
                 CGContextAddLineToPoint(context, obj.center.x, obj.center.y);
-                CGContextMoveToPoint(context, obj.center.x, obj.center.y);
             }
         }];
-        CGContextAddLineToPoint(context, self.lineEndPoint.x, self.lineEndPoint.y);
-        
+        if (self.isTouching) {
+            CGContextAddLineToPoint(context, self.lineEndPoint.x, self.lineEndPoint.y);
+        }
         CGContextStrokePath(context);
     }
-    
 }
 
 /**********************************************************************/
+#pragma mark - Private
+/**********************************************************************/
+
+- (void)showError:(BOOL)error {
+    if (error) {
+        [self.imageViews enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.highlightedImage = self.errorImage;
+            
+            BOOL highlighted = obj.highlighted;
+            obj.highlighted = NO;
+            obj.highlighted = highlighted;
+        }];
+    } else {
+        [self.imageViews enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.highlightedImage = self.selectedImage;
+            
+            BOOL highlighted = obj.highlighted;
+            obj.highlighted = NO;
+            obj.highlighted = highlighted;
+        }];
+    }
+    [self setNeedsDisplay];
+}
+- (void)clear {
+    self.password = nil;
+    [self.imageViews enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.highlightedImage = self.selectedImage;
+        obj.highlighted = NO;
+    }];
+    [self.selectedImageViews removeAllObjects];
+    [self setNeedsDisplay];
+}
+
+/****************************************************zz******************/
 #pragma mark - Action
 /**********************************************************************/
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.selectedImageViews removeAllObjects];
+    [self clear];
     
     UITouch *touch = [touches anyObject];
+    self.lineEndPoint = [touch locationInView:self];
+    self.isTouching = YES;
+    
     for (UIImageView *imageView in self.imageViews) {
         CGPoint touchPoint = [touch locationInView:imageView];
-        if ([imageView pointInside:touchPoint withEvent:nil]) {
+        if ([imageView pointInside:touchPoint withEvent:event]) {
             imageView.highlighted = YES;
             [self.selectedImageViews addObject:imageView];
             
-            self.isTouching = YES;
-            [self setNeedsDisplay];
+            NSInteger value = [self.imageViews indexOfObject:imageView]+1;
+            self.password = [NSString stringWithFormat:@"%@%ld", self.password?:@"", value];
+            if ([self.delegate respondsToSelector:@selector(lockView:valueChange:)]) {
+                [self.delegate lockView:self valueChange:value];
+            }
+            break;
         }
     }
+    
+    [self setNeedsDisplay];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
     UITouch *touch = [touches anyObject];
     self.lineEndPoint = [touch locationInView:self];
     
@@ -158,9 +198,16 @@
         }
         
         CGPoint touchPoint = [touch locationInView:imageView];
-        if ([imageView pointInside:touchPoint withEvent:nil]) {
+        if ([imageView pointInside:touchPoint withEvent:event]) {
             imageView.highlighted = YES;
             [self.selectedImageViews addObject:imageView];
+            
+            NSInteger value = [self.imageViews indexOfObject:imageView]+1;
+            self.password = [NSString stringWithFormat:@"%@%ld", self.password?:@"", value];
+            if ([self.delegate respondsToSelector:@selector(lockView:valueChange:)]) {
+                [self.delegate lockView:self valueChange:value];
+            }
+            break;
         }
     }
     
@@ -169,6 +216,11 @@
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     self.isTouching = NO;
+    
+    if ([self.delegate respondsToSelector:@selector(lockView:didEnd:)]) {
+        [self.delegate lockView:self didEnd:self.password];
+    }
+    
     [self setNeedsDisplay];
 }
 

@@ -31,6 +31,7 @@
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textDidChange:)

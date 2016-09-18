@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "DCHomeVC.h"
+#import "DCLoginVC.h"
+#import "DCRegisterVC.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +17,9 @@
 @implementation AppDelegate
 
 + (void)initialize {
-//    [DCAppEngine registerManager:[DCAppEngine shareEngine].pushManager];
+    [DCAppEngine registerManager:[DCAppEngine shareEngine].userManager];
     [DCAppEngine registerManager:[DCAppEngine shareEngine].syncManager];
+    [DCAppEngine registerManager:[DCAppEngine shareEngine].bluetoothManager];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -28,11 +30,13 @@
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [SVProgressHUD setMinimumDismissTimeInterval:3.0f];
     
-    DCHomeVC *vc = [[DCHomeVC alloc] init];
-    BSNavigationController *nav = [[BSNavigationController alloc] initWithRootViewController:vc];
+    self.mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor blackColor];
-    self.window.rootViewController = nav;
+    if ([DCAppEngine shareEngine].userManager.user) {
+        self.window.rootViewController = [self.mainSB instantiateInitialViewController];
+    } else {
+        self.window.rootViewController = [self.mainSB instantiateViewControllerWithIdentifier:@"RegisterNav"];
+    }
     [self.window makeKeyAndVisible];
     
     return YES;

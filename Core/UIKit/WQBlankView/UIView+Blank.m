@@ -102,9 +102,9 @@ const char *__blankAction__ = "__blankAction__";
 //暂无数据
 - (void)showBlankLoadNoData:(void (^)(void))action offsetY:(CGFloat)offsetY {
     __weak typeof(self) weakSelf = self;
-    [self showBlankWithType:BlankType_LoadFailure title:@"暂无数据" message:@"请点击屏幕重新加载" action:^{
-        [weakSelf dismissBlank];
+    [self showBlankWithType:BlankType_LoadFailure title:@"暂无数据" message:action?@"请点击屏幕重新加载":nil action:^{
         if (action) {
+            [weakSelf dismissBlank];
             action();
         }
     } offsetY:offsetY];
@@ -116,9 +116,9 @@ const char *__blankAction__ = "__blankAction__";
 //加载失败
 - (void)showBlankLoadFailure:(void (^)(void))action offsetY:(CGFloat)offsetY {
     __weak typeof(self) weakSelf = self;
-    [self showBlankWithType:BlankType_LoadFailure title:@"加载失败" message:@"请点击屏幕重新加载" action:^{
-        [weakSelf dismissBlank];
+    [self showBlankWithType:BlankType_LoadFailure title:@"加载失败" message:action?@"请点击屏幕重新加载":nil action:^{
         if (action) {
+            [weakSelf dismissBlank];
             action();
         }
     } offsetY:offsetY];

@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Plan.h"
-#import "PlanItem.h"
-#import "Picture.h"
-#import "Queue.h"
+#import "Plan+CoreDataClass.h"
+#import "PlanItem+CoreDataClass.h"
+#import "Picture+CoreDataClass.h"
+#import "Queue+CoreDataClass.h"
 
 @interface DCSyncManager : NSObject<UIApplicationDelegate>
 

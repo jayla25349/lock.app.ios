@@ -14,6 +14,7 @@
 #import <YYModel/YYModel.h>
 #import <YYWebImage/YYWebImage.h>
 #import <YYCategories/YYCategories.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
 #import <SocketRocket/SocketRocket.h>
@@ -43,5 +44,10 @@ extern const int ddLogLevel;
 #define URL_SERVER          @"http://www.baidu.com"
 #define HTTP_GET(action)    [DCAppEngine shareEngine].networkManager HTTP_GET:URL_SERVER api:action
 #define HTTP_POST(action)   [DCAppEngine shareEngine].networkManager HTTP_POST:URL_SERVER api:action
+
+#define COLOR_BG        RGB(242, 242, 242)
+#define COLOR_NAV       RGB(23, 142, 237)
+#define COLOR_BTN       RGB(52, 175, 255)
+#define COLOR_CELL      RGB(255, 255, 255)
 
 #endif /* PrefixHeader_pch */

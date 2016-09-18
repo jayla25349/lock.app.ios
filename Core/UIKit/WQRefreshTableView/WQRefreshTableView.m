@@ -40,6 +40,7 @@
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.pageIndex = 0;
     self.pageSize = 20;
     self.allowShowMore = YES;

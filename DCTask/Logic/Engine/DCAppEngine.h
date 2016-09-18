@@ -7,10 +7,14 @@
 //
 
 #import "AppEngine.h"
+#import "DCUserManager.h"
 #import "DCSyncManager.h"
+#import "DCBluetoothManager.h"
 
 @interface DCAppEngine : AppEngine
+@property (nonatomic, readonly) DCUserManager *userManager;
 @property (nonatomic, readonly) DCSyncManager *syncManager;
+@property (nonatomic, readonly) DCBluetoothManager *bluetoothManager;
 
 + (instancetype)shareEngine;
 

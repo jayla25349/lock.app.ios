@@ -19,14 +19,19 @@
 @property (nonatomic, strong) UIColor *lineColor;
 @property (nonatomic, strong) UIImage *normalImage;
 @property (nonatomic, strong) UIImage *selectedImage;
+@property (nonatomic, strong) UIImage *errorImage;
 
-@property (nonatomic, weak) id<DCLockViewDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<DCLockViewDelegate> delegate;
+@property (nonatomic, readonly) NSString *password;
+
+- (void)showError:(BOOL)error;
+- (void)clear;
 @end
 
 @protocol DCLockViewDelegate <NSObject>
 
 @optional
-- (void)lockView:(DCLockView *)lockView valueChange:(NSString *)password;
+- (void)lockView:(DCLockView *)lockView valueChange:(NSInteger)value;
 - (void)lockView:(DCLockView *)lockView didEnd:(NSString *)password;
 
 @end

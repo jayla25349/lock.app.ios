@@ -34,14 +34,24 @@
 /**
  用户登录
 
- @param number  工号
  @param gesture 手势
  @param success  成功回调
  @param failure  失败回调
  */
-- (void)loginWithNumber:(NSString *)number
-                gesture:(NSString *)gesture
-                success:(void (^)(User *user))success
-                failure:(void (^)(NSError *error))failure;
+- (void)loginWithGesture:(NSString *)gesture
+                 success:(void (^)(User *user))success
+                 failure:(void (^)(NSError *error))failure;
+
+
+/**
+ 更新密码
+ 
+ @param password 密码
+ @param success  成功回调
+ @param failure  失败回调
+ */
+- (void)updatePassword:(NSString *)password
+               success:(void (^)(User *user))success
+               failure:(void (^)(NSError *error))failure;
 
 @end

@@ -38,7 +38,6 @@
 		E3A3316D1D845E0700CA36DF /* DCLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331591D845E0700CA36DF /* DCLoginVC.m */; };
 		E3A3316E1D845E0700CA36DF /* DCRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A3315B1D845E0700CA36DF /* DCRegisterVC.m */; };
 		E3A3316F1D845E0700CA36DF /* DCOpenDoorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A3315E1D845E0700CA36DF /* DCOpenDoorVC.m */; };
-		E3A331701D845E0700CA36DF /* DCChangePwdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331611D845E0700CA36DF /* DCChangePwdCell.m */; };
 		E3A331711D845E0700CA36DF /* DCChangePwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331631D845E0700CA36DF /* DCChangePwdVC.m */; };
 		E3A331721D845E0700CA36DF /* DCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331651D845E0700CA36DF /* DCSettingVC.m */; };
 		E3A331761D845E2F00CA36DF /* DCSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331751D845E2F00CA36DF /* DCSyncManager.m */; };
@@ -127,8 +126,6 @@
 		E3A3315B1D845E0700CA36DF /* DCRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRegisterVC.m; sourceTree = "<group>"; };
 		E3A3315D1D845E0700CA36DF /* DCOpenDoorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCOpenDoorVC.h; sourceTree = "<group>"; };
 		E3A3315E1D845E0700CA36DF /* DCOpenDoorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCOpenDoorVC.m; sourceTree = "<group>"; };
-		E3A331601D845E0700CA36DF /* DCChangePwdCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCChangePwdCell.h; sourceTree = "<group>"; };
-		E3A331611D845E0700CA36DF /* DCChangePwdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCChangePwdCell.m; sourceTree = "<group>"; };
 		E3A331621D845E0700CA36DF /* DCChangePwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCChangePwdVC.h; sourceTree = "<group>"; };
 		E3A331631D845E0700CA36DF /* DCChangePwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCChangePwdVC.m; sourceTree = "<group>"; };
 		E3A331641D845E0700CA36DF /* DCSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSettingVC.h; sourceTree = "<group>"; };
@@ -489,8 +486,6 @@
 		E3A3315F1D845E0700CA36DF /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				E3A331601D845E0700CA36DF /* DCChangePwdCell.h */,
-				E3A331611D845E0700CA36DF /* DCChangePwdCell.m */,
 				E3A331621D845E0700CA36DF /* DCChangePwdVC.h */,
 				E3A331631D845E0700CA36DF /* DCChangePwdVC.m */,
 				E3A331641D845E0700CA36DF /* DCSettingVC.h */,
@@ -738,7 +733,6 @@
 				E3EC34F51D871F5B00604301 /* WQTextView.m in Sources */,
 				E3DAA8C91D86E4FB00804EA4 /* DCCheckCell.m in Sources */,
 				E352D5EF1D7B23AC00CB4B93 /* NetworkManager.m in Sources */,
-				E3A331701D845E0700CA36DF /* DCChangePwdCell.m in Sources */,
 				E3A3316A1D845E0700CA36DF /* DCCheckVC.m in Sources */,
 				E3A331761D845E2F00CA36DF /* DCSyncManager.m in Sources */,
 				E3E20F681D8F08410091507E /* Picture+CoreDataProperties.m in Sources */,

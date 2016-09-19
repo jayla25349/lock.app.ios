@@ -33,30 +33,35 @@
                    gesture:(NSString *)gesture
                    success:(void (^)(User *user))success
                    failure:(void (^)(NSError *error))failure{
-    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
         self.user = [User MR_createEntityInContext:localContext];
         self.user.number = number;
         self.user.name = name;
         self.user.password = password;
         self.user.gesture = gesture;
+    } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+        if (!error) {
+            if (success) {
+                success(self.user);
+            }
+        } else {
+            if (failure) {
+                failure(error);
+            }
+        }
     }];
-    if (success) {
-        success(self.user);
-    }
 }
 
 /**
  用户登录
  
- @param number  工号
  @param gesture 手势
  @param success  成功回调
  @param failure  失败回调
  */
-- (void)loginWithNumber:(NSString *)number
-                gesture:(NSString *)gesture
-                success:(void (^)(User *user))success
-                failure:(void (^)(NSError *error))failure {
+- (void)loginWithGesture:(NSString *)gesture
+                 success:(void (^)(User *user))success
+                 failure:(void (^)(NSError *error))failure {
     if (self.user && [self.user.gesture isEqualToString:gesture]) {
         if (success) {
             success(self.user);
@@ -66,6 +71,33 @@
             failure(nil);
         }
     }
+}
+
+
+/**
+ 更新密码
+ 
+ @param password 密码
+ @param success  成功回调
+ @param failure  失败回调
+ */
+- (void)updatePassword:(NSString *)password
+               success:(void (^)(User *user))success
+               failure:(void (^)(NSError *error))failure {
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+        User *user = [self.user MR_inContext:localContext];
+        user.password = password;
+    } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+        if (!error) {
+            if (success) {
+                success(self.user);
+            }
+        } else {
+            if (failure) {
+                failure(error);
+            }
+        }
+    }];
 }
 
 /**********************************************************************/

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DCCheckImageCell : UICollectionViewCell
-@property (nonatomic, readonly) UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @end

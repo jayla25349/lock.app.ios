@@ -10,6 +10,7 @@
 
 @interface DCCheckCell : UITableViewCell
 @property (nonatomic, readonly) PlanItem *planItem;
+@property (nonatomic, assign) BOOL editable;
 
 - (void)configWithPlanItem:(PlanItem *)planItem indexPath:(NSIndexPath *)indexPath;
 

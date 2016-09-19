@@ -19,7 +19,6 @@ static NSString *cellIdentifier = @"DCSettingCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"设置";
     
     [self initView];
 }

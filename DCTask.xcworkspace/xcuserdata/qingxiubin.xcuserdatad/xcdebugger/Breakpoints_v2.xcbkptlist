@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DCTask/UI/Home/DCHomeVC.m"
-            timestampString = "495917548.538929"
+            filePath = "DCTask/UI/Setting/DCChangePwdVC.m"
+            timestampString = "495995691.881945"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "-controllerDidChangeContent:"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-confirmAction:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

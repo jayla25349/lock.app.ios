@@ -52,18 +52,21 @@
     NSString *number = self.numberTextField.text;
     if (number.length<4) {
         [SVProgressHUD showInfoWithStatus:@"请输入4位数工号"];
+        [self.numberTextField becomeFirstResponder];
         return;
     }
     
     NSString *password1 = self.password1TextField.text;
     if (password1.length<4 || password1.length>24) {
         [SVProgressHUD showInfoWithStatus:@"密码必须为6~24位字符、数字或下划线组成"];
+        [self.password1TextField becomeFirstResponder];
         return;
     }
     
     NSString *password2 = self.password2TextField.text;
     if (![password2 isEqualToString:password1]) {
         [SVProgressHUD showInfoWithStatus:@"两次密码输入不一致"];
+        [self.password2TextField becomeFirstResponder];
         return;
     }
     

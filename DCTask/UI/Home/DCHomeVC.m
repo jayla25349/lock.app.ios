@@ -25,11 +25,14 @@ static NSString *cellIdentifier = @"DCHomeCell";
 @property (weak, nonatomic) IBOutlet UIButton *selectButton1;
 @property (weak, nonatomic) IBOutlet UIButton *selectButton2;
 @property (weak, nonatomic) IBOutlet UIButton *selectButton3;
+@property (weak, nonatomic) IBOutlet UIImageView *selectImageView;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView1;
 @property (weak, nonatomic) IBOutlet UITableView *tableView2;
 @property (weak, nonatomic) IBOutlet UITableView *tableView3;
+
+@property (nonatomic, strong) UIButton *selectedButton;
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController1;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController2;
@@ -44,17 +47,13 @@ static NSString *cellIdentifier = @"DCHomeCell";
     [self initView];
     
     [Plan MR_performFetch:self.fetchedResultsController1];
-    if ([self.fetchedResultsController1 fetchedObjects].count==0) {
-        [self.tableView1 showBlankLoadNoData:nil];
-    }
+    [self controllerDidChangeContent:self.fetchedResultsController1];
+    
     [Plan MR_performFetch:self.fetchedResultsController2];
-    if ([self.fetchedResultsController2 fetchedObjects].count==0) {
-        [self.tableView2 showBlankLoadNoData:nil];
-    }
+    [self controllerDidChangeContent:self.fetchedResultsController2];
+    
     [Plan MR_performFetch:self.fetchedResultsController3];
-    if ([self.fetchedResultsController3 fetchedObjects].count==0) {
-        [self.tableView3 showBlankLoadNoData:nil];
-    }
+    [self controllerDidChangeContent:self.fetchedResultsController3];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,12 +66,23 @@ static NSString *cellIdentifier = @"DCHomeCell";
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ShowCheckVC1"]) {
+        DCCheckVC *vc = (DCCheckVC *)segue.destinationViewController;
+        vc.plan = sender;
+        vc.editable = YES;
+    } else if ([segue.identifier isEqualToString:@"ShowCheckVC2"]) {
+        DCCheckVC *vc = (DCCheckVC *)segue.destinationViewController;
+        vc.plan = sender;
+        vc.editable = NO;
+    }
+}
+
 /**********************************************************************/
 #pragma mark - Private
 /**********************************************************************/
 
 - (void)initView {
-    
 //    CGRect bounds = CGRectMake(0, 0, 44, 22);
 //    UIImage *image = [UIImage imageWithSize:bounds.size drawBlock:^(CGContextRef  _Nonnull context) {
 //        CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
@@ -137,6 +147,49 @@ static NSString *cellIdentifier = @"DCHomeCell";
     DCSettingVC *vc = [[DCSettingVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (IBAction)selectAction:(UIButton *)sender {
+    if (sender == self.selectedButton) {
+        return;
+    }
+    
+    CGRect frame = self.scrollView.bounds;
+    frame.origin.x = sender.frame.origin.x*3;
+    [self.scrollView scrollRectToVisible:frame animated:YES];
+}
+
+/**********************************************************************/
+#pragma mark - UIScrollViewDelegate
+/**********************************************************************/
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView == self.scrollView) {
+        CGFloat offsetX = scrollView.contentOffset.x + scrollView.width * 0.5f;
+        if (offsetX/scrollView.width < 1) {
+            if (self.selectedButton != self.selectButton1) {
+                self.selectedButton.selected = NO;
+                self.selectedButton = self.selectButton1;
+                self.selectedButton.selected = YES;
+            }
+        } else if (scrollView.contentOffset.x/scrollView.width + 0.5f < 2) {
+            if (self.selectedButton != self.selectButton2) {
+                self.selectedButton.selected = NO;
+                self.selectedButton = self.selectButton2;
+                self.selectedButton.selected = YES;
+            }
+        } else {
+            if (self.selectedButton != self.selectButton3) {
+                self.selectedButton.selected = NO;
+                self.selectedButton = self.selectButton3;
+                self.selectedButton.selected = YES;
+            }
+        }
+        
+        [self.selectImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.selectView.mas_left).offset(offsetX/3.0f);
+        }];
+    }
 }
 
 /**********************************************************************/
@@ -217,10 +270,10 @@ static NSString *cellIdentifier = @"DCHomeCell";
         [alertView show];
     } else if (tableView == self.tableView2) {
         plan = [self.fetchedResultsController2 objectAtIndexPath:indexPath];
-        [self performSegueWithIdentifier:@"ShowCheckVC" sender:plan];
+        [self performSegueWithIdentifier:@"ShowCheckVC1" sender:plan];
     } else if (tableView == self.tableView3) {
         plan = [self.fetchedResultsController3 objectAtIndexPath:indexPath];
-        [self performSegueWithIdentifier:@"ShowCheckVC" sender:plan];
+        [self performSegueWithIdentifier:@"ShowCheckVC2" sender:plan];
     }
 }
 
@@ -278,17 +331,24 @@ static NSString *cellIdentifier = @"DCHomeCell";
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    NSUInteger count = [controller fetchedObjects].count;
+    
     UITableView *tableView = nil;
     if (controller == self.fetchedResultsController1) {
-        tableView = self.tableView1;
+        tableView = self.tableView1;;
+        [self.selectButton1 setTitle:[@"待处理" stringByAppendingFormat:@"(%lu)", count] forState:UIControlStateNormal];
     } else if (controller == self.fetchedResultsController2) {
         tableView = self.tableView2;
+        [self.selectButton2 setTitle:[@"处理中" stringByAppendingFormat:@"(%lu)", count] forState:UIControlStateNormal];
     } else if (controller == self.fetchedResultsController3) {
         tableView = self.tableView3;
+        [self.selectButton3 setTitle:[@"未提交" stringByAppendingFormat:@"(%lu)", count] forState:UIControlStateNormal];
     }
     [tableView endUpdates];
     
-    if ([controller fetchedObjects].count==0) {
+    if (count>0) {
+        [tableView dismissBlank];
+    } else {
         [tableView showBlankLoadNoData:nil];
     }
 }

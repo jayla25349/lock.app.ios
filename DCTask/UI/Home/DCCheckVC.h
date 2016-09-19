@@ -10,5 +10,6 @@
 
 @interface DCCheckVC : BSViewController
 @property (nonatomic, strong) Plan *plan;
+@property (nonatomic, assign) BOOL editable;
 
 @end

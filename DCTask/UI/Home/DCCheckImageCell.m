@@ -16,6 +16,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.imageView.backgroundColor = RGB(225, 225, 225);
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.layer.cornerRadius = 5;
     self.imageView.layer.masksToBounds = YES;
 }

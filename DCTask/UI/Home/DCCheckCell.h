@@ -12,6 +12,7 @@
 @interface DCCheckCell : UITableViewCell
 @property (nonatomic, weak) id<DCCheckCellDelegate> delegate;
 @property (nonatomic, readonly) PlanItem *planItem;
+@property (nonatomic, readonly) NSArray<Picture *> *pics;
 @property (nonatomic, assign) BOOL editable;
 
 - (void)configWithPlanItem:(PlanItem *)planItem indexPath:(NSIndexPath *)indexPath;

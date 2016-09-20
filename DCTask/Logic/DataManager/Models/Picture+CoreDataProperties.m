@@ -15,7 +15,7 @@
 }
 
 @dynamic createDate;
-@dynamic data;
+@dynamic name;
 @dynamic planItem;
 
 @end

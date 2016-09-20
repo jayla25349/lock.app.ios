@@ -11,7 +11,7 @@
 
 static NSString * const cellIdentifier = @"DCCheckCell";
 
-@interface DCCheckVC ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, DCCheckCellDelegate>
+@interface DCCheckVC ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, DCCheckCellDelegate, MWPhotoBrowserDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *contentTableView;
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
 @property (weak, nonatomic) IBOutlet UIView *menuContentView;
@@ -23,7 +23,7 @@ static NSString * const cellIdentifier = @"DCCheckCell";
 @property (nonatomic, strong) NSDictionary<NSString *, NSArray *> * dataSource;
 @property (nonatomic, strong) NSArray<NSString *> * categorys;
 
-@property (nonatomic, weak) PlanItem *currentPlanItem;
+@property (nonatomic, strong) DCCheckCell *currentCheckCell;
 @end
 
 @implementation DCCheckVC
@@ -207,21 +207,16 @@ static NSString * const cellIdentifier = @"DCCheckCell";
 /**********************************************************************/
 
 - (void)checkCell:(DCCheckCell *)cell didSelectImage:(NSInteger)index {
-    self.currentPlanItem = cell.planItem;
+    self.currentCheckCell = cell;
     
-    NSMutableArray *tempArray = [NSMutableArray array];
-    [cell.planItem.pics enumerateObjectsUsingBlock:^(Picture * _Nonnull obj, BOOL * _Nonnull stop) {
-        UIImage *image = [UIImage imageWithData:obj.data];
-        [tempArray addObject:[MWPhoto photoWithImage:image]];
-    }];
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:tempArray];
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     browser.enableGrid = NO;
     [browser setCurrentPhotoIndex:index];
     [self.navigationController pushViewController:browser animated:YES];
 }
 
 - (void)checkCell:(DCCheckCell *)cell didSelectEdit:(NSInteger)index {
-    self.currentPlanItem = cell.planItem;
+    self.currentCheckCell = cell;
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择添加方式"
                                                              delegate:self
@@ -262,15 +257,37 @@ static NSString * const cellIdentifier = @"DCCheckCell";
 /**********************************************************************/
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    [self.currentPlanItem addImage:image completion:^(BOOL contextDidSave, NSError * _Nullable error) {
-        [self.contentTableView reloadData];
-        [picker dismissViewControllerAnimated:YES completion:nil];
+    [self.currentCheckCell.planItem addImage:image completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+        if (error) {
+            [SVProgressHUD showInfoWithStatus:@"添加图片失败"];
+        } else {
+            [self.contentTableView reloadData];
+            [picker dismissViewControllerAnimated:YES completion:nil];
+        }
     }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+/**********************************************************************/
+#pragma mark - MWPhotoBrowserDelegate
+/**********************************************************************/
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.currentCheckCell.pics.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *fileName = self.currentCheckCell.pics[index].name;
+    NSString *filePath = [docPath stringByAppendingPathComponent:fileName];
+    UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+    
+    return [MWPhoto photoWithImage:image];
 }
 
 /**********************************************************************/

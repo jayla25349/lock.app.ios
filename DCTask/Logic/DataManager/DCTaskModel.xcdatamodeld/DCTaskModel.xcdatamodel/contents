@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1004" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Picture" representedClassName="Picture" syncable="YES">
         <attribute name="createDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="data" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="planItem" maxCount="1" deletionRule="Nullify" destinationEntity="PlanItem" inverseName="pics" inverseEntity="PlanItem" syncable="YES"/>
     </entity>
     <entity name="Plan" representedClassName="Plan" syncable="YES">

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<Picture *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSDate *createDate;
-@property (nullable, nonatomic, retain) NSData *data;
+@property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, retain) PlanItem *planItem;
 
 @end

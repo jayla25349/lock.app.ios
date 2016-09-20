@@ -21,7 +21,7 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) PlanItem *planItem;
-@property (nonatomic, strong) NSMutableArray *pics;
+@property (nonatomic, strong) NSArray<Picture *> *pics;
 @end
 
 @implementation DCCheckCell
@@ -66,6 +66,9 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
 
 - (void)configWithPlanItem:(PlanItem *)planItem indexPath:(NSIndexPath *)indexPath {
     self.planItem = planItem;
+    self.pics = [Picture MR_findAllSortedBy:@"createDate"
+                                  ascending:YES
+                              withPredicate:[NSPredicate predicateWithFormat:@"planItem=%@", planItem]];
     
     self.titleLabel.text = [NSString stringWithFormat:@"%ld.%ld %@", indexPath.section+1, indexPath.row+1, planItem.item_name];
     self.normalButton.selected = (planItem.check_state.integerValue==0)?YES:NO;
@@ -74,8 +77,9 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
     
     [self.collectionView reloadData];
     [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.height.mas_equalTo(self.collectionView.contentSize.height);
-        make.height.mas_equalTo(80);
+        NSInteger itemCount = self.pics.count + 1;
+        NSInteger rowCount = itemCount%4==0?itemCount/4:itemCount/4+1;
+        make.height.mas_equalTo(70*rowCount + 20*(rowCount-1));
     }];
 }
 
@@ -122,6 +126,12 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.item < self.pics.count) {
         DCCheckImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
+        
+        Picture *picture = self.pics[indexPath.item];
+        NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+        NSString *filePath = [docPath stringByAppendingPathComponent:picture.name];
+        UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+        cell.imageView.image = image;
         
         return cell;
     } else {

@@ -11,7 +11,7 @@
 
 static NSString * const cellIdentifier = @"DCCheckCell";
 
-@interface DCCheckVC ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
+@interface DCCheckVC ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, DCCheckCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *contentTableView;
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
 @property (weak, nonatomic) IBOutlet UIView *menuContentView;
@@ -22,6 +22,8 @@ static NSString * const cellIdentifier = @"DCCheckCell";
 
 @property (nonatomic, strong) NSDictionary<NSString *, NSArray *> * dataSource;
 @property (nonatomic, strong) NSArray<NSString *> * categorys;
+
+@property (nonatomic, weak) PlanItem *currentPlanItem;
 @end
 
 @implementation DCCheckVC
@@ -179,6 +181,7 @@ static NSString * const cellIdentifier = @"DCCheckCell";
     
     if (tableView == self.contentTableView) {
         DCCheckCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        cell.delegate = self;
         cell.editable = self.editable;
         
         NSArray<PlanItem *> *items = self.dataSource[category];
@@ -197,6 +200,77 @@ static NSString * const cellIdentifier = @"DCCheckCell";
         
         return cell;
     }
+}
+
+/**********************************************************************/
+#pragma mark - DCCheckCellDelegate
+/**********************************************************************/
+
+- (void)checkCell:(DCCheckCell *)cell didSelectImage:(NSInteger)index {
+    self.currentPlanItem = cell.planItem;
+    
+    NSMutableArray *tempArray = [NSMutableArray array];
+    [cell.planItem.pics enumerateObjectsUsingBlock:^(Picture * _Nonnull obj, BOOL * _Nonnull stop) {
+        UIImage *image = [UIImage imageWithData:obj.data];
+        [tempArray addObject:[MWPhoto photoWithImage:image]];
+    }];
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:tempArray];
+    browser.enableGrid = NO;
+    [browser setCurrentPhotoIndex:index];
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+- (void)checkCell:(DCCheckCell *)cell didSelectEdit:(NSInteger)index {
+    self.currentPlanItem = cell.planItem;
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择添加方式"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"相册", @"相机", nil];
+    [actionSheet showInView:self.view];
+}
+
+/**********************************************************************/
+#pragma mark - UIActionSheetDelegate
+/**********************************************************************/
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex==0) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.delegate = self;
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:picker animated:YES completion:nil];
+        } else {
+            [SVProgressHUD showInfoWithStatus:@"相册不可用"];
+        }
+    } else if (buttonIndex==1) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.delegate = self;
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:picker animated:YES completion:nil];
+        } else {
+            [SVProgressHUD showInfoWithStatus:@"相机不可用"];
+        }
+    }
+}
+
+/**********************************************************************/
+#pragma mark - UIImagePickerControllerDelegate
+/**********************************************************************/
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    [self.currentPlanItem addImage:image completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+        [self.contentTableView reloadData];
+        [picker dismissViewControllerAnimated:YES completion:nil];
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 /**********************************************************************/

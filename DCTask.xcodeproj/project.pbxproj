@@ -11,6 +11,19 @@
 		E305EAF91D89AB83008DD4E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E305EAF81D89AB83008DD4E8 /* Main.storyboard */; };
 		E3109F9F1D8535D9006DD8EF /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109F9E1D8535D9006DD8EF /* PushManager.m */; };
 		E3109FA21D854EB3006DD8EF /* plan.json in Resources */ = {isa = PBXBuildFile; fileRef = E3109FA11D854EB3006DD8EF /* plan.json */; };
+		E3298AA01D918E3600D7F92C /* DCCheckEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298A9F1D918E3600D7F92C /* DCCheckEditCell.m */; };
+		E3298AA41D91A2F500D7F92C /* DCDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AA31D91A2F500D7F92C /* DCDataManager.m */; };
+		E3298ABC1D91A31D00D7F92C /* DCTaskModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3298AA51D91A31D00D7F92C /* DCTaskModel.xcdatamodeld */; };
+		E3298ABD1D91A31D00D7F92C /* Picture+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AA91D91A31D00D7F92C /* Picture+CoreDataClass.m */; };
+		E3298ABE1D91A31D00D7F92C /* Picture+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AAB1D91A31D00D7F92C /* Picture+CoreDataProperties.m */; };
+		E3298ABF1D91A31E00D7F92C /* Plan+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AAD1D91A31D00D7F92C /* Plan+CoreDataClass.m */; };
+		E3298AC01D91A31E00D7F92C /* Plan+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AAF1D91A31D00D7F92C /* Plan+CoreDataProperties.m */; };
+		E3298AC11D91A31E00D7F92C /* PlanItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AB11D91A31D00D7F92C /* PlanItem+CoreDataClass.m */; };
+		E3298AC21D91A31E00D7F92C /* PlanItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AB31D91A31D00D7F92C /* PlanItem+CoreDataProperties.m */; };
+		E3298AC31D91A31E00D7F92C /* Queue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AB51D91A31D00D7F92C /* Queue+CoreDataClass.m */; };
+		E3298AC41D91A31E00D7F92C /* Queue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AB71D91A31D00D7F92C /* Queue+CoreDataProperties.m */; };
+		E3298AC51D91A31E00D7F92C /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AB91D91A31D00D7F92C /* User+CoreDataClass.m */; };
+		E3298AC61D91A31E00D7F92C /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298ABB1D91A31D00D7F92C /* User+CoreDataProperties.m */; };
 		E352D5B41D7B222A00CB4B93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5B31D7B222A00CB4B93 /* main.m */; };
 		E352D5B71D7B222A00CB4B93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5B61D7B222A00CB4B93 /* AppDelegate.m */; };
 		E352D5BF1D7B222A00CB4B93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E352D5BE1D7B222A00CB4B93 /* Assets.xcassets */; };
@@ -40,21 +53,9 @@
 		E3A3316F1D845E0700CA36DF /* DCOpenDoorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A3315E1D845E0700CA36DF /* DCOpenDoorVC.m */; };
 		E3A331711D845E0700CA36DF /* DCChangePwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331631D845E0700CA36DF /* DCChangePwdVC.m */; };
 		E3A331721D845E0700CA36DF /* DCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331651D845E0700CA36DF /* DCSettingVC.m */; };
-		E3A331761D845E2F00CA36DF /* DCSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331751D845E2F00CA36DF /* DCSyncManager.m */; };
 		E3A3317A1D847E4700CA36DF /* DCAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331791D847E4700CA36DF /* DCAppEngine.m */; };
 		E3DAA8C91D86E4FB00804EA4 /* DCCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DAA8C81D86E4FB00804EA4 /* DCCheckCell.m */; };
-		E3E20F651D8F08410091507E /* PlanItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E20F521D8F08410091507E /* PlanItem+CoreDataClass.m */; };
-		E3E20F661D8F08410091507E /* PlanItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E20F541D8F08410091507E /* PlanItem+CoreDataProperties.m */; };
-		E3E20F671D8F08410091507E /* Picture+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E20F561D8F08410091507E /* Picture+CoreDataClass.m */; };
-		E3E20F681D8F08410091507E /* Picture+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E20F581D8F08410091507E /* Picture+CoreDataProperties.m */; };
-		E3E20F691D8F08410091507E /* Queue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E20F5A1D8F08410091507E /* Queue+CoreDataClass.m */; };
-		E3E20F6A1D8F08410091507E /* Queue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E20F5C1D8F08410091507E /* Queue+CoreDataProperties.m */; };
-		E3E20F6B1D8F08410091507E /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E20F5E1D8F08410091507E /* User+CoreDataClass.m */; };
-		E3E20F6C1D8F08410091507E /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E20F601D8F08410091507E /* User+CoreDataProperties.m */; };
-		E3E20F6D1D8F08410091507E /* Plan+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E20F621D8F08410091507E /* Plan+CoreDataClass.m */; };
-		E3E20F6E1D8F08410091507E /* Plan+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E20F641D8F08410091507E /* Plan+CoreDataProperties.m */; };
 		E3E6A2391D88E4E100FF5688 /* DCUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6A2381D88E4E100FF5688 /* DCUserManager.m */; };
-		E3E6A2511D88E69200FF5688 /* DCTaskModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3E6A23B1D88E69200FF5688 /* DCTaskModel.xcdatamodeld */; };
 		E3E6A25E1D88E80C00FF5688 /* DCBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6A25D1D88E80C00FF5688 /* DCBluetoothManager.m */; };
 		E3EC34E91D871EEA00604301 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EC34E81D871EEA00604301 /* AlertView.m */; };
 		E3EC34F31D871F5B00604301 /* WQLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EC34EC1D871F5B00604301 /* WQLineView.m */; };
@@ -71,6 +72,31 @@
 		E3109F9D1D8535D9006DD8EF /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
 		E3109F9E1D8535D9006DD8EF /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
 		E3109FA11D854EB3006DD8EF /* plan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plan.json; sourceTree = "<group>"; };
+		E3298A9E1D918E3600D7F92C /* DCCheckEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCheckEditCell.h; sourceTree = "<group>"; };
+		E3298A9F1D918E3600D7F92C /* DCCheckEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCheckEditCell.m; sourceTree = "<group>"; };
+		E3298AA21D91A2F500D7F92C /* DCDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCDataManager.h; sourceTree = "<group>"; };
+		E3298AA31D91A2F500D7F92C /* DCDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCDataManager.m; sourceTree = "<group>"; };
+		E3298AA61D91A31D00D7F92C /* DCTaskModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DCTaskModel.xcdatamodel; sourceTree = "<group>"; };
+		E3298AA81D91A31D00D7F92C /* Picture+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Picture+CoreDataClass.h"; sourceTree = "<group>"; };
+		E3298AA91D91A31D00D7F92C /* Picture+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Picture+CoreDataClass.m"; sourceTree = "<group>"; };
+		E3298AAA1D91A31D00D7F92C /* Picture+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Picture+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E3298AAB1D91A31D00D7F92C /* Picture+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Picture+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E3298AAC1D91A31D00D7F92C /* Plan+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Plan+CoreDataClass.h"; sourceTree = "<group>"; };
+		E3298AAD1D91A31D00D7F92C /* Plan+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Plan+CoreDataClass.m"; sourceTree = "<group>"; };
+		E3298AAE1D91A31D00D7F92C /* Plan+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Plan+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E3298AAF1D91A31D00D7F92C /* Plan+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Plan+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E3298AB01D91A31D00D7F92C /* PlanItem+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlanItem+CoreDataClass.h"; sourceTree = "<group>"; };
+		E3298AB11D91A31D00D7F92C /* PlanItem+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlanItem+CoreDataClass.m"; sourceTree = "<group>"; };
+		E3298AB21D91A31D00D7F92C /* PlanItem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlanItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E3298AB31D91A31D00D7F92C /* PlanItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlanItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E3298AB41D91A31D00D7F92C /* Queue+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Queue+CoreDataClass.h"; sourceTree = "<group>"; };
+		E3298AB51D91A31D00D7F92C /* Queue+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Queue+CoreDataClass.m"; sourceTree = "<group>"; };
+		E3298AB61D91A31D00D7F92C /* Queue+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Queue+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E3298AB71D91A31D00D7F92C /* Queue+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Queue+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E3298AB81D91A31D00D7F92C /* User+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
+		E3298AB91D91A31D00D7F92C /* User+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
+		E3298ABA1D91A31D00D7F92C /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E3298ABB1D91A31D00D7F92C /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E352D5AF1D7B222A00CB4B93 /* DCTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E352D5B31D7B222A00CB4B93 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E352D5B51D7B222A00CB4B93 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -130,35 +156,12 @@
 		E3A331631D845E0700CA36DF /* DCChangePwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCChangePwdVC.m; sourceTree = "<group>"; };
 		E3A331641D845E0700CA36DF /* DCSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSettingVC.h; sourceTree = "<group>"; };
 		E3A331651D845E0700CA36DF /* DCSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSettingVC.m; sourceTree = "<group>"; };
-		E3A331741D845E2F00CA36DF /* DCSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSyncManager.h; sourceTree = "<group>"; };
-		E3A331751D845E2F00CA36DF /* DCSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSyncManager.m; sourceTree = "<group>"; };
 		E3A331781D847E4700CA36DF /* DCAppEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCAppEngine.h; sourceTree = "<group>"; };
 		E3A331791D847E4700CA36DF /* DCAppEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCAppEngine.m; sourceTree = "<group>"; };
 		E3DAA8C71D86E4FB00804EA4 /* DCCheckCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCheckCell.h; sourceTree = "<group>"; };
 		E3DAA8C81D86E4FB00804EA4 /* DCCheckCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCheckCell.m; sourceTree = "<group>"; };
-		E3E20F511D8F08410091507E /* PlanItem+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlanItem+CoreDataClass.h"; sourceTree = "<group>"; };
-		E3E20F521D8F08410091507E /* PlanItem+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlanItem+CoreDataClass.m"; sourceTree = "<group>"; };
-		E3E20F531D8F08410091507E /* PlanItem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlanItem+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E3E20F541D8F08410091507E /* PlanItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlanItem+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E3E20F551D8F08410091507E /* Picture+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Picture+CoreDataClass.h"; sourceTree = "<group>"; };
-		E3E20F561D8F08410091507E /* Picture+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Picture+CoreDataClass.m"; sourceTree = "<group>"; };
-		E3E20F571D8F08410091507E /* Picture+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Picture+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E3E20F581D8F08410091507E /* Picture+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Picture+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E3E20F591D8F08410091507E /* Queue+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Queue+CoreDataClass.h"; sourceTree = "<group>"; };
-		E3E20F5A1D8F08410091507E /* Queue+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Queue+CoreDataClass.m"; sourceTree = "<group>"; };
-		E3E20F5B1D8F08410091507E /* Queue+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Queue+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E3E20F5C1D8F08410091507E /* Queue+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Queue+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E3E20F5D1D8F08410091507E /* User+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
-		E3E20F5E1D8F08410091507E /* User+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
-		E3E20F5F1D8F08410091507E /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E3E20F601D8F08410091507E /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E3E20F611D8F08410091507E /* Plan+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Plan+CoreDataClass.h"; sourceTree = "<group>"; };
-		E3E20F621D8F08410091507E /* Plan+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Plan+CoreDataClass.m"; sourceTree = "<group>"; };
-		E3E20F631D8F08410091507E /* Plan+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Plan+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E3E20F641D8F08410091507E /* Plan+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Plan+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E3E6A2371D88E4E100FF5688 /* DCUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUserManager.h; sourceTree = "<group>"; };
 		E3E6A2381D88E4E100FF5688 /* DCUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCUserManager.m; sourceTree = "<group>"; };
-		E3E6A23C1D88E69200FF5688 /* DCTaskModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DCTaskModel.xcdatamodel; sourceTree = "<group>"; };
 		E3E6A25C1D88E80C00FF5688 /* DCBluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCBluetoothManager.h; sourceTree = "<group>"; };
 		E3E6A25D1D88E80C00FF5688 /* DCBluetoothManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCBluetoothManager.m; sourceTree = "<group>"; };
 		E3EC34E71D871EEA00604301 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
@@ -217,6 +220,44 @@
 				E3109FA11D854EB3006DD8EF /* plan.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E3298AA11D91A2F500D7F92C /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				E3298AA21D91A2F500D7F92C /* DCDataManager.h */,
+				E3298AA31D91A2F500D7F92C /* DCDataManager.m */,
+				E3298AA51D91A31D00D7F92C /* DCTaskModel.xcdatamodeld */,
+				E3298AA71D91A31D00D7F92C /* Models */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		E3298AA71D91A31D00D7F92C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E3298AA81D91A31D00D7F92C /* Picture+CoreDataClass.h */,
+				E3298AA91D91A31D00D7F92C /* Picture+CoreDataClass.m */,
+				E3298AAA1D91A31D00D7F92C /* Picture+CoreDataProperties.h */,
+				E3298AAB1D91A31D00D7F92C /* Picture+CoreDataProperties.m */,
+				E3298AAC1D91A31D00D7F92C /* Plan+CoreDataClass.h */,
+				E3298AAD1D91A31D00D7F92C /* Plan+CoreDataClass.m */,
+				E3298AAE1D91A31D00D7F92C /* Plan+CoreDataProperties.h */,
+				E3298AAF1D91A31D00D7F92C /* Plan+CoreDataProperties.m */,
+				E3298AB01D91A31D00D7F92C /* PlanItem+CoreDataClass.h */,
+				E3298AB11D91A31D00D7F92C /* PlanItem+CoreDataClass.m */,
+				E3298AB21D91A31D00D7F92C /* PlanItem+CoreDataProperties.h */,
+				E3298AB31D91A31D00D7F92C /* PlanItem+CoreDataProperties.m */,
+				E3298AB41D91A31D00D7F92C /* Queue+CoreDataClass.h */,
+				E3298AB51D91A31D00D7F92C /* Queue+CoreDataClass.m */,
+				E3298AB61D91A31D00D7F92C /* Queue+CoreDataProperties.h */,
+				E3298AB71D91A31D00D7F92C /* Queue+CoreDataProperties.m */,
+				E3298AB81D91A31D00D7F92C /* User+CoreDataClass.h */,
+				E3298AB91D91A31D00D7F92C /* User+CoreDataClass.m */,
+				E3298ABA1D91A31D00D7F92C /* User+CoreDataProperties.h */,
+				E3298ABB1D91A31D00D7F92C /* User+CoreDataProperties.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E352D5A61D7B222A00CB4B93 = {
@@ -377,11 +418,10 @@
 		E3A331411D845E0700CA36DF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				E3E6A23A1D88E69200FF5688 /* Models */,
 				E3A331771D847E2E00CA36DF /* Engine */,
 				E3E6A2351D88E4D100FF5688 /* BluetoothManager */,
+				E3298AA11D91A2F500D7F92C /* DataManager */,
 				E3E6A2361D88E4D100FF5688 /* UserManager */,
-				E3A331731D845E2200CA36DF /* SyncManager */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -451,6 +491,8 @@
 			children = (
 				E399934A1D886B0F0055A6EB /* DCCheckImageCell.h */,
 				E399934B1D886B0F0055A6EB /* DCCheckImageCell.m */,
+				E3298A9E1D918E3600D7F92C /* DCCheckEditCell.h */,
+				E3298A9F1D918E3600D7F92C /* DCCheckEditCell.m */,
 				E3DAA8C71D86E4FB00804EA4 /* DCCheckCell.h */,
 				E3DAA8C81D86E4FB00804EA4 /* DCCheckCell.m */,
 				E3A331511D845E0700CA36DF /* DCCheckVC.h */,
@@ -494,15 +536,6 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		E3A331731D845E2200CA36DF /* SyncManager */ = {
-			isa = PBXGroup;
-			children = (
-				E3A331741D845E2F00CA36DF /* DCSyncManager.h */,
-				E3A331751D845E2F00CA36DF /* DCSyncManager.m */,
-			);
-			path = SyncManager;
-			sourceTree = "<group>";
-		};
 		E3A331771D847E2E00CA36DF /* Engine */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,34 +561,6 @@
 				E3E6A2381D88E4E100FF5688 /* DCUserManager.m */,
 			);
 			path = UserManager;
-			sourceTree = "<group>";
-		};
-		E3E6A23A1D88E69200FF5688 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E3E20F511D8F08410091507E /* PlanItem+CoreDataClass.h */,
-				E3E20F521D8F08410091507E /* PlanItem+CoreDataClass.m */,
-				E3E20F531D8F08410091507E /* PlanItem+CoreDataProperties.h */,
-				E3E20F541D8F08410091507E /* PlanItem+CoreDataProperties.m */,
-				E3E20F551D8F08410091507E /* Picture+CoreDataClass.h */,
-				E3E20F561D8F08410091507E /* Picture+CoreDataClass.m */,
-				E3E20F571D8F08410091507E /* Picture+CoreDataProperties.h */,
-				E3E20F581D8F08410091507E /* Picture+CoreDataProperties.m */,
-				E3E20F591D8F08410091507E /* Queue+CoreDataClass.h */,
-				E3E20F5A1D8F08410091507E /* Queue+CoreDataClass.m */,
-				E3E20F5B1D8F08410091507E /* Queue+CoreDataProperties.h */,
-				E3E20F5C1D8F08410091507E /* Queue+CoreDataProperties.m */,
-				E3E20F5D1D8F08410091507E /* User+CoreDataClass.h */,
-				E3E20F5E1D8F08410091507E /* User+CoreDataClass.m */,
-				E3E20F5F1D8F08410091507E /* User+CoreDataProperties.h */,
-				E3E20F601D8F08410091507E /* User+CoreDataProperties.m */,
-				E3E20F611D8F08410091507E /* Plan+CoreDataClass.h */,
-				E3E20F621D8F08410091507E /* Plan+CoreDataClass.m */,
-				E3E20F631D8F08410091507E /* Plan+CoreDataProperties.h */,
-				E3E20F641D8F08410091507E /* Plan+CoreDataProperties.m */,
-				E3E6A23B1D88E69200FF5688 /* DCTaskModel.xcdatamodeld */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		E3EC34E61D871EEA00604301 /* DCAlertView */ = {
@@ -723,35 +728,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3E20F6C1D8F08410091507E /* User+CoreDataProperties.m in Sources */,
 				E3F5F1F61D7C15DE00697607 /* UIColor+Core.m in Sources */,
 				E3EC34E91D871EEA00604301 /* AlertView.m in Sources */,
 				E352D5F01D7B23AC00CB4B93 /* NetworkUtil.m in Sources */,
 				E352D5EE1D7B23AC00CB4B93 /* DebugAlert.m in Sources */,
+				E3298ABD1D91A31D00D7F92C /* Picture+CoreDataClass.m in Sources */,
 				E3A331661D845E0700CA36DF /* BSNavigationController.m in Sources */,
-				E3E20F6D1D8F08410091507E /* Plan+CoreDataClass.m in Sources */,
+				E3298AC11D91A31E00D7F92C /* PlanItem+CoreDataClass.m in Sources */,
 				E3EC34F51D871F5B00604301 /* WQTextView.m in Sources */,
 				E3DAA8C91D86E4FB00804EA4 /* DCCheckCell.m in Sources */,
 				E352D5EF1D7B23AC00CB4B93 /* NetworkManager.m in Sources */,
 				E3A3316A1D845E0700CA36DF /* DCCheckVC.m in Sources */,
-				E3A331761D845E2F00CA36DF /* DCSyncManager.m in Sources */,
-				E3E20F681D8F08410091507E /* Picture+CoreDataProperties.m in Sources */,
-				E3E6A2511D88E69200FF5688 /* DCTaskModel.xcdatamodeld in Sources */,
+				E3298AC31D91A31E00D7F92C /* Queue+CoreDataClass.m in Sources */,
 				E399934C1D886B0F0055A6EB /* DCCheckImageCell.m in Sources */,
-				E3E20F651D8F08410091507E /* PlanItem+CoreDataClass.m in Sources */,
 				E3A331711D845E0700CA36DF /* DCChangePwdVC.m in Sources */,
 				E3A3316C1D845E0700CA36DF /* DCHomeVC.m in Sources */,
 				E3A3316D1D845E0700CA36DF /* DCLoginVC.m in Sources */,
-				E3E20F6B1D8F08410091507E /* User+CoreDataClass.m in Sources */,
+				E3298ABE1D91A31D00D7F92C /* Picture+CoreDataProperties.m in Sources */,
+				E3298ABC1D91A31D00D7F92C /* DCTaskModel.xcdatamodeld in Sources */,
 				E352D5F51D7B23AC00CB4B93 /* WQRefreshFooter.m in Sources */,
-				E3E20F691D8F08410091507E /* Queue+CoreDataClass.m in Sources */,
 				E3A331691D845E0700CA36DF /* DCLockView.m in Sources */,
 				E352D5F61D7B23AC00CB4B93 /* WQRefreshHeader.m in Sources */,
+				E3298AC51D91A31E00D7F92C /* User+CoreDataClass.m in Sources */,
 				E3A3317A1D847E4700CA36DF /* DCAppEngine.m in Sources */,
 				E352D5F41D7B23AC00CB4B93 /* WQBlankView.m in Sources */,
 				E3E6A25E1D88E80C00FF5688 /* DCBluetoothManager.m in Sources */,
 				E3A331671D845E0700CA36DF /* BSTableViewCell.m in Sources */,
-				E3E20F661D8F08410091507E /* PlanItem+CoreDataProperties.m in Sources */,
 				E352D5F71D7B23AC00CB4B93 /* WQRefreshCollectionView.m in Sources */,
 				E352D5F11D7B23AC00CB4B93 /* NSError+HTTP.m in Sources */,
 				E3A3316B1D845E0700CA36DF /* DCHomeCell.m in Sources */,
@@ -759,19 +761,23 @@
 				E352D5F81D7B23AC00CB4B93 /* WQRefreshTableView.m in Sources */,
 				E3A3316E1D845E0700CA36DF /* DCRegisterVC.m in Sources */,
 				E3E6A2391D88E4E100FF5688 /* DCUserManager.m in Sources */,
-				E3E20F6A1D8F08410091507E /* Queue+CoreDataProperties.m in Sources */,
 				E3EC34F41D871F5B00604301 /* WQTextField.m in Sources */,
+				E3298AA41D91A2F500D7F92C /* DCDataManager.m in Sources */,
+				E3298AC61D91A31E00D7F92C /* User+CoreDataProperties.m in Sources */,
 				E352D5F21D7B23AC00CB4B93 /* NSMutableDictionary+HTTP.m in Sources */,
+				E3298AC01D91A31E00D7F92C /* Plan+CoreDataProperties.m in Sources */,
 				E352D5EC1D7B23AC00CB4B93 /* AppEngine.m in Sources */,
 				E352D5B71D7B222A00CB4B93 /* AppDelegate.m in Sources */,
 				E3109F9F1D8535D9006DD8EF /* PushManager.m in Sources */,
 				E3A3316F1D845E0700CA36DF /* DCOpenDoorVC.m in Sources */,
-				E3E20F671D8F08410091507E /* Picture+CoreDataClass.m in Sources */,
+				E3298ABF1D91A31E00D7F92C /* Plan+CoreDataClass.m in Sources */,
+				E3298AA01D918E3600D7F92C /* DCCheckEditCell.m in Sources */,
+				E3298AC21D91A31E00D7F92C /* PlanItem+CoreDataProperties.m in Sources */,
+				E3298AC41D91A31E00D7F92C /* Queue+CoreDataProperties.m in Sources */,
 				E3A331681D845E0700CA36DF /* BSViewController.m in Sources */,
 				E352D5B41D7B222A00CB4B93 /* main.m in Sources */,
 				E3A331721D845E0700CA36DF /* DCSettingVC.m in Sources */,
 				E352D5F31D7B23AC00CB4B93 /* UIView+Blank.m in Sources */,
-				E3E20F6E1D8F08410091507E /* Plan+CoreDataProperties.m in Sources */,
 				E352D5ED1D7B23AC00CB4B93 /* NSString+Core.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -927,12 +933,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E3E6A23B1D88E69200FF5688 /* DCTaskModel.xcdatamodeld */ = {
+		E3298AA51D91A31D00D7F92C /* DCTaskModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E3E6A23C1D88E69200FF5688 /* DCTaskModel.xcdatamodel */,
+				E3298AA61D91A31D00D7F92C /* DCTaskModel.xcdatamodel */,
 			);
-			currentVersion = E3E6A23C1D88E69200FF5688 /* DCTaskModel.xcdatamodel */;
+			currentVersion = E3298AA61D91A31D00D7F92C /* DCTaskModel.xcdatamodel */;
 			path = DCTaskModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

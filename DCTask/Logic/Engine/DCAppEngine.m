@@ -9,8 +9,8 @@
 #import "DCAppEngine.h"
 
 @interface DCAppEngine ()
+@property (nonatomic, strong) DCDataManager *dataManager;
 @property (nonatomic, strong) DCUserManager *userManager;
-@property (nonatomic, strong) DCSyncManager *syncManager;
 @property (nonatomic, strong) DCBluetoothManager *bluetoothManager;
 @end
 
@@ -22,8 +22,8 @@
         [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelWarn];
         [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"DCTaskModel"];
         
+        self.dataManager = [DCDataManager new];
         self.userManager = [DCUserManager new];
-        self.syncManager = [DCSyncManager new];
         self.bluetoothManager = [DCBluetoothManager new];
     }
     return self;

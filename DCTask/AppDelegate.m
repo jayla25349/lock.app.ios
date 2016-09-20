@@ -17,8 +17,8 @@
 @implementation AppDelegate
 
 + (void)initialize {
+    [DCAppEngine registerManager:[DCAppEngine shareEngine].dataManager];
     [DCAppEngine registerManager:[DCAppEngine shareEngine].userManager];
-    [DCAppEngine registerManager:[DCAppEngine shareEngine].syncManager];
     [DCAppEngine registerManager:[DCAppEngine shareEngine].bluetoothManager];
 }
 

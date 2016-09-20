@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1004" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Picture" representedClassName="Picture" syncable="YES">
+        <attribute name="createDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="data" attributeType="Binary" syncable="YES"/>
+        <relationship name="planItem" maxCount="1" deletionRule="Nullify" destinationEntity="PlanItem" inverseName="pics" inverseEntity="PlanItem" syncable="YES"/>
+    </entity>
+    <entity name="Plan" representedClassName="Plan" syncable="YES">
+        <attribute name="createDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="decideDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dispatch_man" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lock_mac" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="plan_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="plan_id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="plan_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="plan_status" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="room_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="submitDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlanItem" inverseName="plan" inverseEntity="PlanItem" syncable="YES"/>
+        <relationship name="queues" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Queue" inverseName="plan" inverseEntity="Queue" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="plans" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="PlanItem" representedClassName="PlanItem" syncable="YES">
+        <attribute name="cabinet_lock_mac" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cabinet_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="check_note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="check_result" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="check_state" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="equipment_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_cate_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="item_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pics" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Picture" inverseName="planItem" inverseEntity="Picture" syncable="YES"/>
+        <relationship name="plan" maxCount="1" deletionRule="Nullify" destinationEntity="Plan" inverseName="items" inverseEntity="Plan" syncable="YES"/>
+    </entity>
+    <entity name="Queue" representedClassName="Queue" syncable="YES">
+        <attribute name="createDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="type" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="plan" maxCount="1" deletionRule="Nullify" destinationEntity="Plan" inverseName="queues" inverseEntity="Plan" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="gesture" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="loginDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="plans" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Plan" inverseName="user" inverseEntity="Plan" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Picture" positionX="-56" positionY="-459" width="128" height="90"/>
+        <element name="Plan" positionX="-468" positionY="-441" width="128" height="240"/>
+        <element name="PlanItem" positionX="-263" positionY="-523" width="128" height="208"/>
+        <element name="Queue" positionX="-261" positionY="-270" width="128" height="88"/>
+        <element name="User" positionX="-668" positionY="-295" width="128" height="150"/>
+    </elements>
+</model>

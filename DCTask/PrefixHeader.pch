@@ -12,7 +12,6 @@
 #import "CocoaLumberjack.h"
 #import <AFNetworking/AFNetworking.h>
 #import <YYModel/YYModel.h>
-#import <YYWebImage/YYWebImage.h>
 #import <YYCategories/YYCategories.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
@@ -21,6 +20,7 @@
 #import <MagicalRecord/MagicalRecord.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
+#import <MWPhotoBrowser/MWPhotoBrowser.h>
 
 #import "NSString+Core.h"
 #import "UIColor+Core.h"

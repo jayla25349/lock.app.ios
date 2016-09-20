@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol DCCheckCellDelegate;
 
 @interface DCCheckCell : UITableViewCell
+@property (nonatomic, weak) id<DCCheckCellDelegate> delegate;
 @property (nonatomic, readonly) PlanItem *planItem;
 @property (nonatomic, assign) BOOL editable;
 
 - (void)configWithPlanItem:(PlanItem *)planItem indexPath:(NSIndexPath *)indexPath;
+
+@end
+
+@protocol DCCheckCellDelegate <NSObject>
+@optional
+- (void)checkCell:(DCCheckCell *)cell didSelectImage:(NSInteger)index;
+- (void)checkCell:(DCCheckCell *)cell didSelectEdit:(NSInteger)index;
 
 @end

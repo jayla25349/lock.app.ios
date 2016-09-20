@@ -4,7 +4,6 @@ target 'DCTask' do
 	pod 'CocoaLumberjack'
     pod 'AFNetworking'
     pod 'YYModel'
-    pod 'YYWebImage'
     pod 'YYCategories'
     pod 'ReactiveCocoa'
 	pod 'Masonry'
@@ -14,4 +13,5 @@ target 'DCTask' do
     pod 'SVProgressHUD'
     pod 'UITableView+FDTemplateLayoutCell'
     pod 'IQKeyboardManager'
+    pod 'MWPhotoBrowser'
 end

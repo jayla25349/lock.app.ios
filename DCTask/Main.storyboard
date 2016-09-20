@@ -439,7 +439,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fdc-Ag-8ae" id="Xqb-yQ-bvF">
-                                                    <frame key="frameInset" width="342" height="93"/>
+                                                    <frame key="frameInset" width="342" height="94"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.UPS监视输出电压" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="bBs-pA-Txe">
@@ -511,7 +511,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kSf-XS-4WV" id="Jfu-NZ-elN">
-                                                    <frame key="frameInset" width="342" height="93"/>
+                                                    <frame key="frameInset" width="342" height="94"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.UPS监视输出电压" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="dwb-Mi-fII">
@@ -578,7 +578,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfb-bB-wQG" id="vCx-6e-BKG">
-                                                    <frame key="frameInset" width="342" height="93"/>
+                                                    <frame key="frameInset" width="342" height="94"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.UPS监视输出电压" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="YDb-Bm-Rlx">
@@ -912,7 +912,7 @@
                                         <rect key="frame" x="0.0" y="40" width="375" height="370"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zQv-aU-4ck" id="E3r-9Q-FMW">
-                                            <frame key="frameInset" width="375" height="369"/>
+                                            <frame key="frameInset" width="375" height="370"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.1 输出电压" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ag-Gb-r9d">
@@ -1019,6 +1019,40 @@
                                                             <connections>
                                                                 <outlet property="imageView" destination="xuc-fz-lOu" id="AMx-eM-g1A"/>
                                                             </connections>
+                                                        </collectionViewCell>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DCCheckEditCell" id="3Tu-5p-mpN" customClass="DCCheckEditCell">
+                                                            <rect key="frame" x="95" y="0.0" width="60" height="60"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1rf-VQ-kTd"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加相片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y12-zf-UU8">
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_icon_camera" translatesAutoresizingMaskIntoConstraints="NO" id="Ror-K3-aMj">
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="40" id="JtE-DZ-AYc"/>
+                                                                            <constraint firstAttribute="width" constant="40" id="OMm-Nd-R2k"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                </subviews>
+                                                            </view>
+                                                            <constraints>
+                                                                <constraint firstItem="Y12-zf-UU8" firstAttribute="top" secondItem="Ror-K3-aMj" secondAttribute="bottom" id="053-Pw-6OL"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Y12-zf-UU8" secondAttribute="trailing" id="CFL-dD-DBU"/>
+                                                                <constraint firstAttribute="trailing" secondItem="1rf-VQ-kTd" secondAttribute="trailing" id="Ryf-ld-8zV"/>
+                                                                <constraint firstItem="1rf-VQ-kTd" firstAttribute="top" secondItem="3Tu-5p-mpN" secondAttribute="top" id="Ubc-yK-wcH"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Y12-zf-UU8" secondAttribute="bottom" id="WZG-g4-cfF"/>
+                                                                <constraint firstAttribute="bottom" secondItem="1rf-VQ-kTd" secondAttribute="bottom" id="Xw5-bd-5Js"/>
+                                                                <constraint firstItem="Ror-K3-aMj" firstAttribute="top" secondItem="3Tu-5p-mpN" secondAttribute="top" id="YCv-dU-Qex"/>
+                                                                <constraint firstItem="1rf-VQ-kTd" firstAttribute="leading" secondItem="3Tu-5p-mpN" secondAttribute="leading" id="cZm-9N-Cm7"/>
+                                                                <constraint firstItem="Y12-zf-UU8" firstAttribute="leading" secondItem="3Tu-5p-mpN" secondAttribute="leading" id="cjx-MZ-5yV"/>
+                                                                <constraint firstItem="Ror-K3-aMj" firstAttribute="centerX" secondItem="3Tu-5p-mpN" secondAttribute="centerX" id="vJO-ak-3a2"/>
+                                                            </constraints>
                                                         </collectionViewCell>
                                                     </cells>
                                                     <connections>
@@ -1303,6 +1337,7 @@
         <image name="check_btn_status_error" width="22" height="22"/>
         <image name="check_btn_status_normal" width="22" height="22"/>
         <image name="check_btn_status_unSelect" width="22" height="22"/>
+        <image name="check_icon_camera" width="42" height="42"/>
         <image name="home_banner" width="375" height="189"/>
         <image name="home_icon_sender" width="7" height="7"/>
         <image name="home_icon_time" width="8" height="8"/>

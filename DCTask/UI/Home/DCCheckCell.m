@@ -8,8 +8,10 @@
 
 #import "DCCheckCell.h"
 #import "DCCheckImageCell.h"
+#import "DCCheckEditCell.h"
 
-static NSString * const cellIdentifier = @"DCCheckImageCell";
+static NSString * const imageCellIdentifier = @"DCCheckImageCell";
+static NSString * const editCellIdentifier = @"DCCheckEditCell";
 
 @interface DCCheckCell ()<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -19,6 +21,7 @@ static NSString * const cellIdentifier = @"DCCheckImageCell";
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) PlanItem *planItem;
+@property (nonatomic, strong) NSMutableArray *pics;
 @end
 
 @implementation DCCheckCell
@@ -113,20 +116,35 @@ static NSString * const cellIdentifier = @"DCCheckImageCell";
 /**********************************************************************/
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
+    return self.pics.count+1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    DCCheckImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    [cell.imageView yy_setImageWithURL:[NSURL URLWithString:@"http://img5q.duitang.com/uploads/item/201505/16/20150516214039_mujEZ.thumb.224_0.jpeg"]
-                               options:0];
-    return cell;
+    if (indexPath.item < self.pics.count) {
+        DCCheckImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
+        
+        return cell;
+    } else {
+        DCCheckEditCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:editCellIdentifier forIndexPath:indexPath];
+        
+        return cell;
+    }
 }
 
 /**********************************************************************/
 #pragma mark - UICollectionViewDelegateFlowLayout
 /**********************************************************************/
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item < self.pics.count) {
+        if ([self.delegate respondsToSelector:@selector(checkCell:didSelectImage:)]) {
+            [self.delegate checkCell:self didSelectImage:indexPath.item];
+        }
+    } else {
+        if ([self.delegate respondsToSelector:@selector(checkCell:didSelectEdit:)]) {
+            [self.delegate checkCell:self didSelectEdit:indexPath.item];
+        }
+    }
+}
 
 @end

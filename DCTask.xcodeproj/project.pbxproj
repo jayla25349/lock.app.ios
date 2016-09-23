@@ -54,6 +54,7 @@
 		E3A331711D845E0700CA36DF /* DCChangePwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331631D845E0700CA36DF /* DCChangePwdVC.m */; };
 		E3A331721D845E0700CA36DF /* DCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331651D845E0700CA36DF /* DCSettingVC.m */; };
 		E3A3317A1D847E4700CA36DF /* DCAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331791D847E4700CA36DF /* DCAppEngine.m */; };
+		E3A5A44F1D957A1E00B83735 /* DCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A5A44E1D957A1E00B83735 /* DCUtil.m */; };
 		E3DAA8C91D86E4FB00804EA4 /* DCCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DAA8C81D86E4FB00804EA4 /* DCCheckCell.m */; };
 		E3E6A2391D88E4E100FF5688 /* DCUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6A2381D88E4E100FF5688 /* DCUserManager.m */; };
 		E3E6A25E1D88E80C00FF5688 /* DCBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6A25D1D88E80C00FF5688 /* DCBluetoothManager.m */; };
@@ -158,6 +159,8 @@
 		E3A331651D845E0700CA36DF /* DCSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSettingVC.m; sourceTree = "<group>"; };
 		E3A331781D847E4700CA36DF /* DCAppEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCAppEngine.h; sourceTree = "<group>"; };
 		E3A331791D847E4700CA36DF /* DCAppEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCAppEngine.m; sourceTree = "<group>"; };
+		E3A5A44D1D957A1E00B83735 /* DCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUtil.h; sourceTree = "<group>"; };
+		E3A5A44E1D957A1E00B83735 /* DCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCUtil.m; sourceTree = "<group>"; };
 		E3DAA8C71D86E4FB00804EA4 /* DCCheckCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCheckCell.h; sourceTree = "<group>"; };
 		E3DAA8C81D86E4FB00804EA4 /* DCCheckCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCheckCell.m; sourceTree = "<group>"; };
 		E3E6A2371D88E4E100FF5688 /* DCUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUserManager.h; sourceTree = "<group>"; };
@@ -418,6 +421,7 @@
 		E3A331411D845E0700CA36DF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				E3A5A44C1D957A1100B83735 /* Util */,
 				E3A331771D847E2E00CA36DF /* Engine */,
 				E3E6A2351D88E4D100FF5688 /* BluetoothManager */,
 				E3298AA11D91A2F500D7F92C /* DataManager */,
@@ -543,6 +547,15 @@
 				E3A331791D847E4700CA36DF /* DCAppEngine.m */,
 			);
 			path = Engine;
+			sourceTree = "<group>";
+		};
+		E3A5A44C1D957A1100B83735 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				E3A5A44D1D957A1E00B83735 /* DCUtil.h */,
+				E3A5A44E1D957A1E00B83735 /* DCUtil.m */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		E3E6A2351D88E4D100FF5688 /* BluetoothManager */ = {
@@ -744,6 +757,7 @@
 				E3A331711D845E0700CA36DF /* DCChangePwdVC.m in Sources */,
 				E3A3316C1D845E0700CA36DF /* DCHomeVC.m in Sources */,
 				E3A3316D1D845E0700CA36DF /* DCLoginVC.m in Sources */,
+				E3A5A44F1D957A1E00B83735 /* DCUtil.m in Sources */,
 				E3298ABE1D91A31D00D7F92C /* Picture+CoreDataProperties.m in Sources */,
 				E3298ABC1D91A31D00D7F92C /* DCTaskModel.xcdatamodeld in Sources */,
 				E352D5F51D7B23AC00CB4B93 /* WQRefreshFooter.m in Sources */,

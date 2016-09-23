@@ -10,4 +10,8 @@
 
 @interface DCUtil : NSObject
 
++ (NSString *)imagePathWithName:(NSString *)name;
+
++ (NSString *)thumbnailPathWithName:(NSString *)name;
+
 @end

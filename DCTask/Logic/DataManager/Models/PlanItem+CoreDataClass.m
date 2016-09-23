@@ -14,10 +14,15 @@
 //添加图片
 - (void)addImage:(UIImage *)image completion:(void (^)(BOOL contextDidSave, NSError * _Nullable error))block {
     NSString *name = [[[NSUUID UUID] UUIDString] stringByAppendingPathExtension:@"png"];
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    path = [path stringByAppendingPathComponent:name];
     
-    if ([UIImagePNGRepresentation(image) writeToFile:path atomically:YES]) {
+    NSString *imagePath = [DCUtil imagePathWithName:name];
+    NSData *imageData = UIImagePNGRepresentation(image);
+    
+    NSString *thumbnailPath = [DCUtil thumbnailPathWithName:name];
+    UIImage *thumbnailImage = [image imageByResizeToSize:CGSizeMake(200, 200) contentMode:UIViewContentModeScaleAspectFill];
+    NSData *thumbnailData = UIImagePNGRepresentation(thumbnailImage);
+    
+    if ([imageData writeToFile:imagePath atomically:YES] && [thumbnailData writeToFile:thumbnailPath atomically:YES]) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
             PlanItem *planItem = [self MR_inContext:localContext];
             Picture *picture = [Picture MR_createEntityInContext:localContext];

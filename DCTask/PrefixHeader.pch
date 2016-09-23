@@ -37,6 +37,7 @@
 #import "BSViewController.h"
 #import "BSNavigationController.h"
 #import "DCAppEngine.h"
+#import "DCUtil.h"
 
 extern const int ddLogLevel;
 

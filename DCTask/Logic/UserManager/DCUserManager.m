@@ -8,6 +8,9 @@
 
 #import "DCUserManager.h"
 
+NSNotificationName const DCUserLoginNotification = @"DCUserLoginNotification";
+NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
+
 @interface DCUserManager ()
 @property (nonatomic, strong) User *user;
 @end
@@ -35,12 +38,15 @@
                    failure:(void (^)(NSError *error))failure{
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
         self.user = [User MR_createEntityInContext:localContext];
+        self.user.createDate = [NSDate date];
+        self.user.loginDate = [NSDate date];
         self.user.number = number;
         self.user.name = name;
         self.user.password = password;
         self.user.gesture = gesture;
     } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
         if (!error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:DCUserLoginNotification object:self];
             if (success) {
                 success(self.user);
             }
@@ -63,6 +69,10 @@
                  success:(void (^)(User *user))success
                  failure:(void (^)(NSError *error))failure {
     if (self.user && [self.user.gesture isEqualToString:gesture]) {
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+            self.user.loginDate = [NSDate date];
+        }];
+        [[NSNotificationCenter defaultCenter] postNotificationName:DCUserLoginNotification object:self];
         if (success) {
             success(self.user);
         }

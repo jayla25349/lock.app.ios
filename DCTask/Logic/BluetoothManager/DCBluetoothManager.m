@@ -17,8 +17,8 @@
 @implementation DCBluetoothManager
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    dispatch_queue_t centralQueue = dispatch_queue_create("com.manmanlai", DISPATCH_QUEUE_SERIAL);
-    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
+    //dispatch_queue_t centralQueue = dispatch_queue_create("com.manmanlai", DISPATCH_QUEUE_SERIAL);
+    //self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
     return YES;
 }
 
@@ -29,9 +29,9 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     DDLogDebug(@"%s", __PRETTY_FUNCTION__);
     
-//    if (central.state == CBCentralManagerStatePoweredOn) {
-//        [central scanForPeripheralsWithServices:nil options:nil];
-//    }
+    if (central.state == CBCentralManagerStatePoweredOn) {
+        [central scanForPeripheralsWithServices:nil options:nil];
+    }
 }
 
 

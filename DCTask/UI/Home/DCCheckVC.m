@@ -7,11 +7,13 @@
 //
 
 #import "DCCheckVC.h"
-#import "DCCheckCell.h"
+#import "DCCheckListCell.h"
+#import "DCCheckMenuCell.h"
 
-static NSString * const cellIdentifier = @"DCCheckCell";
+static NSString * const listCellIdentifier = @"DCCheckListCell";
+static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 
-@interface DCCheckVC ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, DCCheckCellDelegate, MWPhotoBrowserDelegate>
+@interface DCCheckVC ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, DCCheckListCellDelegate, MWPhotoBrowserDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *contentTableView;
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
 @property (weak, nonatomic) IBOutlet UIView *menuContentView;
@@ -23,7 +25,7 @@ static NSString * const cellIdentifier = @"DCCheckCell";
 @property (nonatomic, strong) NSDictionary<NSString *, NSArray *> * dataSource;
 @property (nonatomic, strong) NSArray<NSString *> * categorys;
 
-@property (nonatomic, strong) DCCheckCell *currentCheckCell;
+@property (nonatomic, strong) DCCheckListCell *currentCheckCell;
 @end
 
 @implementation DCCheckVC
@@ -47,7 +49,7 @@ static NSString * const cellIdentifier = @"DCCheckCell";
     
     //分类
     NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
-    [plan.items enumerateObjectsUsingBlock:^(PlanItem * _Nonnull obj, BOOL * _Nonnull stop) {
+    [plan.items enumerateObjectsUsingBlock:^(PlanItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableArray *tempArray = tempDic[obj.item_cate_name];
         if (!tempArray) {
             tempArray = [NSMutableArray array];
@@ -165,7 +167,7 @@ static NSString * const cellIdentifier = @"DCCheckCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.contentTableView) {
-        return [tableView fd_heightForCellWithIdentifier:cellIdentifier configuration:^(DCCheckCell *cell) {
+        return [tableView fd_heightForCellWithIdentifier:listCellIdentifier configuration:^(DCCheckListCell *cell) {
             NSString *category = self.categorys[indexPath.section];
             NSArray<PlanItem *> *items = self.dataSource[category];
             PlanItem *planItem = items[indexPath.row];
@@ -180,7 +182,7 @@ static NSString * const cellIdentifier = @"DCCheckCell";
     NSString *category = self.categorys[indexPath.section];
     
     if (tableView == self.contentTableView) {
-        DCCheckCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        DCCheckListCell *cell = [tableView dequeueReusableCellWithIdentifier:listCellIdentifier];
         cell.delegate = self;
         cell.editable = self.editable;
         
@@ -190,23 +192,34 @@ static NSString * const cellIdentifier = @"DCCheckCell";
         
         return cell;
     } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryIdentifier"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"categoryIdentifier"];
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableview_cell_arrow"]];
-        }
+        DCCheckMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier];
         cell.textLabel.text = [NSString stringWithFormat:@"%ld.%@", indexPath.row+1, category];
         
         return cell;
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    if (tableView == self.contentTableView) {
+        [self.menuTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:section inSection:0]
+                                        animated:YES
+                                  scrollPosition:UITableViewScrollPositionTop];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.menuTableView) {
+        [self.contentTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:indexPath.row]
+                                     atScrollPosition:UITableViewScrollPositionTop
+                                             animated:YES];
+    }
+}
+
 /**********************************************************************/
-#pragma mark - DCCheckCellDelegate
+#pragma mark - DCCheckListCellDelegate
 /**********************************************************************/
 
-- (void)checkCell:(DCCheckCell *)cell didSelectImage:(NSInteger)index {
+- (void)checkListCell:(DCCheckListCell *)cell didSelectImage:(NSInteger)index {
     self.currentCheckCell = cell;
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
@@ -215,7 +228,7 @@ static NSString * const cellIdentifier = @"DCCheckCell";
     [self.navigationController pushViewController:browser animated:YES];
 }
 
-- (void)checkCell:(DCCheckCell *)cell didSelectEdit:(NSInteger)index {
+- (void)checkListCell:(DCCheckListCell *)cell didSelectEdit:(NSInteger)index {
     self.currentCheckCell = cell;
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择添加方式"
@@ -278,16 +291,26 @@ static NSString * const cellIdentifier = @"DCCheckCell";
 /**********************************************************************/
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return self.currentCheckCell.pics.count;
+    return self.currentCheckCell.planItem.pics.count;
 }
 
-- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *fileName = self.currentCheckCell.pics[index].name;
-    NSString *filePath = [docPath stringByAppendingPathComponent:fileName];
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index {
+    NSString *fileName = self.currentCheckCell.planItem.pics[index].name;
+    NSString *filePath = [DCUtil thumbnailPathWithName:fileName];
     UIImage *image = [UIImage imageWithContentsOfFile:filePath];
     
     return [MWPhoto photoWithImage:image];
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    NSString *fileName = self.currentCheckCell.planItem.pics[index].name;
+    NSString *filePath = [DCUtil imagePathWithName:fileName];
+    UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+    
+    return [MWPhoto photoWithImage:image];
+}
+- (NSString *)photoBrowser:(MWPhotoBrowser *)photoBrowser titleForPhotoAtIndex:(NSUInteger)index {
+    return [NSString stringWithFormat:@"%ld/%ld", index, self.currentCheckCell.planItem.pics .count];
 }
 
 /**********************************************************************/

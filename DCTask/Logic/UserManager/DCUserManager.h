@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "User+CoreDataClass.h"
 
+extern NSNotificationName const DCUserLoginNotification;
+extern NSNotificationName const DCUserLogoutNotification;
+
 @interface DCUserManager : NSObject<UIApplicationDelegate>
 @property (nonatomic, readonly) User *user;
 

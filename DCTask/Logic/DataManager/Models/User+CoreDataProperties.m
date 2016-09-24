@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.m
 //  
 //
-//  Created by 青秀斌 on 16/9/19.
+//  Created by 青秀斌 on 2016/9/24.
 //
 //
 
@@ -15,11 +15,11 @@
 }
 
 @dynamic createDate;
+@dynamic gesture;
 @dynamic loginDate;
+@dynamic name;
 @dynamic number;
 @dynamic password;
-@dynamic gesture;
-@dynamic name;
 @dynamic plans;
 
 @end

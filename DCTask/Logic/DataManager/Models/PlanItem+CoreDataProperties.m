@@ -2,7 +2,7 @@
 //  PlanItem+CoreDataProperties.m
 //  
 //
-//  Created by 青秀斌 on 16/9/19.
+//  Created by 青秀斌 on 2016/9/24.
 //
 //
 
@@ -16,13 +16,14 @@
 
 @dynamic cabinet_lock_mac;
 @dynamic cabinet_name;
-@dynamic check_note;
-@dynamic check_result;
-@dynamic check_state;
+@dynamic note;
+@dynamic result;
+@dynamic state;
 @dynamic equipment_name;
 @dynamic item_cate_name;
 @dynamic item_id;
 @dynamic item_name;
+@dynamic return_status;
 @dynamic pics;
 @dynamic plan;
 

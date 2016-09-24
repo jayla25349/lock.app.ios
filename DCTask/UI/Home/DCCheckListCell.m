@@ -1,30 +1,63 @@
 //
-//  DCCheckCell.m
+//  DCCheckListCell.m
 //  DCTask
 //
 //  Created by 青秀斌 on 16/9/12.
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import "DCCheckCell.h"
+#import "DCCheckListCell.h"
 #import "DCCheckImageCell.h"
 #import "DCCheckEditCell.h"
 
 static NSString * const imageCellIdentifier = @"DCCheckImageCell";
 static NSString * const editCellIdentifier = @"DCCheckEditCell";
 
-@interface DCCheckCell ()<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface DCCheckListCell ()<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *normalButton;
 @property (weak, nonatomic) IBOutlet UIButton *errorButton;
 @property (weak, nonatomic) IBOutlet UITextView *inputTextView;
+@property (weak, nonatomic) IBOutlet UITextField *noteTextField;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) PlanItem *planItem;
-@property (nonatomic, strong) NSArray<Picture *> *pics;
 @end
 
-@implementation DCCheckCell
+@implementation DCCheckListCell
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.planItem.managedObjectContext MR_saveToPersistentStoreWithCompletion:nil];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [self.normalButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 0)];
+    [self.errorButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 0)];
+    
+    self.inputTextView.layer.cornerRadius = 5;
+    self.inputTextView.layer.borderWidth = 0.5f;
+    self.inputTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.inputTextView.layer.masksToBounds = YES;
+    
+    self.noteTextField.layer.cornerRadius = 5;
+    self.noteTextField.layer.borderWidth = 0.5f;
+    self.noteTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.noteTextField.layer.masksToBounds = YES;
+    
+    //注册文本改变通知
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resultTextChanged:)
+                                                 name:UITextViewTextDidChangeNotification
+                                               object:self.inputTextView];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(noteTextChanged:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.noteTextField];
+}
 
 - (void)prepareForReuse {
     self.planItem = nil;
@@ -33,31 +66,7 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
     self.normalButton.selected = NO;
     self.errorButton.selected = NO;
     self.inputTextView.text = nil;
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.planItem.managedObjectContext MR_saveToPersistentStoreWithCompletion:nil];
-}
-
-/**********************************************************************/
-#pragma mark - Private
-/**********************************************************************/
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    [self.normalButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 0)];
-    [self.errorButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 0)];
-    self.inputTextView.layer.cornerRadius = 5;
-    self.inputTextView.layer.masksToBounds = YES;
-    
-    //注册文本改变通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textChanged:)
-                                                 name:UITextViewTextDidChangeNotification
-                                               object:self.inputTextView];
+    self.noteTextField.text = nil;
 }
 
 /**********************************************************************/
@@ -66,20 +75,18 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
 
 - (void)configWithPlanItem:(PlanItem *)planItem indexPath:(NSIndexPath *)indexPath {
     self.planItem = planItem;
-    self.pics = [Picture MR_findAllSortedBy:@"createDate"
-                                  ascending:YES
-                              withPredicate:[NSPredicate predicateWithFormat:@"planItem=%@", planItem]];
     
     self.titleLabel.text = [NSString stringWithFormat:@"%ld.%ld %@", indexPath.section+1, indexPath.row+1, planItem.item_name];
-    self.normalButton.selected = (planItem.check_state.integerValue==0)?YES:NO;
-    self.errorButton.selected = (planItem.check_state.integerValue==1)?YES:NO;
-    self.inputTextView.text = planItem.check_result;
+    self.normalButton.selected = (planItem.state.integerValue==0)?YES:NO;
+    self.errorButton.selected = (planItem.state.integerValue==1)?YES:NO;
+    self.inputTextView.text = planItem.result;
+    self.noteTextField.text = planItem.note;
     
     [self.collectionView reloadData];
     [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
-        NSInteger itemCount = self.pics.count + 1;
+        NSInteger itemCount = planItem.pics.count + 1;
         NSInteger rowCount = itemCount%4==0?itemCount/4:itemCount/4+1;
-        make.height.mas_equalTo(70*rowCount + 20*(rowCount-1));
+        make.height.mas_equalTo(60*rowCount + 20*(rowCount-1));
     }];
 }
 
@@ -99,7 +106,7 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
     }
     self.normalButton.selected = YES;
     self.errorButton.selected = NO;
-    self.planItem.check_state = @0;
+    self.planItem.state = @0;
 }
 
 - (IBAction)errorStatusAction:(UIButton *)sender {
@@ -108,11 +115,15 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
     }
     self.normalButton.selected = NO;
     self.errorButton.selected = YES;
-    self.planItem.check_state = @1;
+    self.planItem.state = @1;
 }
 
-- (void)textChanged:(NSNotification *)notification {
-    self.planItem.check_result = self.inputTextView.text;
+- (void)resultTextChanged:(NSNotification *)notification {
+    self.planItem.result = self.inputTextView.text;
+}
+
+- (void)noteTextChanged:(NSNotification *)notification {
+    self.planItem.note = self.noteTextField.text;
 }
 
 /**********************************************************************/
@@ -120,17 +131,16 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
 /**********************************************************************/
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.pics.count+1;
+    return self.planItem.pics.count+1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item < self.pics.count) {
+    if (indexPath.item < self.planItem.pics.count) {
         DCCheckImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
         
-        Picture *picture = self.pics[indexPath.item];
-        NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-        NSString *filePath = [docPath stringByAppendingPathComponent:picture.name];
-        UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+        Picture *picture = self.planItem.pics[indexPath.item];
+        NSString *path = [DCUtil thumbnailPathWithName:picture.name];
+        UIImage *image = [UIImage imageWithContentsOfFile:path];
         cell.imageView.image = image;
         
         return cell;
@@ -141,18 +151,22 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
     }
 }
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return (collectionView.width-60*4)/3.0f;
+}
+
 /**********************************************************************/
 #pragma mark - UICollectionViewDelegateFlowLayout
 /**********************************************************************/
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item < self.pics.count) {
-        if ([self.delegate respondsToSelector:@selector(checkCell:didSelectImage:)]) {
-            [self.delegate checkCell:self didSelectImage:indexPath.item];
+    if (indexPath.item < self.planItem.pics.count) {
+        if ([self.delegate respondsToSelector:@selector(checkListCell:didSelectImage:)]) {
+            [self.delegate checkListCell:self didSelectImage:indexPath.item];
         }
     } else {
-        if ([self.delegate respondsToSelector:@selector(checkCell:didSelectEdit:)]) {
-            [self.delegate checkCell:self didSelectEdit:indexPath.item];
+        if ([self.delegate respondsToSelector:@selector(checkListCell:didSelectEdit:)]) {
+            [self.delegate checkListCell:self didSelectEdit:indexPath.item];
         }
     }
 }

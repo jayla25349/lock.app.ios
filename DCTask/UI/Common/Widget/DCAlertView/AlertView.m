@@ -14,7 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AlertController : UIViewController
-@property (nonatomic, assign) UIInterfaceOrientation rientationForPresentation;
+@property (nonatomic, assign) UIInterfaceOrientation presentation;
 @property (nonatomic, assign) UIInterfaceOrientationMask orientation;
 @end
 
@@ -45,18 +45,18 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationPortrait;
+    return self.presentation;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
+    return self.orientation;
 }
 
 @end
 
 
 @interface AlertWindow : UIWindow
-
+@property (nonatomic, strong) AlertController *alertController;
 @end
 
 @implementation AlertWindow
@@ -67,17 +67,17 @@ NS_ASSUME_NONNULL_BEGIN
         self.windowLevel = UIWindowLevelAlert;
         self.backgroundColor = [UIColor clearColor];
         
-        AlertController *vc = [[AlertController alloc] init];
-        vc.view.alpha = 0.0f;
-        self.rootViewController = vc;
+        self.alertController = [[AlertController alloc] init];
+        self.alertController.view.alpha = 0.0f;
+        self.rootViewController = self.alertController;
         
-//        [self observeKeyboard];
+        [self observeKeyboard];
     }
     return self;
 }
 
 - (void)dealloc {
-//    [self unObserveKeyboard];
+    [self unObserveKeyboard];
 }
 
 /**********************************************************************/
@@ -193,25 +193,6 @@ static NSMutableArray<AlertView *> *alertArray = nil;
                     make.top.left.right.equalTo(self.topView);
                 }];
             }
-            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.title];
-            NSRange range = NSMakeRange(0, self.title.length);
-            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-            paragraphStyle.alignment = self.titleLabel.textAlignment;
-            paragraphStyle.lineBreakMode = self.titleLabel.lineBreakMode;
-            [attributedString addAttribute:NSFontAttributeName value:self.titleLabel.font range:range];
-            [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
-            
-            //修正一行时行高不对的bug
-            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-            CGFloat width = screenWidth-self.alertMarginLeft*2-self.topEdge.left-self.topEdge.right;
-            CGRect bounds = [attributedString boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                                           options:NSStringDrawingUsesLineFragmentOrigin
-                                                           context:nil];
-            if (bounds.size.height > self.titleLabel.font.lineHeight) {
-                [paragraphStyle setLineSpacing:8];//UI给的12
-            }
-            
-            self.titleLabel.attributedText = attributedString;
             tempView = self.titleLabel;
         } else {
             if (self.titleLabel) {
@@ -239,25 +220,6 @@ static NSMutableArray<AlertView *> *alertArray = nil;
                     make.left.right.equalTo(self.topView);
                 }];
             }
-            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.message];
-            NSRange range = NSMakeRange(0, self.message.length);
-            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-            paragraphStyle.alignment = self.messageLabel.textAlignment;
-            paragraphStyle.lineBreakMode = self.messageLabel.lineBreakMode;
-            [attributedString addAttribute:NSFontAttributeName value:self.messageLabel.font range:range];
-            [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
-            
-            //修正一行时行高不对的bug
-            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-            CGFloat width = screenWidth-self.alertMarginLeft*2-self.topEdge.left-self.topEdge.right;
-            CGRect bounds = [attributedString boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                                           options:NSStringDrawingUsesLineFragmentOrigin
-                                                           context:nil];
-            if (bounds.size.height > self.messageLabel.font.lineHeight) {
-                [paragraphStyle setLineSpacing:6];//UI给的8
-            }
-            
-            self.messageLabel.attributedText = attributedString;
             tempView = self.messageLabel;
         } else {
             if (self.messageLabel) {
@@ -424,10 +386,16 @@ static NSMutableArray<AlertView *> *alertArray = nil;
         alertWindow = [[AlertWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         [alertWindow makeKeyAndVisible];
     }
-    if (![alertWindow.rootViewController.view.subviews containsObject:self]) {
-        [alertWindow.rootViewController.view addSubview:self];
+    if (![alertWindow.alertController.view.subviews containsObject:self]) {
+        [alertWindow.alertController.view addSubview:self];
+        alertWindow.alertController.presentation = self.presentation;
+        alertWindow.alertController.orientation = self.orientation;
         [self _layoutSubviews];
         [self _configStyle];
+        
+        self.title = self.title;
+        self.message = self.message;
+        
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.superview);
             make.left.equalTo(self.superview).offset(self.alertMarginLeft);
@@ -469,6 +437,58 @@ static NSMutableArray<AlertView *> *alertArray = nil;
 #pragma mark - Public
 /**********************************************************************/
 
+- (void)setTitle:(nullable NSString *)title {
+    _title = title;
+    
+    if (self.titleLabel) {
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.title];
+        NSRange range = NSMakeRange(0, self.title.length);
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.alignment = self.titleLabel.textAlignment;
+        paragraphStyle.lineBreakMode = self.titleLabel.lineBreakMode;
+        [attributedString addAttribute:NSFontAttributeName value:self.titleLabel.font range:range];
+        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
+        
+        //修正一行时行高不对的bug
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat width = screenWidth-self.alertMarginLeft*2-self.topEdge.left-self.topEdge.right;
+        CGRect bounds = [attributedString boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+        if (bounds.size.height > self.titleLabel.font.lineHeight) {
+            [paragraphStyle setLineSpacing:8];//UI给的12
+        }
+        
+        self.titleLabel.attributedText = attributedString;
+    }
+}
+
+- (void)setMessage:(nullable NSString *)message {
+    _message = message;
+    
+    if (self.messageLabel) {
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.message];
+        NSRange range = NSMakeRange(0, self.message.length);
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.alignment = self.messageLabel.textAlignment;
+        paragraphStyle.lineBreakMode = self.messageLabel.lineBreakMode;
+        [attributedString addAttribute:NSFontAttributeName value:self.messageLabel.font range:range];
+        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
+        
+        //修正一行时行高不对的bug
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat width = screenWidth-self.alertMarginLeft*2-self.topEdge.left-self.topEdge.right;
+        CGRect bounds = [attributedString boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+        if (bounds.size.height > self.messageLabel.font.lineHeight) {
+            [paragraphStyle setLineSpacing:6];//UI给的8
+        }
+        
+        self.messageLabel.attributedText = attributedString;
+    }
+}
+
 + (instancetype)alertControllerWithTitle:(nullable NSString *)title message:(nullable NSString *)message {
     AlertView *alertView = [[AlertView alloc] init];
     alertView.title = title;
@@ -509,8 +529,12 @@ static NSMutableArray<AlertView *> *alertArray = nil;
     }
     
     WQTextField *textField = [[WQTextField alloc] init];
-    textField.backgroundColor = [UIColor lightGrayColor];
+    textField.backgroundColor = COLOR_BG;
     textField.textEdge = UIEdgeInsetsMake(0, 4, 0, 4);
+    textField.layer.cornerRadius = 5;
+    textField.layer.borderWidth = 0.5f;
+    textField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    textField.layer.masksToBounds = YES;
     [tempArray addObject:textField];
     if (configurationHandler) {
         configurationHandler(textField);

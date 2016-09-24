@@ -101,7 +101,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     if (_fetchedResultsController1 != nil) {
         return _fetchedResultsController1;
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND status=0", [DCAppEngine shareEngine].userManager.user];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND type=0", [DCAppEngine shareEngine].userManager.user];
     _fetchedResultsController1 = [Plan MR_fetchAllSortedBy:@"createDate"
                                                  ascending:NO
                                              withPredicate:predicate
@@ -114,7 +114,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     if (_fetchedResultsController2 != nil) {
         return _fetchedResultsController2;
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND status=1", [DCAppEngine shareEngine].userManager.user];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND type=1", [DCAppEngine shareEngine].userManager.user];
     _fetchedResultsController2 = [Plan MR_fetchAllSortedBy:@"decideDate"
                                                  ascending:NO
                                              withPredicate:predicate
@@ -127,7 +127,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     if (_fetchedResultsController3 != nil) {
         return _fetchedResultsController3;
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND status=3", [DCAppEngine shareEngine].userManager.user];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND type=3", [DCAppEngine shareEngine].userManager.user];
     _fetchedResultsController3 = [Plan MR_fetchAllSortedBy:@"submitDate"
                                                  ascending:NO
                                              withPredicate:predicate
@@ -262,12 +262,22 @@ static NSString *cellIdentifier = @"DCHomeCell";
         
         AlertView *alertView = [AlertView alertControllerWithTitle:@"请选择你的操作" message:nil];
         [alertView addButtonWithTitle:@"接收任务" action:^(AlertView * _Nonnull alertView) {
-            [plan accept];
             [alertView dismiss];
+            [plan accept];
         }];
         [alertView addButtonWithTitle:@"拒绝任务" action:^(AlertView * _Nonnull alertView) {
-            [plan refuse];
             [alertView dismiss];
+            
+            alertView = [AlertView alertControllerWithTitle:@"拒绝任务" message:nil];
+            [alertView addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                textField.placeholder = @"请输入拒绝理由";
+            }];
+            [alertView addButtonWithTitle:@"确定" action:^(AlertView * _Nonnull alertView) {
+                [alertView dismiss];
+                [plan refuse:alertView.textFields.firstObject.text];
+            }];
+            [alertView addButtonWithTitle:@"取消" action:nil];
+            [alertView show];
         }];
         [alertView addButtonWithTitle:@"取消" action:nil];
         [alertView show];

@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, readonly) NSArray<UIButton *> *buttons;
 @property (nullable, nonatomic, readonly) NSArray<UITextField *> *textFields;
 
+@property (nonatomic, assign) UIInterfaceOrientation presentation;
+@property (nonatomic, assign) UIInterfaceOrientationMask orientation;
+
 + (instancetype)alertControllerWithTitle:(nullable NSString *)title message:(nullable NSString *)message;
 
 - (void)addButtonWithConfigurationHandler:(void (^ __nullable)(UIButton *button))configurationHandler;

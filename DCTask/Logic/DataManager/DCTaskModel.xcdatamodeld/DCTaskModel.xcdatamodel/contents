@@ -13,10 +13,11 @@
         <attribute name="plan_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="plan_id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="plan_name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="return_status" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="reason" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="room_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="submitDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="type" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PlanItem" inverseName="plan" inverseEntity="PlanItem" syncable="YES"/>
         <relationship name="queues" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Queue" inverseName="plan" inverseEntity="Queue" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="plans" inverseEntity="User" syncable="YES"/>
@@ -30,7 +31,6 @@
         <attribute name="item_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="result" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="return_status" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="state" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="pics" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Picture" inverseName="planItem" inverseEntity="Picture" syncable="YES"/>
         <relationship name="plan" maxCount="1" deletionRule="Nullify" destinationEntity="Plan" inverseName="items" inverseEntity="Plan" syncable="YES"/>
@@ -52,8 +52,8 @@
     </entity>
     <elements>
         <element name="Picture" positionX="-56" positionY="-459" width="128" height="90"/>
-        <element name="Plan" positionX="-468" positionY="-441" width="128" height="255"/>
-        <element name="PlanItem" positionX="-263" positionY="-523" width="128" height="225"/>
+        <element name="Plan" positionX="-468" positionY="-441" width="128" height="270"/>
+        <element name="PlanItem" positionX="-263" positionY="-523" width="128" height="210"/>
         <element name="Queue" positionX="-261" positionY="-270" width="128" height="105"/>
         <element name="User" positionX="-668" positionY="-295" width="128" height="150"/>
     </elements>

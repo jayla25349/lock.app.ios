@@ -21,7 +21,8 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
 - (instancetype)initWithUserNumber:(NSString *)number {
     self = [super init];
     if (self) {
-        NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@/%@", @"tenant", number];
+        NSString *urlString = URL_WEB_SERVICE;
+        //NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@/%@", @"tenant", number];
         self.url = [NSURL URLWithString:urlString];
     }
     return self;
@@ -59,8 +60,8 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
             *stop = YES;
         }
     }];
-    if (self.reqeusts.count==0 && self.didFilishedSend) {
-        self.didFilishedSend();
+    if (self.reqeusts.count==0 && self.didSendAllData) {
+        self.didSendAllData();
     }
 }
 
@@ -115,6 +116,11 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
             [webSocket send:[obj data]];
         }
     }];
+    
+    //测试数据
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"plan" withExtension:@"json"];
+    NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+    [self.webSocket send:jsonString];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {

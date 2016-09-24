@@ -29,7 +29,7 @@
     
     //已接收数据
     [self.networkManager setDidReceiveData:^(DCNetworkResponse * _Nonnull response) {
-        NSString *business = nil;
+        NSString *business = response.payload[@"business"];
         if ([business isEqualToString:@"PLAN"]) {//巡检任务
             [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
                 
@@ -82,12 +82,12 @@
     
     //已接发送数据
     [self.networkManager setDidSendData:^(DCNetworkReqeust * _Nonnull request) {
-        
+ 
     }];
     
     //发送数据完成
     @weakify(self)
-    [self.networkManager setDidFilishedSend:^{
+    [self.networkManager setDidSendAllData:^{
         @strongify(self)
         self.isSyncing = NO;
     }];
@@ -122,6 +122,8 @@
 /**********************************************************************/
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelWarn];
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"DCTaskModel"];
     
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self

@@ -13,9 +13,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DCNetworkManager : NSObject
-@property (nullable, nonatomic, copy) void (^didSendData)(DCNetworkReqeust *request);
 @property (nullable, nonatomic, copy) void (^didReceiveData)(DCNetworkResponse *response);
-@property (nullable, nonatomic, copy) void (^didFilishedSend)(void);
+@property (nullable, nonatomic, copy) void (^didSendData)(DCNetworkReqeust *request);
+@property (nullable, nonatomic, copy) void (^didSendAllData)(void);
 
 - (instancetype)initWithUserNumber:(NSString *)number;
 

@@ -76,9 +76,4 @@ static NSMutableArray<id<UIApplicationDelegate>> *managers = nil;
     return NO;
 }
 
-/**********************************************************************/
-#pragma mark - UIApplicationDelegate
-/**********************************************************************/
-
-
 @end

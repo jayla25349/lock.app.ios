@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Queue : NSManagedObject
 
-- (NSString *)toJSONString;
+- (NSDictionary *)toJSONObject;
 
 @end
 

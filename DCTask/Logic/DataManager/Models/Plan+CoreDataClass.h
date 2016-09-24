@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)accept;
 
 //拒绝
-- (void)refuse;
+- (void)refuse:(NSString *)reason;
 
 //提交
 - (void)submit;

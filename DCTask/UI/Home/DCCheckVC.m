@@ -126,12 +126,23 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 }
 
 - (IBAction)lockAction:(UIButton *)sender {
+    
 }
 
 - (IBAction)lastAction:(UIButton *)sender {
+    NSIndexPath *indexPath = [self.menuTableView indexPathForSelectedRow];
+    if (indexPath && indexPath.row-1>=0) {
+        indexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.row-1];
+        [self.contentTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    }
 }
 
 - (IBAction)nextAction:(UIButton *)sender {
+    NSIndexPath *indexPath = [self.menuTableView indexPathForSelectedRow];
+    if (indexPath && indexPath.row+1<self.categorys.count) {
+        indexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.row+1];
+        [self.contentTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    }
 }
 
 /**********************************************************************/

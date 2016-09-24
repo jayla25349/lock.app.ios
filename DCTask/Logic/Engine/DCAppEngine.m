@@ -19,9 +19,6 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelWarn];
-        [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"DCTaskModel"];
-        
         self.dataManager = [DCDataManager new];
         self.userManager = [DCUserManager new];
         self.bluetoothManager = [DCBluetoothManager new];

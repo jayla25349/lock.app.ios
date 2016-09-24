@@ -10,14 +10,14 @@
 #import "Plan+CoreDataClass.h"
 @implementation Queue
 
-- (NSString *)toJSONString {
+- (NSDictionary *)toJSONObject {
     NSMutableDictionary *jsonDic = nil;
     switch (self.type.integerValue) {
         case 0:{//任务状态
             jsonDic = [NSMutableDictionary dictionaryWithObject:@"PLAN_RETURN" forKey:@"business"];
             [jsonDic setValue:self.plan.plan_id forKey:@"plan_id"];
             [jsonDic setValue:self.plan.state forKey:@"state"];
-            [jsonDic setValue:@"" forKey:@"reason"];
+            [jsonDic setValue:self.plan.reason forKey:@"reason"];
         }break;
         case 1:{//巡检任务
             NSMutableArray *itemArray = [NSMutableArray array];
@@ -31,9 +31,9 @@
                 
                 NSMutableDictionary *itemDic = [NSMutableDictionary dictionary];
                 [itemDic setValue:obj.item_id forKey:@"item_id"];   //巡检项id
-                [itemDic setValue:obj.item_id forKey:@"state"];     //运行状态（0-正常；1-异常)
-                [itemDic setValue:obj.item_id forKey:@"result"];    //巡检情况
-                [itemDic setValue:obj.item_id forKey:@"note"];      //备注
+                [itemDic setValue:obj.state forKey:@"state"];       //运行状态（0-正常；1-异常)
+                [itemDic setValue:obj.result forKey:@"result"];     //巡检情况
+                [itemDic setValue:obj.note forKey:@"note"];         //备注
                 [itemDic setValue:@(obj.pics.count) forKey:@"pic_count"];//图片数量
                 [itemDic setValue:picArray forKey:@"pics"];
                 [itemArray addObject:itemDic];
@@ -44,17 +44,7 @@
             [jsonDic setValue:itemArray forKey:@"items"];
         }break;
     }
-    
-    if (jsonDic) {
-        NSError *error = nil;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDic
-                                                           options:NSJSONWritingPrettyPrinted
-                                                             error:&error];
-        if (!error) {
-            return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        }
-    }
-    return nil;
+    return jsonDic;
 }
 
 @end

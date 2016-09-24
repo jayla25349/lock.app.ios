@@ -22,6 +22,7 @@
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import <MWPhotoBrowser/MWPhotoBrowser.h>
 
+#import "NSObject+Core.h"
 #import "NSString+Core.h"
 #import "UIColor+Core.h"
 #import "UIView+Blank.h"

@@ -18,11 +18,12 @@
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
             Plan *plan = [self MR_inContext:localContext];
             plan.decideDate = [NSDate date];
-            plan.state = @1;
+            plan.state = @2;    //处理中
+            plan.type = @1;     //接受
             
             Queue *queue = [Queue MR_createEntityInContext:localContext];
             queue.createDate = plan.decideDate;
-            queue.type = plan.state;
+            queue.type = @0;    //任务状态
             [plan addQueuesObject:queue];
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
@@ -33,16 +34,18 @@
 }
 
 //拒绝
-- (void)refuse {
+- (void)refuse:(NSString *)reason {
     if (self.state.integerValue == 0) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
             Plan *plan = [self MR_inContext:localContext];
             plan.decideDate = [NSDate date];
-            plan.state = @2;
+            plan.reason = reason;
+            plan.state = @4;    //拒绝
+            plan.type = @2;     //拒绝
             
             Queue *queue = [Queue MR_createEntityInContext:localContext];
             queue.createDate = plan.decideDate;
-            queue.type = plan.state;
+            queue.type = @0;    //任务状态
             [plan addQueuesObject:queue];
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
@@ -58,11 +61,11 @@
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
             Plan *plan = [self MR_inContext:localContext];
             plan.submitDate = [NSDate date];
-            plan.state = @3;
+            plan.type = @3;     //提交
             
             Queue *queue = [Queue MR_createEntityInContext:localContext];
             queue.createDate = plan.submitDate;
-            queue.type = plan.state;
+            queue.type = @1;    //巡检任务
             [plan addQueuesObject:queue];
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {

@@ -306,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M9a-kY-oOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3913" y="345"/>
+            <point key="canvasLocation" x="3913" y="-313"/>
         </scene>
         <!--HomeVC-->
         <scene sceneID="4TA-Oe-RId">
@@ -757,7 +757,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Drz-se-8YF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3060" y="-313"/>
+            <point key="canvasLocation" x="3060" y="358"/>
         </scene>
         <!--设置-->
         <scene sceneID="Sa6-eS-lC1">
@@ -853,7 +853,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ue-2i-GWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3060" y="345"/>
+            <point key="canvasLocation" x="3060" y="-313"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JUe-s4-UnG">
@@ -1173,6 +1173,7 @@
                                         <state key="normal" image="check_btn_lock"/>
                                         <connections>
                                             <action selector="lockAction:" destination="xBW-sc-KgN" eventType="touchUpInside" id="Ra5-nk-hlN"/>
+                                            <segue destination="BU9-dx-6uI" kind="show" id="u5a-5q-L7o"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRa-Cq-whE">
@@ -1396,5 +1397,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="r9o-XH-2Vh"/>
         <segue reference="h77-Ov-ZNz"/>
+        <segue reference="u5a-5q-L7o"/>
     </inferredMetricsTieBreakers>
 </document>

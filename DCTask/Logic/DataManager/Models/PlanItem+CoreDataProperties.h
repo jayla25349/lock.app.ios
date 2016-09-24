@@ -2,7 +2,7 @@
 //  PlanItem+CoreDataProperties.h
 //  
 //
-//  Created by 青秀斌 on 2016/9/24.
+//  Created by 青秀斌 on 2016/9/25.
 //
 //
 
@@ -17,14 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, copy) NSString *cabinet_lock_mac;
 @property (nullable, nonatomic, copy) NSString *cabinet_name;
-@property (nullable, nonatomic, copy) NSString *note;
-@property (nullable, nonatomic, copy) NSString *result;
-@property (nullable, nonatomic, copy) NSNumber *state;
 @property (nullable, nonatomic, copy) NSString *equipment_name;
 @property (nullable, nonatomic, copy) NSString *item_cate_name;
 @property (nullable, nonatomic, copy) NSString *item_id;
 @property (nullable, nonatomic, copy) NSString *item_name;
-@property (nullable, nonatomic, copy) NSNumber *return_status;
+@property (nullable, nonatomic, copy) NSString *note;
+@property (nullable, nonatomic, copy) NSString *result;
+@property (nullable, nonatomic, copy) NSNumber *state;
 @property (nullable, nonatomic, retain) NSOrderedSet<Picture *> *pics;
 @property (nullable, nonatomic, retain) Plan *plan;
 

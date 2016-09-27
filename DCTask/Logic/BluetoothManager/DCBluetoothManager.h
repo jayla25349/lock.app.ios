@@ -7,7 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+@protocol DCBluetoothManagerDelegate;
 
-@interface DCBluetoothManager : NSObject<UIApplicationDelegate>
+@interface DCBluetoothManager : NSObject
+@property (nonatomic, weak) id<DCBluetoothManagerDelegate> delegate;
+@property (nonatomic, readonly) NSMutableArray<CBPeripheral *> *peripherals;
+
+- (void)openDoor:(CBPeripheral *)peripheral;
+
+@end
+
+@protocol DCBluetoothManagerDelegate <NSObject>
+@optional
+- (void)bluetoothManager:(DCBluetoothManager *)manager didDiscoverPeripheral:(CBPeripheral *)peripheral;
 
 @end

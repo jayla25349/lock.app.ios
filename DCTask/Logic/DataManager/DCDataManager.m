@@ -34,13 +34,13 @@
             [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
                 
                 NSString *plan_id = response.payload[@"plan_id"];
-                NSString *plan_data = response.payload[@"plan_date"];
+                NSNumber *plan_data = response.payload[@"plan_date"];
                 User *user = [[DCAppEngine shareEngine].userManager.user MR_inContext:localContext];
                 Plan *plan = [Plan MR_findFirstOrCreateByAttribute:@"plan_id" withValue:plan_id inContext:localContext];
                 plan.createDate = plan.createDate?:[NSDate date];
                 plan.plan_name = response.payload[@"plan_name"];
                 plan.dispatch_man = response.payload[@"dispatch_man"];
-                plan.plan_date = plan_data?[NSDate dateWithString:plan_data format:@"yyyy-MM-dd HH:mm"]:nil;
+                plan.plan_date = plan_data?[NSDate dateWithTimeIntervalSince1970:plan_data.floatValue]:nil;
                 plan.room_name = response.payload[@"room_name"];
                 plan.lock_mac = response.payload[@"lock_mac"];
                 plan.user = user;
@@ -114,7 +114,10 @@
     }
     self.isSyncing = YES;
     
-    //[self.networkManager sendData:nil];
+    Queue *queue = [Queue MR_findFirstOrderedByAttribute:@"createDate" ascending:NO];
+    if (queue) {
+        [self.networkManager sendData:[queue toJSONObject]];
+    }
 }
 
 /**********************************************************************/

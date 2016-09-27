@@ -6,8 +6,8 @@
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import "BSViewController.h"
+#import "BSTableViewController.h"
 
-@interface DCOpenDoorVC : BSViewController
+@interface DCOpenDoorVC : BSTableViewController
 
 @end

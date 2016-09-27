@@ -19,7 +19,6 @@
 + (void)initialize {
     [DCAppEngine registerManager:[DCAppEngine shareEngine].dataManager];
     [DCAppEngine registerManager:[DCAppEngine shareEngine].userManager];
-    [DCAppEngine registerManager:[DCAppEngine shareEngine].bluetoothManager];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

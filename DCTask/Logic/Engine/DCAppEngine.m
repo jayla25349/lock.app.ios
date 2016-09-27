@@ -11,7 +11,6 @@
 @interface DCAppEngine ()
 @property (nonatomic, strong) DCDataManager *dataManager;
 @property (nonatomic, strong) DCUserManager *userManager;
-@property (nonatomic, strong) DCBluetoothManager *bluetoothManager;
 @end
 
 @implementation DCAppEngine
@@ -21,7 +20,6 @@
     if (self) {
         self.dataManager = [DCDataManager new];
         self.userManager = [DCUserManager new];
-        self.bluetoothManager = [DCBluetoothManager new];
     }
     return self;
 }

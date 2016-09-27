@@ -21,8 +21,9 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
 - (instancetype)initWithUserNumber:(NSString *)number {
     self = [super init];
     if (self) {
-        NSString *urlString = URL_WEB_SERVICE;
-        //NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@/%@", @"tenant", number];
+//        NSString *urlString = URL_WEB_SERVICE;
+        NSString *urlString = [URL_WEB_SERVICE stringByAppendingString:@"/tongren/0001"];
+//        NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@/%@", @"tongren", number];
         self.url = [NSURL URLWithString:urlString];
     }
     return self;
@@ -35,7 +36,7 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
 //{"id":"62112","source":"admin","payload":"双方约定的数据"}
 - (void)handleData:(NSDictionary *)dic {
     NSString *Id = dic[@"id"];
-    NSDictionary *payload = dic[@"payload"];
+    NSString *payload = dic[@"payload"];
     DCNetworkResponse *response = [DCNetworkResponse responseWithId:Id payload:payload];
     if (self.didReceiveData) {
         self.didReceiveData(response);
@@ -117,10 +118,10 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
         }
     }];
     
-    //测试数据
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"plan" withExtension:@"json"];
-    NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-    [self.webSocket send:jsonString];
+//    //测试数据
+//    NSURL *url = [[NSBundle mainBundle] URLForResource:@"plan" withExtension:@"json"];
+//    NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+//    [self.webSocket send:jsonString];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {

@@ -24,6 +24,7 @@
 		E3298AC41D91A31E00D7F92C /* Queue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AB71D91A31D00D7F92C /* Queue+CoreDataProperties.m */; };
 		E3298AC51D91A31E00D7F92C /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298AB91D91A31D00D7F92C /* User+CoreDataClass.m */; };
 		E3298AC61D91A31E00D7F92C /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3298ABB1D91A31D00D7F92C /* User+CoreDataProperties.m */; };
+		E3308DF11D97FB35003C259E /* BSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3308DF01D97FB35003C259E /* BSTableViewController.m */; };
 		E352D5B41D7B222A00CB4B93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5B31D7B222A00CB4B93 /* main.m */; };
 		E352D5B71D7B222A00CB4B93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5B61D7B222A00CB4B93 /* AppDelegate.m */; };
 		E352D5BF1D7B222A00CB4B93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E352D5BE1D7B222A00CB4B93 /* Assets.xcassets */; };
@@ -104,6 +105,8 @@
 		E3298AB91D91A31D00D7F92C /* User+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
 		E3298ABA1D91A31D00D7F92C /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
 		E3298ABB1D91A31D00D7F92C /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E3308DEF1D97FB35003C259E /* BSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTableViewController.h; sourceTree = "<group>"; };
+		E3308DF01D97FB35003C259E /* BSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTableViewController.m; sourceTree = "<group>"; };
 		E352D5AF1D7B222A00CB4B93 /* DCTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E352D5B31D7B222A00CB4B93 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E352D5B51D7B222A00CB4B93 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -495,6 +498,8 @@
 				E3A331481D845E0700CA36DF /* BSTableViewCell.m */,
 				E3A331491D845E0700CA36DF /* BSViewController.h */,
 				E3A3314A1D845E0700CA36DF /* BSViewController.m */,
+				E3308DEF1D97FB35003C259E /* BSTableViewController.h */,
+				E3308DF01D97FB35003C259E /* BSTableViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -802,6 +807,7 @@
 				E3A331691D845E0700CA36DF /* DCLockView.m in Sources */,
 				E352D5F61D7B23AC00CB4B93 /* WQRefreshHeader.m in Sources */,
 				E3298AC51D91A31E00D7F92C /* User+CoreDataClass.m in Sources */,
+				E3308DF11D97FB35003C259E /* BSTableViewController.m in Sources */,
 				E3A3317A1D847E4700CA36DF /* DCAppEngine.m in Sources */,
 				E352D5F41D7B23AC00CB4B93 /* WQBlankView.m in Sources */,
 				E35A58ED1D96AC730040B344 /* DCNetworkManager.m in Sources */,

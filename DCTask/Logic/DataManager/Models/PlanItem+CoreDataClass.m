@@ -16,11 +16,11 @@
     NSString *name = [[[NSUUID UUID] UUIDString] stringByAppendingPathExtension:@"png"];
     
     NSString *imagePath = [DCUtil imagePathWithName:name];
-    NSData *imageData = UIImagePNGRepresentation(image);
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
     
     NSString *thumbnailPath = [DCUtil thumbnailPathWithName:name];
     UIImage *thumbnailImage = [image imageByResizeToSize:CGSizeMake(200, 200) contentMode:UIViewContentModeScaleAspectFill];
-    NSData *thumbnailData = UIImagePNGRepresentation(thumbnailImage);
+    NSData *thumbnailData = UIImageJPEGRepresentation(thumbnailImage, 0.8);
     
     if ([imageData writeToFile:imagePath atomically:YES] && [thumbnailData writeToFile:thumbnailPath atomically:YES]) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {

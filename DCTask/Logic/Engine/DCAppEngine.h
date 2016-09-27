@@ -14,7 +14,6 @@
 @interface DCAppEngine : AppEngine
 @property (nonatomic, readonly) DCDataManager *dataManager;
 @property (nonatomic, readonly) DCUserManager *userManager;
-@property (nonatomic, readonly) DCBluetoothManager *bluetoothManager;
 
 + (instancetype)shareEngine;
 

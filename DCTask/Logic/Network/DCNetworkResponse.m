@@ -17,10 +17,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation DCNetworkResponse
 
-+ (instancetype)responseWithId:(NSString *)Id payload:(NSDictionary *)payload{
++ (instancetype)responseWithId:(NSString *)Id payload:(NSString *)payload{
+    NSError *error = nil;
+    NSData *jsonData = [payload dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    if (error) {
+        return nil;
+    }
+    
     DCNetworkResponse *response = [[DCNetworkResponse alloc] init];
     response.Id = Id;
-    response.payload = payload;
+    response.payload = jsonDic;
     return response;
 }
 

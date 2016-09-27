@@ -27,11 +27,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 //请求数据
 - (NSString *)data {
-    NSDictionary *dataDic = @{@"directive":@"data", @"target":@"admin", @"data":@{@"id":self.Id, @"payload":self.payload}};
     NSError *error = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataDic
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
+    NSData *payloadData = [NSJSONSerialization dataWithJSONObject:self.payload options:0 error:&error];
+    if (error) {
+        return nil;
+    }
+    
+    NSString *payloadString = [[NSString alloc] initWithData:payloadData encoding:NSUTF8StringEncoding];
+    NSDictionary *dataDic = @{@"directive":@"data", @"target":@"admin", @"data":@{@"id":self.Id, @"payload":payloadString}};
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataDic options:0 error:&error];
     if (error) {
         return nil;
     }

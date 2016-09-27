@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, readonly) NSString *Id;
 @property (nullable, nonatomic, readonly) NSDictionary *payload;
 
-+ (instancetype)responseWithId:(NSString *)Id payload:(NSDictionary *)payload;
++ (instancetype)responseWithId:(NSString *)Id payload:(NSString *)payload;
 
 //响应数据
 - (NSString *)ask;

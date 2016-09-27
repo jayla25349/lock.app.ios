@@ -14,7 +14,7 @@
 
 //接受
 - (void)accept {
-    if (self.state.integerValue == 0) {
+    if (self.type.integerValue == 0) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
             Plan *plan = [self MR_inContext:localContext];
             plan.decideDate = [NSDate date];
@@ -35,7 +35,7 @@
 
 //拒绝
 - (void)refuse:(NSString *)reason {
-    if (self.state.integerValue == 0) {
+    if (self.type.integerValue == 0) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
             Plan *plan = [self MR_inContext:localContext];
             plan.decideDate = [NSDate date];
@@ -57,7 +57,7 @@
 
 //提交
 - (void)submit {
-    if (self.state.integerValue == 1) {
+    if (self.type.integerValue == 1) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
             Plan *plan = [self MR_inContext:localContext];
             plan.submitDate = [NSDate date];

@@ -18,9 +18,11 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.peripherals = [NSMutableArray array];
-        dispatch_queue_t centralQueue = dispatch_queue_create("com.manmanlai", DISPATCH_QUEUE_SERIAL);
-        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
+//        self.peripherals = [NSMutableArray array];
+//        dispatch_queue_t centralQueue = dispatch_queue_create("com.manmanlai", DISPATCH_QUEUE_SERIAL);
+//        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
+        
+        [self dataWithNumber:00001];
     }
     return self;
 }
@@ -33,22 +35,22 @@
     
 }
 
-- (NSData *)data{
-    Byte number[5] = {0x00};
-    number[4] = 0x01;
-    
+- (NSData *)dataWithNumber:(long)number{
     Byte cmd[20] = {0x00};
     cmd[0] = 0x01;
     cmd[1] = 0xFC;
     cmd[2] = 0x82;
     cmd[3] = 0x0F;
-    for (int i=0; i<5; i++) {
-        cmd[i+4] = number[i];
+    
+    cmd[4] = (number>>32);
+    cmd[5] = (number>>24);
+    cmd[6] = (number>>16);
+    cmd[7] = (number>>8);
+    cmd[8] = (number);
+    
+    for (int i=2; i<19; i++) {
+        cmd[19] ^= cmd[i];
     }
-//    for (int i=2; i<19; i++) {
-//        cmd[19] |= cmd[i];
-//    }
-    cmd[19] |= 0x8C;
     
     NSData *data = [NSData dataWithBytes:cmd length:20];
     return data;
@@ -149,7 +151,7 @@
             [peripheral setNotifyValue:YES forCharacteristic:obj];
         }
         if ([obj.UUID isEqual:[CBUUID UUIDWithString:@"FF01"]]){
-            [peripheral writeValue:[self data] forCharacteristic:obj type:CBCharacteristicWriteWithResponse];
+//            [peripheral writeValue:[self data] forCharacteristic:obj type:CBCharacteristicWriteWithResponse];
         }
     }];
 }

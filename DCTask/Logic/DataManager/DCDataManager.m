@@ -103,6 +103,18 @@
     self.networkManager = nil;
 }
 
+- (void)uploadPicture:(Picture *)pic complete:(void (^)(void))block{
+//    [[DCAppEngine shareEngine].networkManager HTTP_POST:nil api:nil parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        
+//    } progress:^(NSProgress * _Nonnull uploadProgress) {
+//        
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        
+//    } failure:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject, NSError * _Nonnull error) {
+//        
+//    }];
+}
+
 /**********************************************************************/
 #pragma mark - Public
 /**********************************************************************/

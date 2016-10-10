@@ -14,6 +14,7 @@
 @property (nonatomic, weak) id<DCBluetoothManagerDelegate> delegate;
 @property (nonatomic, readonly) NSMutableArray<CBPeripheral *> *peripherals;
 
+- (instancetype)initWithNumber:(int)number;
 - (void)openDoor:(CBPeripheral *)peripheral;
 
 @end
@@ -21,5 +22,6 @@
 @protocol DCBluetoothManagerDelegate <NSObject>
 @optional
 - (void)bluetoothManager:(DCBluetoothManager *)manager didDiscoverPeripheral:(CBPeripheral *)peripheral;
+- (void)bluetoothManager:(DCBluetoothManager *)manager didOpen:(BOOL)open;
 
 @end

@@ -17,20 +17,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     //注册通知
-    if (kiOS8Later) {
-        UIUserNotificationType notificationType =
-        UIUserNotificationTypeBadge |
-        UIUserNotificationTypeSound |
-        UIUserNotificationTypeAlert;
-        UIUserNotificationSettings *notiSettings = [UIUserNotificationSettings settingsForTypes:notificationType categories:nil];
-        [application registerUserNotificationSettings:notiSettings];
-    }else{
-        UIRemoteNotificationType notificationType =
-        UIRemoteNotificationTypeBadge |
-        UIRemoteNotificationTypeSound |
-        UIRemoteNotificationTypeAlert;
-        [application registerForRemoteNotificationTypes:notificationType];
-    }
+    UIUserNotificationType notificationType =
+    UIUserNotificationTypeBadge |
+    UIUserNotificationTypeSound |
+    UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *notiSettings = [UIUserNotificationSettings settingsForTypes:notificationType categories:nil];
+    [application registerUserNotificationSettings:notiSettings];
     
     return YES;
 }

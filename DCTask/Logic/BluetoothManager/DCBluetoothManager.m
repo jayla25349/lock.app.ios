@@ -8,21 +8,27 @@
 
 #import "DCBluetoothManager.h"
 
+static NSString * const service_UUID = @"0xFF12";
+static NSString * const characteristic_UUID_write =@"FF01";
+static NSString * const characteristic_UUID_notify = @"FF02";
+static NSString * const characteristic_value_success = @"0x04FC020001";
+static NSString * const characteristic_value_failure = @"0x04FC020002";
+
 @interface DCBluetoothManager ()<CBCentralManagerDelegate, CBPeripheralDelegate>
 @property (nonatomic, strong) CBCentralManager *centralManager;
 @property (nonatomic, strong) NSMutableArray<CBPeripheral *> *peripherals;
+
+@property (nonatomic, assign) int number;
 @end
 
 @implementation DCBluetoothManager
 
-- (instancetype)init {
+- (instancetype)initWithNumber:(int)number {
     self = [super init];
     if (self) {
-//        self.peripherals = [NSMutableArray array];
-//        dispatch_queue_t centralQueue = dispatch_queue_create("com.manmanlai", DISPATCH_QUEUE_SERIAL);
-//        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
-        
-        [self dataWithNumber:00001];
+        self.peripherals = [NSMutableArray array];
+        dispatch_queue_t centralQueue = dispatch_queue_create("com.manmanlai", DISPATCH_QUEUE_SERIAL);
+        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
     }
     return self;
 }
@@ -42,11 +48,11 @@
     cmd[2] = 0x82;
     cmd[3] = 0x0F;
     
-    cmd[4] = (number>>32);
-    cmd[5] = (number>>24);
-    cmd[6] = (number>>16);
-    cmd[7] = (number>>8);
-    cmd[8] = (number);
+    cmd[4] = number>>32 & 0xFF;
+    cmd[5] = number>>24 & 0xFF;
+    cmd[6] = number>>16 & 0xFF;
+    cmd[7] = number>>8 & 0xFF;
+    cmd[8] = number & 0xFF;
     
     for (int i=2; i<19; i++) {
         cmd[19] ^= cmd[i];
@@ -75,7 +81,8 @@
     DDLogDebug(@"%s", __PRETTY_FUNCTION__);
     
     if (central.state == CBCentralManagerStatePoweredOn) {
-        [central scanForPeripheralsWithServices:nil options:nil];
+        [central scanForPeripheralsWithServices:nil
+                                        options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @YES}];
     }
 }
 
@@ -89,7 +96,9 @@
     if (![self.peripherals containsObject:peripheral]) {
         [self.peripherals addObject:peripheral];
         if ([self.delegate respondsToSelector:@selector(bluetoothManager:didDiscoverPeripheral:)]) {
-            [self.delegate bluetoothManager:self didDiscoverPeripheral:peripheral];
+            dispatch_async_on_main_queue(^{
+                [self.delegate bluetoothManager:self didDiscoverPeripheral:peripheral];
+            });
         }
     }
 }
@@ -97,7 +106,7 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     DDLogDebug(@"%s %@", __PRETTY_FUNCTION__, peripheral);
     
-    [peripheral discoverServices:@[[CBUUID UUIDWithString:@"FF12"]]];
+    [peripheral discoverServices:@[[CBUUID UUIDWithString:service_UUID]]];
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
@@ -133,7 +142,9 @@
     
     [peripheral.services enumerateObjectsUsingBlock:^(CBService * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         DDLogDebug(@"%@", obj);
-        [peripheral discoverCharacteristics:nil forService:obj];
+        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:characteristic_UUID_notify],
+                                              [CBUUID UUIDWithString:characteristic_UUID_write]]
+                                 forService:obj];
     }];
 }
 
@@ -147,11 +158,13 @@
     [service.characteristics enumerateObjectsUsingBlock:^(CBCharacteristic * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         DDLogDebug(@"%@", obj);
         
-        if ([obj.UUID isEqual:[CBUUID UUIDWithString:@"FF02"]]){
+        if ([obj.UUID isEqual:[CBUUID UUIDWithString:characteristic_UUID_notify]]){
             [peripheral setNotifyValue:YES forCharacteristic:obj];
         }
-        if ([obj.UUID isEqual:[CBUUID UUIDWithString:@"FF01"]]){
-//            [peripheral writeValue:[self data] forCharacteristic:obj type:CBCharacteristicWriteWithResponse];
+        if ([obj.UUID isEqual:[CBUUID UUIDWithString:characteristic_UUID_write]]){
+            [peripheral writeValue:[self dataWithNumber:self.number]
+                 forCharacteristic:obj
+                              type:CBCharacteristicWriteWithResponse];
         }
     }];
 }
@@ -166,6 +179,15 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
     DDLogDebug(@"%s %@ %@", __PRETTY_FUNCTION__, characteristic, error);
+    if ([self.delegate respondsToSelector:@selector(bluetoothManager:didOpen:)]) {
+        dispatch_async_on_main_queue(^{
+            if (!error && [characteristic.value.hexString isEqualToString:@"0x04FC020001"]) {
+                [self.delegate bluetoothManager:self didOpen:YES];
+            } else {
+                [self.delegate bluetoothManager:self didOpen:NO];
+            }
+        });
+    }
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {

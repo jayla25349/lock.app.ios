@@ -21,7 +21,7 @@ static NSString *cellIdentifier = @"DCOpenDoorCell";
     [super viewDidLoad];
     self.title = @"开门";
     
-    self.bleManager = [[DCBluetoothManager alloc] init];
+    self.bleManager = [[DCBluetoothManager alloc] initWithNumber:[DCAppEngine shareEngine].userManager.user.number.intValue];
     self.bleManager.delegate = self;
 }
 
@@ -64,6 +64,14 @@ static NSString *cellIdentifier = @"DCOpenDoorCell";
 
 - (void)bluetoothManager:(DCBluetoothManager *)manager didDiscoverPeripheral:(CBPeripheral *)peripheral {
     [self.tableView reloadData];
+}
+
+- (void)bluetoothManager:(DCBluetoothManager *)manager didOpen:(BOOL)open {
+    if (open) {
+        [SVProgressHUD showSuccessWithStatus:@"开锁成功！"];
+    } else {
+        [SVProgressHUD showErrorWithStatus:@"开锁失败！"];
+    }
 }
 
 @end

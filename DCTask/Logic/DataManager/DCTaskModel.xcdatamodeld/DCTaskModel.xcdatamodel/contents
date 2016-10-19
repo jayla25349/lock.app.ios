@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G31" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="BaseEntity" isAbstract="YES" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="Humiture" parentEntity="BaseEntity" syncable="YES">
+        <attribute name="humidity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="room_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="humitures" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Lock" parentEntity="BaseEntity" syncable="YES">
+        <attribute name="lock_mac" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lock_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="locks" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Picture" representedClassName="Picture" syncable="YES">
         <attribute name="createDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -50,6 +65,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="humitures" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Humiture" inverseName="user" inverseEntity="Humiture" syncable="YES"/>
+        <relationship name="locks" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Lock" inverseName="user" inverseEntity="Lock" syncable="YES"/>
         <relationship name="plans" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Plan" inverseName="user" inverseEntity="Plan" syncable="YES"/>
     </entity>
     <elements>
@@ -57,6 +74,9 @@
         <element name="Plan" positionX="-468" positionY="-441" width="128" height="270"/>
         <element name="PlanItem" positionX="-263" positionY="-523" width="128" height="210"/>
         <element name="Queue" positionX="-261" positionY="-270" width="128" height="105"/>
-        <element name="User" positionX="-668" positionY="-295" width="128" height="150"/>
+        <element name="User" positionX="-668" positionY="-630" width="128" height="178"/>
+        <element name="Humiture" positionX="-468" positionY="-679" width="128" height="103"/>
+        <element name="Lock" positionX="-468" positionY="-556" width="128" height="88"/>
+        <element name="BaseEntity" positionX="-263" positionY="-615" width="128" height="75"/>
     </elements>
 </model>

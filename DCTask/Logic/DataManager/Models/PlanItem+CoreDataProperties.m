@@ -2,7 +2,7 @@
 //  PlanItem+CoreDataProperties.m
 //  
 //
-//  Created by 青秀斌 on 2016/9/25.
+//  Created by 青秀斌 on 2016/10/20.
 //
 //
 
@@ -23,6 +23,7 @@
 @dynamic note;
 @dynamic result;
 @dynamic state;
+@dynamic item_flag;
 @dynamic pics;
 @dynamic plan;
 

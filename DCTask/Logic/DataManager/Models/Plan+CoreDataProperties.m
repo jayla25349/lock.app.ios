@@ -2,7 +2,7 @@
 //  Plan+CoreDataProperties.m
 //  
 //
-//  Created by 青秀斌 on 2016/9/25.
+//  Created by 青秀斌 on 2016/10/20.
 //
 //
 
@@ -21,11 +21,11 @@
 @dynamic plan_date;
 @dynamic plan_id;
 @dynamic plan_name;
+@dynamic reason;
 @dynamic room_name;
+@dynamic state;
 @dynamic submitDate;
 @dynamic type;
-@dynamic state;
-@dynamic reason;
 @dynamic items;
 @dynamic queues;
 @dynamic user;

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G31" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <entity name="BaseEntity" isAbstract="YES" syncable="YES">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Humiture" representedClassName="Humiture" syncable="YES">
         <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-    </entity>
-    <entity name="Humiture" parentEntity="BaseEntity" syncable="YES">
         <attribute name="humidity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="room_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="humitures" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Lock" parentEntity="BaseEntity" syncable="YES">
+    <entity name="Lock" representedClassName="Lock" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lock_mac" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lock_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="locks" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Picture" representedClassName="Picture" syncable="YES">
         <attribute name="createDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="href" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isUpload" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="planItem" maxCount="1" deletionRule="Nullify" destinationEntity="PlanItem" inverseName="pics" inverseEntity="PlanItem" syncable="YES"/>
     </entity>
@@ -44,6 +44,7 @@
         <attribute name="cabinet_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="equipment_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="item_cate_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_flag" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="item_id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="item_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
@@ -70,13 +71,12 @@
         <relationship name="plans" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Plan" inverseName="user" inverseEntity="Plan" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Humiture" positionX="-468" positionY="-745" width="128" height="133"/>
+        <element name="Lock" positionX="-468" positionY="-585" width="128" height="118"/>
         <element name="Picture" positionX="-56" positionY="-459" width="128" height="118"/>
         <element name="Plan" positionX="-468" positionY="-441" width="128" height="270"/>
-        <element name="PlanItem" positionX="-263" positionY="-523" width="128" height="210"/>
+        <element name="PlanItem" positionX="-263" positionY="-523" width="128" height="223"/>
         <element name="Queue" positionX="-261" positionY="-270" width="128" height="105"/>
         <element name="User" positionX="-668" positionY="-630" width="128" height="178"/>
-        <element name="Humiture" positionX="-468" positionY="-679" width="128" height="103"/>
-        <element name="Lock" positionX="-468" positionY="-556" width="128" height="88"/>
-        <element name="BaseEntity" positionX="-263" positionY="-615" width="128" height="75"/>
     </elements>
 </model>

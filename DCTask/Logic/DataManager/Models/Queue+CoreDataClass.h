@@ -13,6 +13,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ type:0状态队列，1巡检队列
+ status:0等待同步，1同步完成
+ */
 @interface Queue : NSManagedObject
 
 - (NSDictionary *)toJSONObject;

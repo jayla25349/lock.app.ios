@@ -13,22 +13,20 @@
 - (NSDictionary *)toJSONObject {
     NSMutableDictionary *jsonDic = nil;
     switch (self.type.integerValue) {
-        case 0:{//任务状态
+        case 0:{//状态队列
             jsonDic = [NSMutableDictionary dictionaryWithObject:@"PLAN_RETURN" forKey:@"business"];
             [jsonDic setValue:self.plan.plan_id forKey:@"plan_id"];
             [jsonDic setValue:self.plan.state forKey:@"state"];
             [jsonDic setValue:self.plan.reason forKey:@"reason"];
         }break;
-        case 1:{//巡检任务
+        case 1:{//巡检队列
             NSMutableArray *itemArray = [NSMutableArray array];
             [self.plan.items enumerateObjectsUsingBlock:^(PlanItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSMutableArray *picArray = [NSMutableArray array];
                 [obj.pics enumerateObjectsUsingBlock:^(Picture * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    NSData *picData = [NSData dataWithContentsOfFile:[DCUtil imagePathWithName:obj.name]];
-                    NSString *picString = [picData base64EncodedString];
-                    
                     NSMutableDictionary *picDic = [NSMutableDictionary dictionary];
-                    [picDic setValue:picString forKey:@"pic"];        //图片
+                    [picDic setValue:obj.pic forKey:@"pic"];            //图片
+                    [picDic setValue:obj.pic_type forKey:@"pic_type"];  //类型
                     [picArray addObject:picDic];
                 }];
                 
@@ -37,7 +35,7 @@
                 [itemDic setValue:obj.state forKey:@"state"];       //运行状态（0-正常；1-异常)
                 [itemDic setValue:obj.result?:[NSNull null] forKey:@"result"];     //巡检情况
                 [itemDic setValue:obj.note?:[NSNull null] forKey:@"note"];         //备注
-                [itemDic setValue:@(obj.pics.count) forKey:@"pic_count"];//图片数量
+                [itemDic setValue:@(picArray.count) forKey:@"pic_count"];//图片数量
                 [itemDic setValue:picArray forKey:@"pics"];
                 [itemArray addObject:itemDic];
             }];

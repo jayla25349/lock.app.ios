@@ -2,7 +2,7 @@
 //  Picture+CoreDataProperties.m
 //  
 //
-//  Created by 青秀斌 on 2016/10/10.
+//  Created by 青秀斌 on 2016/10/21.
 //
 //
 
@@ -15,9 +15,9 @@
 }
 
 @dynamic createDate;
-@dynamic isUpload;
-@dynamic name;
 @dynamic id;
+@dynamic name;
+@dynamic href;
 @dynamic planItem;
 
 @end

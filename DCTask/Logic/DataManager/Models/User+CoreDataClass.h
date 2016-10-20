@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Plan;
+@class Plan, Humiture, Lock;
 
 NS_ASSUME_NONNULL_BEGIN
 

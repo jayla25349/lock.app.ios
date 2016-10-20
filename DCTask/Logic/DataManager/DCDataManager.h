@@ -11,6 +11,8 @@
 #import "PlanItem+CoreDataClass.h"
 #import "Picture+CoreDataClass.h"
 #import "Queue+CoreDataClass.h"
+#import "Lock+CoreDataClass.h"
+#import "Humiture+CoreDataClass.h"
 
 @interface DCDataManager : NSObject<UIApplicationDelegate>
 

@@ -23,7 +23,7 @@
             
             Queue *queue = [Queue MR_createEntityInContext:localContext];
             queue.createDate = plan.decideDate;
-            queue.type = @0;    //任务状态
+            queue.type = @0;    //状态队列
             [plan addQueuesObject:queue];
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
@@ -45,7 +45,7 @@
             
             Queue *queue = [Queue MR_createEntityInContext:localContext];
             queue.createDate = plan.decideDate;
-            queue.type = @0;    //任务状态
+            queue.type = @0;    //状态队列
             [plan addQueuesObject:queue];
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
@@ -65,7 +65,7 @@
             
             Queue *queue = [Queue MR_createEntityInContext:localContext];
             queue.createDate = plan.submitDate;
-            queue.type = @1;    //巡检任务
+            queue.type = @1;    //巡检队列
             [plan addQueuesObject:queue];
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {

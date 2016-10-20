@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.m
 //  
 //
-//  Created by 青秀斌 on 2016/9/25.
+//  Created by 青秀斌 on 2016/10/20.
 //
 //
 
@@ -20,6 +20,8 @@
 @dynamic name;
 @dynamic number;
 @dynamic password;
+@dynamic humitures;
+@dynamic locks;
 @dynamic plans;
 
 @end

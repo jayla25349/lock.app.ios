@@ -2,7 +2,7 @@
 //  Plan+CoreDataProperties.h
 //  
 //
-//  Created by 青秀斌 on 2016/9/25.
+//  Created by 青秀斌 on 2016/10/20.
 //
 //
 
@@ -22,11 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *plan_date;
 @property (nullable, nonatomic, copy) NSString *plan_id;
 @property (nullable, nonatomic, copy) NSString *plan_name;
+@property (nullable, nonatomic, copy) NSString *reason;
 @property (nullable, nonatomic, copy) NSString *room_name;
+@property (nullable, nonatomic, copy) NSNumber *state;
 @property (nullable, nonatomic, copy) NSDate *submitDate;
 @property (nullable, nonatomic, copy) NSNumber *type;
-@property (nullable, nonatomic, copy) NSNumber *state;
-@property (nullable, nonatomic, copy) NSString *reason;
 @property (nullable, nonatomic, retain) NSOrderedSet<PlanItem *> *items;
 @property (nullable, nonatomic, retain) NSOrderedSet<Queue *> *queues;
 @property (nullable, nonatomic, retain) User *user;

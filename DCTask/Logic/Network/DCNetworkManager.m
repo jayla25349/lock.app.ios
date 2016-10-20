@@ -21,9 +21,7 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
 - (instancetype)initWithUserNumber:(NSString *)number {
     self = [super init];
     if (self) {
-//        NSString *urlString = URL_WEB_SERVICE;
-        NSString *urlString = [URL_WEB_SERVICE stringByAppendingString:@"/tongren/0001"];
-//        NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@/%@", @"tongren", number];
+        NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@/%@", @"tongren", number];
         self.url = [NSURL URLWithString:urlString];
     }
     return self;

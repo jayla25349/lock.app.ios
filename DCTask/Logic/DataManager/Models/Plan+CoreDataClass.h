@@ -13,6 +13,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ type:0等待处理， 1接受任务，2拒绝任务，3提交任务
+ */
 @interface Plan : NSManagedObject
 
 //接受

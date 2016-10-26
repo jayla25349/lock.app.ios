@@ -1,25 +1,25 @@
 //
-//  DCNetworkReqeust.m
+//  DCWebSocketReqeust.m
 //  DCTask
 //
 //  Created by 青秀斌 on 2016/9/24.
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import "DCNetworkReqeust.h"
+#import "DCWebSocketReqeust.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DCNetworkReqeust ()
+@interface DCWebSocketReqeust ()
 @property (nonnull, nonatomic, strong) NSString *Id;
 @property (nonnull, nonatomic, strong) NSDictionary *payload;
 @end
 
-@implementation DCNetworkReqeust
+@implementation DCWebSocketReqeust
 
-+ (instancetype)reqeustWithPayload:(NSDictionary *)payload {
-    DCNetworkReqeust *request = [[DCNetworkReqeust alloc] init];
-    request.Id = [[NSUUID UUID] UUIDString];;
++ (instancetype)reqeustWithId:(NSString *)Id payload:(NSDictionary *)payload {
+    DCWebSocketReqeust *request = [[DCWebSocketReqeust alloc] init];
+    request.Id = Id;
     request.payload = payload;
     request.status = DCReqeustStatusSuspend;
     return request;

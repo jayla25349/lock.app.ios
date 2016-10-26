@@ -1,22 +1,22 @@
 //
-//  DCNetworkManager.m
+//  DCWebSocketManager.m
 //  DCTask
 //
 //  Created by 青秀斌 on 2016/9/24.
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import "DCNetworkManager.h"
+#import "DCWebSocketManager.h"
 
 static NSErrorDomain errorDomain = @"DCNetwordDomain";
 
-@interface DCNetworkManager ()<SRWebSocketDelegate>
+@interface DCWebSocketManager ()<SRWebSocketDelegate>
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) SRWebSocket *webSocket;
-@property (nonatomic, strong) NSMutableArray<DCNetworkReqeust *> *reqeusts;
+@property (nonatomic, strong) NSMutableArray<DCWebSocketReqeust *> *reqeusts;
 @end
 
-@implementation DCNetworkManager
+@implementation DCWebSocketManager
 
 - (instancetype)initWithUserNumber:(NSString *)number {
     self = [super init];
@@ -35,9 +35,9 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
 - (void)handleData:(NSDictionary *)dic {
     NSString *Id = dic[@"id"];
     NSString *payload = dic[@"payload"];
-    DCNetworkResponse *response = [DCNetworkResponse responseWithId:Id payload:payload];
-    if (self.didReceiveData) {
-        self.didReceiveData(response);
+    DCWebSocketResponse *response = [DCWebSocketResponse responseWithId:Id payload:payload];
+    if ([self.delegate respondsToSelector:@selector(webSocketManager:didReceiveData:)]) {
+        [self.delegate webSocketManager:self didReceiveData:response];
     }
     
     //发送确认数据
@@ -49,18 +49,21 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
 //{"id":"62112"}
 - (void)handleAsk:(NSDictionary *)dic {
     NSString *Id = dic[@"id"];
-    [self.reqeusts enumerateObjectsUsingBlock:^(DCNetworkReqeust * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.reqeusts enumerateObjectsUsingBlock:^(DCWebSocketReqeust * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.Id isEqualToString:Id]) {
             obj.status = DCReqeustStatusFilished;
-            if (self.didSendData) {
-                self.didSendData(obj);
-            }
             [self.reqeusts removeObject:obj];
             *stop = YES;
+            
+            if ([self.delegate respondsToSelector:@selector(webSocketManager:didSendData:)]) {
+                [self.delegate webSocketManager:self didSendData:obj];
+            }
         }
     }];
-    if (self.reqeusts.count==0 && self.didSendAllData) {
-        self.didSendAllData();
+    if (self.reqeusts.count==0) {
+        if ([self.delegate respondsToSelector:@selector(webSocketManagerDidSendAllData:)]) {
+            [self.delegate webSocketManagerDidSendAllData:self];
+        }
     }
 }
 
@@ -86,13 +89,13 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
 }
 
 //发送数据
-- (DCNetworkReqeust *)sendData:(NSDictionary *)data {
+- (DCWebSocketReqeust *)sendData:(NSDictionary *)data withId:(NSString *)Id{
     NSParameterAssert(data);
     if (!self.reqeusts) {
         self.reqeusts = [NSMutableArray array];
     }
     
-    DCNetworkReqeust *reqeust = [DCNetworkReqeust reqeustWithPayload:data];
+    DCWebSocketReqeust *reqeust = [DCWebSocketReqeust reqeustWithId:Id payload:data];
     [self.reqeusts addObject:reqeust];
     if (self.webSocket && self.webSocket.readyState==SR_OPEN) {
         reqeust.status = DCReqeustStatusRuning;
@@ -109,7 +112,7 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
     DDLogDebug(@"%s", __PRETTY_FUNCTION__);
     
     //执行挂起的请求
-    [self.reqeusts enumerateObjectsUsingBlock:^(DCNetworkReqeust * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.reqeusts enumerateObjectsUsingBlock:^(DCWebSocketReqeust * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.status==DCReqeustStatusSuspend) {
             obj.status = DCReqeustStatusRuning;
             [webSocket send:[obj data]];
@@ -174,7 +177,7 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
     DDLogDebug(@"%s %@", __PRETTY_FUNCTION__, error);
     
     //挂起请求
-    [self.reqeusts enumerateObjectsUsingBlock:^(DCNetworkReqeust * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.reqeusts enumerateObjectsUsingBlock:^(DCWebSocketReqeust * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.status == DCReqeustStatusRuning) {
             obj.status = DCReqeustStatusSuspend;
         }

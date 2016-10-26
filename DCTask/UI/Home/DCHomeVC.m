@@ -18,6 +18,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
 
 @interface DCHomeVC ()<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *bannerImageView;
+@property (weak, nonatomic) IBOutlet UILabel *syncStatusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *openDoorButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingButton;
 
@@ -54,6 +55,11 @@ static NSString *cellIdentifier = @"DCHomeCell";
     
     [Plan MR_performFetch:self.fetchedResultsController3];
     [self controllerDidChangeContent:self.fetchedResultsController3];
+    
+    //监听同步
+    [RACObserve([DCAppEngine shareEngine].dataManager, isSyncing) subscribeNext:^(NSNumber * isSyncing) {
+        self.syncStatusLabel.hidden = !isSyncing.boolValue;
+    }];
     
     //同步数据
     [[DCAppEngine shareEngine].dataManager syncData];

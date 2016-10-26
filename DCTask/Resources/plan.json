@@ -1,31 +1,24 @@
 {
-    "directive": "data",
-    "data": {
-        "id": "62112",
-        "source": "admin",
-        "payload": {
-            "business": "PLAN",
-            "plan_id": "1",
-            "plan_name": "ups监视输出电压",
-            "dispatch_man": "刘经理",
-            "plan_date": "2016-8-26 20:00",
-            "room_name": "巡检机房",
-            "lock_mac": "00:00:00:00:00",
-            "items": [{
-                      "item_id": "1",
-                      "item_cate_name": "UPS",
-                      "equipment_name": "巡检设备",
-                      "cabinet_name": "巡检机柜名称",
-                      "cabinet_lock_mac": "00:00:00:00:01",
-                      "item_name": "输出电压"
-                      }, {
-                      "item_id": "2",
-                      "item_cate_name": "UPS",
-                      "equipment_name": "巡检设备",
-                      "cabinet_name": "巡检机柜名称",
-                      "cabinet_lock_mac": "00:00:00:00:02",
-                      "item_name": "输出电点流"
-                      }]
-        }
-    }
+    "business": "PLAN",
+    "plan_id": "1",
+    "plan_name": "ups监视输出电压",
+    "dispatch_man": "刘经理",
+    "plan_date": "2016-8-26 20:00",
+    "room_name": "巡检机房",
+    "lock_mac": "00:00:00:00:00",
+    "items": [{
+              "item_id": "1",
+              "item_cate_name": "UPS",
+              "equipment_name": "巡检设备",
+              "cabinet_name": "巡检机柜名称",
+              "cabinet_lock_mac": "00:00:00:00:01",
+              "item_name": "输出电压"
+              }, {
+              "item_id": "2",
+              "item_cate_name": "UPS",
+              "equipment_name": "巡检设备",
+              "cabinet_name": "巡检机柜名称",
+              "cabinet_lock_mac": "00:00:00:00:02",
+              "item_name": "输出电点流"
+              }]
 }

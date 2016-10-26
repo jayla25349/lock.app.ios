@@ -28,7 +28,6 @@
             Picture *picture = [Picture MR_createEntityInContext:localContext];
             picture.createDate = [NSDate date];
             picture.name = name;
-            picture.pic_type = @1;//1-jpg；2-png
             picture.planItem = planItem;
         } completion:block];
     } else {

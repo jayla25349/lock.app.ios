@@ -2,7 +2,7 @@
 //  Queue+CoreDataProperties.h
 //  
 //
-//  Created by 青秀斌 on 2016/10/20.
+//  Created by 青秀斌 on 2016/10/27.
 //
 //
 
@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *createDate;
 @property (nullable, nonatomic, copy) NSNumber *status;
 @property (nullable, nonatomic, copy) NSNumber *type;
+@property (nullable, nonatomic, copy) NSString *id;
 @property (nullable, nonatomic, retain) Plan *plan;
 
 @end

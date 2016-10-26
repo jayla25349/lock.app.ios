@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ePw-5b-AD1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ePw-5b-AD1">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -439,7 +439,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fdc-Ag-8ae" id="Xqb-yQ-bvF">
-                                                    <frame key="frameInset" width="342" height="93.5"/>
+                                                    <frame key="frameInset" width="342" height="93"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.UPS监视输出电压" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="bBs-pA-Txe">
@@ -511,7 +511,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kSf-XS-4WV" id="Jfu-NZ-elN">
-                                                    <frame key="frameInset" width="342" height="93.5"/>
+                                                    <frame key="frameInset" width="342" height="93"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.UPS监视输出电压" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="dwb-Mi-fII">
@@ -578,7 +578,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfb-bB-wQG" id="vCx-6e-BKG">
-                                                    <frame key="frameInset" width="342" height="93.5"/>
+                                                    <frame key="frameInset" width="342" height="93"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.UPS监视输出电压" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="YDb-Bm-Rlx">
@@ -654,12 +654,19 @@
                                     <outlet property="delegate" destination="FDh-0u-HgY" id="a83-MP-M4F"/>
                                 </connections>
                             </scrollView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在同步数据。。。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMn-5M-W2V">
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bpY-0b-jCb" firstAttribute="leading" secondItem="pcT-c4-CeG" secondAttribute="trailing" id="76g-4o-k2w"/>
                             <constraint firstAttribute="trailing" secondItem="bpY-0b-jCb" secondAttribute="trailing" constant="10" id="CLN-ki-hSe"/>
+                            <constraint firstItem="pcT-c4-CeG" firstAttribute="centerY" secondItem="PMn-5M-W2V" secondAttribute="centerY" id="GFF-jx-Wsm"/>
                             <constraint firstAttribute="trailing" secondItem="7fK-Ds-CGu" secondAttribute="trailing" id="K1k-Tj-FxF"/>
+                            <constraint firstItem="PMn-5M-W2V" firstAttribute="leading" secondItem="wwL-6b-erS" secondAttribute="leading" constant="16" id="Pvh-Fn-h7a"/>
                             <constraint firstItem="8Gr-kh-Tyk" firstAttribute="top" secondItem="SGF-Vm-Ivf" secondAttribute="bottom" id="QNS-mE-pqP"/>
                             <constraint firstAttribute="trailing" secondItem="8Gr-kh-Tyk" secondAttribute="trailing" id="Ru5-ll-0pb"/>
                             <constraint firstItem="SGF-Vm-Ivf" firstAttribute="top" secondItem="7fK-Ds-CGu" secondAttribute="bottom" id="YNu-T1-c4n"/>
@@ -670,6 +677,7 @@
                             <constraint firstItem="Du1-rY-E4s" firstAttribute="leading" secondItem="wwL-6b-erS" secondAttribute="leading" id="hCg-Lb-LK7"/>
                             <constraint firstItem="bpY-0b-jCb" firstAttribute="top" secondItem="nPL-4Y-0aV" secondAttribute="bottom" id="hi7-HD-GBc"/>
                             <constraint firstItem="Du1-rY-E4s" firstAttribute="top" secondItem="8Gr-kh-Tyk" secondAttribute="bottom" id="kAF-o2-ect"/>
+                            <constraint firstItem="pcT-c4-CeG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PMn-5M-W2V" secondAttribute="trailing" constant="16" id="qlS-NW-7xt"/>
                             <constraint firstAttribute="trailing" secondItem="Du1-rY-E4s" secondAttribute="trailing" id="sig-FY-adH"/>
                             <constraint firstItem="7fK-Ds-CGu" firstAttribute="leading" secondItem="wwL-6b-erS" secondAttribute="leading" id="tjl-ot-NRf"/>
                             <constraint firstItem="vK0-Fj-qrT" firstAttribute="top" secondItem="Du1-rY-E4s" secondAttribute="bottom" id="wmV-7V-7cq"/>
@@ -688,6 +696,7 @@
                         <outlet property="selectImageView" destination="0vG-P6-yvx" id="4lJ-1X-Gzf"/>
                         <outlet property="selectView" destination="SGF-Vm-Ivf" id="w7t-gi-ULq"/>
                         <outlet property="settingButton" destination="bpY-0b-jCb" id="Scy-Jf-C0k"/>
+                        <outlet property="syncStatusLabel" destination="PMn-5M-W2V" id="Fr4-Zm-9UM"/>
                         <outlet property="tableView1" destination="CKd-31-M48" id="jzv-1v-GyW"/>
                         <outlet property="tableView2" destination="cm0-ng-DhX" id="si4-47-zk7"/>
                         <outlet property="tableView3" destination="HYY-TB-OCO" id="BJN-I0-c6b"/>
@@ -712,11 +721,11 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5kh-cf-2fB" id="qcA-nC-JNJ">
-                                    <frame key="frameInset" width="342" height="43.5"/>
+                                    <frame key="frameInset" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="1.正大门" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ld1-qi-byi">
-                                            <frame key="frameInset" minX="15" width="325" height="43.5"/>
+                                            <frame key="frameInset" minX="15" width="325" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -754,11 +763,11 @@
                                         <rect key="frame" x="0.0" y="99" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p33-lc-thr" id="S1G-KB-A2L">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="工号：9527998" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZOE-LP-W5H">
-                                                    <frame key="frameInset" minX="60" width="300" height="43.5"/>
+                                                    <frame key="frameInset" minX="60" width="300" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -779,11 +788,11 @@
                                         <rect key="frame" x="0.0" y="162" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eeO-ml-DA8" id="Hb5-K3-zPj">
-                                            <frame key="frameInset" width="342" height="43.5"/>
+                                            <frame key="frameInset" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="修改开锁密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ra1-P4-1UK">
-                                                    <frame key="frameInset" minX="60" width="280" height="43.5"/>
+                                                    <frame key="frameInset" minX="60" width="280" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -803,11 +812,11 @@
                                         <rect key="frame" x="0.0" y="206" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vdY-HL-7cb" id="hlm-vA-Mqd">
-                                            <frame key="frameInset" width="342" height="43.5"/>
+                                            <frame key="frameInset" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="检测更新" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="29O-KL-118">
-                                                    <frame key="frameInset" minX="60" width="280" height="43.5"/>
+                                                    <frame key="frameInset" minX="60" width="280" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -872,11 +881,11 @@
                                                 <rect key="frame" x="0.0" y="119" width="1001" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uTi-1n-iCn" id="O1k-WF-PCf">
-                                                    <frame key="frameInset" width="154.5" height="43.5"/>
+                                                    <frame key="frameInset" width="154.5" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f00-vM-xIu">
-                                                            <frame key="frameInset" minX="15" width="137.5" height="43.5"/>
+                                                            <frame key="frameInset" minX="15" width="137.5" height="43"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>

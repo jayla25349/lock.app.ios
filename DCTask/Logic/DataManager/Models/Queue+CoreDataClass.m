@@ -25,8 +25,8 @@
                 NSMutableArray *picArray = [NSMutableArray array];
                 [obj.pics enumerateObjectsUsingBlock:^(Picture * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     NSMutableDictionary *picDic = [NSMutableDictionary dictionary];
-                    [picDic setValue:obj.pic forKey:@"pic"];            //图片
-                    [picDic setValue:obj.pic_type forKey:@"pic_type"];  //类型
+                    [picDic setValue:obj.id forKey:@"pic"];             //图片
+                    [picDic setValue:@1 forKey:@"pic_type"];            //类型
                     [picArray addObject:picDic];
                 }];
                 

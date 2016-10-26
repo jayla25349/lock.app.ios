@@ -15,6 +15,7 @@
 #import "Humiture+CoreDataClass.h"
 
 @interface DCDataManager : NSObject<UIApplicationDelegate>
+@property (nonatomic, readonly) BOOL isSyncing;
 
 //同步数据
 - (void)syncData;

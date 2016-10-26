@@ -1,21 +1,21 @@
 //
-//  DCNetworkResponse.m
+//  DCWebSocketResponse.m
 //  DCTask
 //
 //  Created by 青秀斌 on 2016/9/24.
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import "DCNetworkResponse.h"
+#import "DCWebSocketResponse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DCNetworkResponse ()
+@interface DCWebSocketResponse ()
 @property (nullable, nonatomic, strong) NSString *Id;
 @property (nullable, nonatomic, strong) NSDictionary *payload;
 @end
 
-@implementation DCNetworkResponse
+@implementation DCWebSocketResponse
 
 + (instancetype)responseWithId:(NSString *)Id payload:(NSString *)payload{
     NSError *error = nil;
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
         return nil;
     }
     
-    DCNetworkResponse *response = [[DCNetworkResponse alloc] init];
+    DCWebSocketResponse *response = [[DCWebSocketResponse alloc] init];
     response.Id = Id;
     response.payload = jsonDic;
     return response;

@@ -1,5 +1,5 @@
 //
-//  DCNetworkReqeust.h
+//  DCWebSocketReqeust.h
 //  DCTask
 //
 //  Created by 青秀斌 on 2016/9/24.
@@ -16,12 +16,12 @@ typedef NS_ENUM(NSInteger, DCReqeustStatus) {
     DCReqeustStatusFilished
 };
 
-@interface DCNetworkReqeust : NSObject
+@interface DCWebSocketReqeust : NSObject
 @property (nonnull, nonatomic, readonly) NSString *Id;
 @property (nonnull, nonatomic, readonly) NSDictionary *payload;
 @property (nonatomic, assign) DCReqeustStatus status;
 
-+ (instancetype)reqeustWithPayload:(NSDictionary *)payload;
++ (instancetype)reqeustWithId:(NSString *)Id payload:(NSDictionary *)payload;
 
 //请求数据
 - (NSString *)data;

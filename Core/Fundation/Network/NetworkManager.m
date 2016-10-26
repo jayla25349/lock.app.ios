@@ -153,29 +153,32 @@ DDLogDebug(@"******************************请求完成(%lu)********************
               success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
               failure:(void (^)(NSURLSessionDataTask *task, id responseObject, NSError *error))failure {
     NSAssert([responseObject isKindOfClass:[NSDictionary class]], @"请求数据错误:%@", task);
-    if ([responseObject isKindOfClass:[NSDictionary class]]) {
-        NSNumber *code = responseObject[@"code"];
-        if (code.integerValue == 200) {
-            if (success) {
-                success(task, responseObject);
-            }
-        } else {
-            ErrorAlert([[NSString stringWithFormat:@"%@", responseObject] replaceUnicode]);
-            if (failure) {
-                NSMutableDictionary *userInfo = [responseObject mutableCopy];
-                [userInfo setObject:responseObject[@"msg"]?:NET_REQUEST_ERROR forKey:NSLocalizedDescriptionKey];
-                NSError *error = [NSError errorWithDomain:BussinessErrorDoman code:-2 userInfo:userInfo];
-                failure(task, responseObject, error);
-            }
-        }
-    } else {
-        ErrorAlert([[NSString stringWithFormat:@"%@", responseObject] replaceUnicode]);
-        if (failure) {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NET_SERVER_ERROR};
-            NSError *error = [NSError errorWithDomain:BussinessErrorDoman code:-1 userInfo:userInfo];
-            failure(task, responseObject, error);
-        }
+    if (success) {
+        success(task, responseObject);
     }
+//    if ([responseObject isKindOfClass:[NSDictionary class]]) {
+//        NSNumber *code = responseObject[@"code"];
+//        if (code.integerValue == 200) {
+//            if (success) {
+//                success(task, responseObject);
+//            }
+//        } else {
+//            ErrorAlert([[NSString stringWithFormat:@"%@", responseObject] replaceUnicode]);
+//            if (failure) {
+//                NSMutableDictionary *userInfo = [responseObject mutableCopy];
+//                [userInfo setObject:responseObject[@"msg"]?:NET_REQUEST_ERROR forKey:NSLocalizedDescriptionKey];
+//                NSError *error = [NSError errorWithDomain:BussinessErrorDoman code:-2 userInfo:userInfo];
+//                failure(task, responseObject, error);
+//            }
+//        }
+//    } else {
+//        ErrorAlert([[NSString stringWithFormat:@"%@", responseObject] replaceUnicode]);
+//        if (failure) {
+//            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NET_SERVER_ERROR};
+//            NSError *error = [NSError errorWithDomain:BussinessErrorDoman code:-1 userInfo:userInfo];
+//            failure(task, responseObject, error);
+//        }
+//    }
 }
 
 - (void)handleFailure:(NSURLSessionDataTask *)task error:(NSError *)error

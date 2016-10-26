@@ -13,7 +13,7 @@
 static NSString * const listCellIdentifier = @"DCCheckListCell";
 static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 
-@interface DCCheckVC ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, DCCheckListCellDelegate, MWPhotoBrowserDelegate>
+@interface DCCheckVC ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, DCCheckListCellDelegate, MWPhotoBrowserDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *contentTableView;
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
 @property (weak, nonatomic) IBOutlet UIView *menuContentView;
@@ -242,37 +242,13 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 - (void)checkListCell:(DCCheckListCell *)cell didSelectEdit:(NSInteger)index {
     self.currentCheckCell = cell;
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择添加方式"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"相册", @"相机", nil];
-    [actionSheet showInView:self.view];
-}
-
-/**********************************************************************/
-#pragma mark - UIActionSheetDelegate
-/**********************************************************************/
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex==0) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-            picker.delegate = self;
-            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [self presentViewController:picker animated:YES completion:nil];
-        } else {
-            [SVProgressHUD showInfoWithStatus:@"相册不可用"];
-        }
-    } else if (buttonIndex==1) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-            picker.delegate = self;
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self presentViewController:picker animated:YES completion:nil];
-        } else {
-            [SVProgressHUD showInfoWithStatus:@"相机不可用"];
-        }
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:picker animated:YES completion:nil];
+    } else {
+        [SVProgressHUD showInfoWithStatus:@"相机不可用"];
     }
 }
 

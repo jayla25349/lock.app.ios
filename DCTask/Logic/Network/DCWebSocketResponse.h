@@ -1,5 +1,5 @@
 //
-//  DCNetworkResponse.h
+//  DCWebSocketResponse.h
 //  DCTask
 //
 //  Created by 青秀斌 on 2016/9/24.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DCNetworkResponse : NSObject
+@interface DCWebSocketResponse : NSObject
 @property (nullable, nonatomic, readonly) NSString *Id;
 @property (nullable, nonatomic, readonly) NSDictionary *payload;
 

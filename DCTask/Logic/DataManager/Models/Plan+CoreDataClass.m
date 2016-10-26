@@ -22,6 +22,7 @@
             plan.type = @1;     //接受
             
             Queue *queue = [Queue MR_createEntityInContext:localContext];
+            queue.id = [[NSUUID UUID] UUIDString];
             queue.createDate = plan.decideDate;
             queue.type = @0;    //状态队列
             [plan addQueuesObject:queue];
@@ -44,6 +45,7 @@
             plan.type = @2;     //拒绝
             
             Queue *queue = [Queue MR_createEntityInContext:localContext];
+            queue.id = [[NSUUID UUID] UUIDString];
             queue.createDate = plan.decideDate;
             queue.type = @0;    //状态队列
             [plan addQueuesObject:queue];
@@ -64,6 +66,7 @@
             plan.type = @3;     //提交
             
             Queue *queue = [Queue MR_createEntityInContext:localContext];
+            queue.id = [[NSUUID UUID] UUIDString];
             queue.createDate = plan.submitDate;
             queue.type = @1;    //巡检队列
             [plan addQueuesObject:queue];

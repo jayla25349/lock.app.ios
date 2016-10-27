@@ -45,6 +45,8 @@
 		E352D5F71D7B23AC00CB4B93 /* WQRefreshCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5E91D7B23AC00CB4B93 /* WQRefreshCollectionView.m */; };
 		E352D5F81D7B23AC00CB4B93 /* WQRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E352D5EB1D7B23AC00CB4B93 /* WQRefreshTableView.m */; };
 		E38517005DD92D6E6A729C67 /* libPods-DCTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC03EB6872011ED7E9905FA /* libPods-DCTask.a */; };
+		E38DB2CE1DC27AE0007B54FB /* DCHumitureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E38DB2CD1DC27AE0007B54FB /* DCHumitureVC.m */; };
+		E38DB2D11DC27AFC007B54FB /* DCHumitureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E38DB2D01DC27AFC007B54FB /* DCHumitureCell.m */; };
 		E3941AD01D961DB6005BB276 /* DCCheckMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3941ACF1D961DB6005BB276 /* DCCheckMenuCell.m */; };
 		E399934C1D886B0F0055A6EB /* DCCheckImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E399934B1D886B0F0055A6EB /* DCCheckImageCell.m */; };
 		E3A331661D845E0700CA36DF /* BSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331461D845E0700CA36DF /* BSNavigationController.m */; };
@@ -62,6 +64,7 @@
 		E3A3317A1D847E4700CA36DF /* DCAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331791D847E4700CA36DF /* DCAppEngine.m */; };
 		E3A5A44F1D957A1E00B83735 /* DCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A5A44E1D957A1E00B83735 /* DCUtil.m */; };
 		E3C538F21D9656E6008C1990 /* replay.json in Resources */ = {isa = PBXBuildFile; fileRef = E3C538F11D9656E6008C1990 /* replay.json */; };
+		E3C936EE1DC25253006080D5 /* DCPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C936ED1DC25253006080D5 /* DCPopView.m */; };
 		E3DAA8C91D86E4FB00804EA4 /* DCCheckListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DAA8C81D86E4FB00804EA4 /* DCCheckListCell.m */; };
 		E3E6A2391D88E4E100FF5688 /* DCUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6A2381D88E4E100FF5688 /* DCUserManager.m */; };
 		E3E6A25E1D88E80C00FF5688 /* DCBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6A25D1D88E80C00FF5688 /* DCBluetoothManager.m */; };
@@ -152,6 +155,10 @@
 		E352D5EA1D7B23AC00CB4B93 /* WQRefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQRefreshTableView.h; sourceTree = "<group>"; };
 		E352D5EB1D7B23AC00CB4B93 /* WQRefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQRefreshTableView.m; sourceTree = "<group>"; };
 		E352D6DD1D7B256500CB4B93 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		E38DB2CC1DC27AE0007B54FB /* DCHumitureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHumitureVC.h; sourceTree = "<group>"; };
+		E38DB2CD1DC27AE0007B54FB /* DCHumitureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHumitureVC.m; sourceTree = "<group>"; };
+		E38DB2CF1DC27AFC007B54FB /* DCHumitureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHumitureCell.h; sourceTree = "<group>"; };
+		E38DB2D01DC27AFC007B54FB /* DCHumitureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHumitureCell.m; sourceTree = "<group>"; };
 		E3941ACE1D961DB6005BB276 /* DCCheckMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCheckMenuCell.h; sourceTree = "<group>"; };
 		E3941ACF1D961DB6005BB276 /* DCCheckMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCheckMenuCell.m; sourceTree = "<group>"; };
 		E399934A1D886B0F0055A6EB /* DCCheckImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCheckImageCell.h; sourceTree = "<group>"; };
@@ -185,6 +192,8 @@
 		E3A5A44D1D957A1E00B83735 /* DCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUtil.h; sourceTree = "<group>"; };
 		E3A5A44E1D957A1E00B83735 /* DCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCUtil.m; sourceTree = "<group>"; };
 		E3C538F11D9656E6008C1990 /* replay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = replay.json; sourceTree = "<group>"; };
+		E3C936EC1DC25253006080D5 /* DCPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPopView.h; sourceTree = "<group>"; };
+		E3C936ED1DC25253006080D5 /* DCPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPopView.m; sourceTree = "<group>"; };
 		E3DAA8C71D86E4FB00804EA4 /* DCCheckListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCheckListCell.h; sourceTree = "<group>"; };
 		E3DAA8C81D86E4FB00804EA4 /* DCCheckListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCheckListCell.m; sourceTree = "<group>"; };
 		E3E6A2371D88E4E100FF5688 /* DCUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUserManager.h; sourceTree = "<group>"; };
@@ -461,6 +470,17 @@
 			path = Extention;
 			sourceTree = "<group>";
 		};
+		E38DB2CB1DC27AE0007B54FB /* Humiture */ = {
+			isa = PBXGroup;
+			children = (
+				E38DB2CC1DC27AE0007B54FB /* DCHumitureVC.h */,
+				E38DB2CD1DC27AE0007B54FB /* DCHumitureVC.m */,
+				E38DB2CF1DC27AFC007B54FB /* DCHumitureCell.h */,
+				E38DB2D01DC27AFC007B54FB /* DCHumitureCell.m */,
+			);
+			path = Humiture;
+			sourceTree = "<group>";
+		};
 		E3A331411D845E0700CA36DF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +499,7 @@
 			children = (
 				E3A331431D845E0700CA36DF /* Common */,
 				E3A331501D845E0700CA36DF /* Home */,
+				E38DB2CB1DC27AE0007B54FB /* Humiture */,
 				E3A331571D845E0700CA36DF /* Login */,
 				E3A3315C1D845E0700CA36DF /* Open */,
 				E3A3315F1D845E0700CA36DF /* Setting */,
@@ -521,6 +542,7 @@
 		E3A3314C1D845E0700CA36DF /* Widget */ = {
 			isa = PBXGroup;
 			children = (
+				E3C936EB1DC25235006080D5 /* DCPopView */,
 				E3EC34E61D871EEA00604301 /* DCAlertView */,
 				E3A3314D1D845E0700CA36DF /* DCLockView */,
 			);
@@ -604,6 +626,15 @@
 				E3A5A44E1D957A1E00B83735 /* DCUtil.m */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		E3C936EB1DC25235006080D5 /* DCPopView */ = {
+			isa = PBXGroup;
+			children = (
+				E3C936EC1DC25253006080D5 /* DCPopView.h */,
+				E3C936ED1DC25253006080D5 /* DCPopView.m */,
+			);
+			path = DCPopView;
 			sourceTree = "<group>";
 		};
 		E3E6A2351D88E4D100FF5688 /* BluetoothManager */ = {
@@ -831,6 +862,7 @@
 				EC0EB2F61DC187AB003AFDAA /* DCWebSocketRequest.m in Sources */,
 				E352D5F61D7B23AC00CB4B93 /* WQRefreshHeader.m in Sources */,
 				E3298AC51D91A31E00D7F92C /* User+CoreDataClass.m in Sources */,
+				E38DB2CE1DC27AE0007B54FB /* DCHumitureVC.m in Sources */,
 				E3308DF11D97FB35003C259E /* BSTableViewController.m in Sources */,
 				E3A3317A1D847E4700CA36DF /* DCAppEngine.m in Sources */,
 				E352D5F41D7B23AC00CB4B93 /* WQBlankView.m in Sources */,
@@ -855,6 +887,7 @@
 				E3109F9F1D8535D9006DD8EF /* PushManager.m in Sources */,
 				E3A3316F1D845E0700CA36DF /* DCOpenDoorVC.m in Sources */,
 				E3298ABF1D91A31E00D7F92C /* Plan+CoreDataClass.m in Sources */,
+				E38DB2D11DC27AFC007B54FB /* DCHumitureCell.m in Sources */,
 				E3298AA01D918E3600D7F92C /* DCCheckEditCell.m in Sources */,
 				E3298AC21D91A31E00D7F92C /* PlanItem+CoreDataProperties.m in Sources */,
 				E31904A41DB8F5700013F385 /* Lock+CoreDataClass.m in Sources */,
@@ -865,6 +898,7 @@
 				E3A331721D845E0700CA36DF /* DCSettingVC.m in Sources */,
 				E352D5F31D7B23AC00CB4B93 /* UIView+Blank.m in Sources */,
 				E352D5ED1D7B23AC00CB4B93 /* NSString+Core.m in Sources */,
+				E3C936EE1DC25253006080D5 /* DCPopView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

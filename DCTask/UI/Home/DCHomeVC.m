@@ -7,11 +7,13 @@
 //
 
 #import "DCHomeVC.h"
+#import "DCPopView.h"
 #import "DCHomeCell.h"
 #import "DCCheckVC.h"
 #import "DCLoginVC.h"
 #import "DCSettingVC.h"
 #import "DCOpenDoorVC.h"
+#import "DCHumitureVC.h"
 #import "BSNavigationController.h"
 
 static NSString *cellIdentifier = @"DCHomeCell";
@@ -21,6 +23,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
 @property (weak, nonatomic) IBOutlet UILabel *syncStatusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *openDoorButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingButton;
+@property (weak, nonatomic) IBOutlet UIButton *moreButton;
 
 @property (weak, nonatomic) IBOutlet UIView *selectView;
 @property (weak, nonatomic) IBOutlet UIButton *selectButton1;
@@ -149,13 +152,25 @@ static NSString *cellIdentifier = @"DCHomeCell";
 - (void)openDoorAction:(id)sener {
     DCOpenDoorVC *vc = [[DCOpenDoorVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)settingAction:(id)sender {
-    DCSettingVC *vc = [[DCSettingVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+- (IBAction)settingAction:(id)sender {
+    DCPopView *popView = [[DCPopView alloc] init];
+    popView.items = @[@{@"icon":@"home_btn_humiture", @"title":@"机房温湿度"},
+                      @{@"icon":@"home_btn_setting", @"title":@"设置"}];
+    @weakify(self)
+    [popView setDidSelectedIndex:^(DCPopView *popView, NSInteger index) {
+        @strongify(self)
+        switch (index) {
+            case 0:{
+                [self performSegueWithIdentifier:@"PushHumiture" sender:sender];
+            }break;
+            case 1:{
+                [self performSegueWithIdentifier:@"PushSetting" sender:sender];
+            }break;
+        }
+    }];
+    [popView showFromView:sender];
 }
 
 - (IBAction)selectAction:(UIButton *)sender {

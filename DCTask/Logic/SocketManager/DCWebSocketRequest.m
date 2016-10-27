@@ -1,24 +1,24 @@
 //
-//  DCWebSocketReqeust.m
+//  DCWebSocketRequest.m
 //  DCTask
 //
 //  Created by 青秀斌 on 2016/9/24.
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import "DCWebSocketReqeust.h"
+#import "DCWebSocketRequest.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DCWebSocketReqeust ()
+@interface DCWebSocketRequest ()
 @property (nonnull, nonatomic, strong) NSString *Id;
 @property (nonnull, nonatomic, strong) NSDictionary *payload;
 @end
 
-@implementation DCWebSocketReqeust
+@implementation DCWebSocketRequest
 
 + (instancetype)reqeustWithId:(NSString *)Id payload:(NSDictionary *)payload {
-    DCWebSocketReqeust *request = [[DCWebSocketReqeust alloc] init];
+    DCWebSocketRequest *request = [[DCWebSocketRequest alloc] init];
     request.Id = Id;
     request.payload = payload;
     request.status = DCReqeustStatusSuspend;
@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSError *error = nil;
     NSData *payloadData = [NSJSONSerialization dataWithJSONObject:self.payload options:0 error:&error];
     if (error) {
+        DDLogError(@"反序列化数据失败：%@", error);
         return nil;
     }
     
@@ -37,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSDictionary *dataDic = @{@"directive":@"data", @"target":@"admin", @"data":@{@"id":self.Id, @"payload":payloadString}};
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataDic options:0 error:&error];
     if (error) {
+        DDLogError(@"序列化数据失败：%@", error);
         return nil;
     }
     

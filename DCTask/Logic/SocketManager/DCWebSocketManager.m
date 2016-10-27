@@ -13,16 +13,15 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
 @interface DCWebSocketManager ()<SRWebSocketDelegate>
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) SRWebSocket *webSocket;
-@property (nonatomic, strong) NSMutableArray<DCWebSocketReqeust *> *reqeusts;
+@property (nonatomic, strong) NSMutableArray<DCWebSocketRequest *> *reqeusts;
 @end
 
 @implementation DCWebSocketManager
 
-- (instancetype)initWithUserNumber:(NSString *)number {
+- (instancetype)initWithURL:(NSURL *)url {
     self = [super init];
     if (self) {
-        NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@/%@", @"tongren", number];
-        self.url = [NSURL URLWithString:urlString];
+        self.url = url;
     }
     return self;
 }
@@ -49,20 +48,22 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
 //{"id":"62112"}
 - (void)handleAsk:(NSDictionary *)dic {
     NSString *Id = dic[@"id"];
-    [self.reqeusts enumerateObjectsUsingBlock:^(DCWebSocketReqeust * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.reqeusts enumerateObjectsUsingBlock:^(DCWebSocketRequest * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.Id isEqualToString:Id]) {
             obj.status = DCReqeustStatusFilished;
             [self.reqeusts removeObject:obj];
             *stop = YES;
             
-            if ([self.delegate respondsToSelector:@selector(webSocketManager:didSendData:)]) {
-                [self.delegate webSocketManager:self didSendData:obj];
+            if ([self.delegate respondsToSelector:@selector(webSocketManager:didReceiveAsk:)]) {
+                [self.delegate webSocketManager:self didReceiveAsk:obj];
             }
+        } else {
+            DDLogWarn(@"未处理响应：%@", dic);
         }
     }];
     if (self.reqeusts.count==0) {
-        if ([self.delegate respondsToSelector:@selector(webSocketManagerDidSendAllData:)]) {
-            [self.delegate webSocketManagerDidSendAllData:self];
+        if ([self.delegate respondsToSelector:@selector(webSocketManagerDidFilishSend:)]) {
+            [self.delegate webSocketManagerDidFilishSend:self];
         }
     }
 }
@@ -88,20 +89,29 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
     }
 }
 
-//发送数据
-- (DCWebSocketReqeust *)sendData:(NSDictionary *)data withId:(NSString *)Id{
-    NSParameterAssert(data);
+//发送请求数据
+- (void)sendRequest:(DCWebSocketRequest *)request {
+    NSParameterAssert(request);
+    if (!self.webSocket || self.webSocket.readyState!=SR_OPEN) {
+        return;
+    }
     if (!self.reqeusts) {
         self.reqeusts = [NSMutableArray array];
     }
     
-    DCWebSocketReqeust *reqeust = [DCWebSocketReqeust reqeustWithId:Id payload:data];
-    [self.reqeusts addObject:reqeust];
-    if (self.webSocket && self.webSocket.readyState==SR_OPEN) {
-        reqeust.status = DCReqeustStatusRuning;
-        [self.webSocket send:[reqeust data]];
+    request.status = DCReqeustStatusRuning;
+    [self.reqeusts addObject:request];
+    [self.webSocket send:[request data]];
+}
+
+//发送响应数据
+- (void)sendResponse:(DCWebSocketResponse *)response {
+    NSParameterAssert(response);
+    if (!self.webSocket || self.webSocket.readyState!=SR_OPEN) {
+        return;
     }
-    return reqeust;
+    
+    [self.webSocket send:[response ask]];
 }
 
 /**********************************************************************/
@@ -112,17 +122,12 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
     DDLogDebug(@"%s", __PRETTY_FUNCTION__);
     
     //执行挂起的请求
-    [self.reqeusts enumerateObjectsUsingBlock:^(DCWebSocketReqeust * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.reqeusts enumerateObjectsUsingBlock:^(DCWebSocketRequest * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.status==DCReqeustStatusSuspend) {
             obj.status = DCReqeustStatusRuning;
             [webSocket send:[obj data]];
         }
     }];
-    
-//    //测试数据
-//    NSURL *url = [[NSBundle mainBundle] URLForResource:@"plan" withExtension:@"json"];
-//    NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-//    [self.webSocket send:jsonString];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
@@ -177,7 +182,7 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
     DDLogDebug(@"%s %@", __PRETTY_FUNCTION__, error);
     
     //挂起请求
-    [self.reqeusts enumerateObjectsUsingBlock:^(DCWebSocketReqeust * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.reqeusts enumerateObjectsUsingBlock:^(DCWebSocketRequest * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.status == DCReqeustStatusRuning) {
             obj.status = DCReqeustStatusSuspend;
         }

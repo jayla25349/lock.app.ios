@@ -71,42 +71,45 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status=0"];
     Queue *queue = [Queue MR_findFirstWithPredicate:predicate sortedBy:@"createDate" ascending:NO];
     if (queue) {
+        DCWebSocketRequest *reqeust = [DCWebSocketRequest reqeustWithId:queue.id payload:[queue toJSONObject]];
         
-        //巡检队列
-        if (queue.type.integerValue==1) {
-            
-            //需要上传的图片
-            NSMutableArray<Picture *> *tempArray = [NSMutableArray array];
-            [queue.plan.items enumerateObjectsUsingBlock:^(PlanItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [obj.pics enumerateObjectsUsingBlock:^(Picture * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if (obj.id.length==0) {//未上传图片
-                        [tempArray addObject:obj];
-                    }
-                }];
-            }];
-            
-            //上传图片
-            if (tempArray.count>0) {
-                @weakify(self)
-                self.isSyncing = YES;
-                [self uploadPictures:tempArray complete:^{
-                    @strongify(self)
-                    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
-                        queue.status = @1;//正在同步
-                        [self.socketManager sendData:[queue toJSONObject] withId:queue.id];
-                    }];
-                }];
-            } else {
+        switch (queue.type.integerValue) {
+            case 0:{//状态队列
                 [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
                     queue.status = @1;//正在同步
-                    [self.socketManager sendData:[queue toJSONObject] withId:queue.id];
+                    [self.socketManager sendRequest:reqeust];
                 }];
-            }
-        } else {
-            [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
-                queue.status = @1;//正在同步
-                [self.socketManager sendData:[queue toJSONObject] withId:queue.id];
-            }];
+            }break;
+            case 1:{//巡检队列
+                
+                //需要上传的图片
+                NSMutableArray<Picture *> *tempArray = [NSMutableArray array];
+                [queue.plan.items enumerateObjectsUsingBlock:^(PlanItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [obj.pics enumerateObjectsUsingBlock:^(Picture * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if (obj.id.length==0) {//未上传图片
+                            [tempArray addObject:obj];
+                        }
+                    }];
+                }];
+                
+                //上传图片
+                if (tempArray.count>0) {
+                    @weakify(self)
+                    self.isSyncing = YES;
+                    [self uploadPictures:tempArray complete:^{
+                        @strongify(self)
+                        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+                            queue.status = @1;//正在同步
+                            [self.socketManager sendRequest:reqeust];
+                        }];
+                    }];
+                } else {
+                    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+                        queue.status = @1;//正在同步
+                        [self.socketManager sendRequest:reqeust];
+                    }];
+                }
+            }break;
         }
     }
 }
@@ -120,7 +123,9 @@
         return;
     }
     NSString *number = [DCAppEngine shareEngine].userManager.user.number;
-    self.socketManager = [[DCWebSocketManager alloc] initWithUserNumber:number];
+    NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@/%@", @"tongren", number];
+    NSURL *url = [NSURL URLWithString:urlString];
+    self.socketManager = [[DCWebSocketManager alloc] initWithURL:url];
     self.socketManager.delegate = self;
     [self.socketManager connect];
     
@@ -141,7 +146,7 @@
 }
 
 /**********************************************************************/
-#pragma mark - <#markName#>
+#pragma mark - DCWebSocketManagerDelegate
 /**********************************************************************/
 
 - (void)webSocketManager:(DCWebSocketManager *)manager didReceiveData:(DCWebSocketResponse *)response {
@@ -206,9 +211,12 @@
     } else {
         DDLogError(@"响应数据类型无法处理：%@", response.payload);
     }
+    
+    //响应请求
+    [manager sendResponse:response];
 }
 
-- (void)webSocketManager:(DCWebSocketManager *)manager didSendData:(DCWebSocketReqeust *)request {
+- (void)webSocketManager:(DCWebSocketManager *)manager didReceiveAsk:(DCWebSocketRequest *)request {
     NSString *business = request.payload[@"business"];
     if ([business isEqualToString:@"PLAN_RETURN"]) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
@@ -252,7 +260,7 @@
     }
 }
 
-- (void)webSocketManagerDidSendAllData:(DCWebSocketManager *)manager {
+- (void)webSocketManagerDidFilishSend:(DCWebSocketManager *)manager {
     self.isSyncing = NO;
     [self syncData];
 }

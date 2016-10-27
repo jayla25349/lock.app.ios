@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DCWebSocketReqeust.h"
+#import "DCWebSocketRequest.h"
 #import "DCWebSocketResponse.h"
 @protocol DCWebSocketManagerDelegate;
 
@@ -16,24 +16,21 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DCWebSocketManager : NSObject
 @property (nonatomic, weak) id<DCWebSocketManagerDelegate> delegate;
 
-- (instancetype)initWithUserNumber:(NSString *)number;
+- (instancetype)initWithURL:(NSURL *)url;
 
-//连接
 - (void)connect;
-
-//关闭
 - (void)close;
 
-//发送数据
-- (DCWebSocketReqeust *)sendData:(NSDictionary *)data withId:(NSString *)Id;
+- (void)sendRequest:(DCWebSocketRequest *)request;
+- (void)sendResponse:(DCWebSocketResponse *)response;
 
 @end
 
 @protocol DCWebSocketManagerDelegate <NSObject>
 @optional
 - (void)webSocketManager:(DCWebSocketManager *)manager didReceiveData:(DCWebSocketResponse *)response;
-- (void)webSocketManager:(DCWebSocketManager *)manager didSendData:(DCWebSocketReqeust *)request;
-- (void)webSocketManagerDidSendAllData:(DCWebSocketManager *)manager;
+- (void)webSocketManager:(DCWebSocketManager *)manager didReceiveAsk:(DCWebSocketRequest *)request;
+- (void)webSocketManagerDidFilishSend:(DCWebSocketManager *)manager;
 @end
 
 NS_ASSUME_NONNULL_END

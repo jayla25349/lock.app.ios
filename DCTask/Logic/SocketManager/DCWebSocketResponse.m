@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSData *jsonData = [payload dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     if (error) {
+        DDLogError(@"序列化数据失败：%@", error);
         return nil;
     }
     
@@ -35,10 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)ask {
     NSDictionary *dataDic = @{@"directive":@"ask", @"data":@{@"id":self.Id}};
     NSError *error = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataDic
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataDic options:0 error:&error];
     if (error) {
+        DDLogError(@"反序列化数据失败：%@", error);
         return nil;
     }
     

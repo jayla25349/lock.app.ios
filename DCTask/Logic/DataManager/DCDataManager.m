@@ -22,7 +22,7 @@
 /**********************************************************************/
 
 //批量上传图片
-- (void)uploadPictures:(NSMutableArray<Picture *> *)pics complete:(void (^)(void))block {
+- (void)uploadPictures:(NSMutableArray<Picture *> *)pics complete:(void (^)(BOOL filished))block {
     Picture *pic = [pics popFirstObject];
     if (pic) {
         [[DCAppEngine shareEngine].networkManager HTTP_POST:URL_SERVER api:@"/docs/upload" parameters:^(id<ParameterDic>  _Nonnull parameter) {
@@ -51,10 +51,14 @@
                     }];
                 }
             }
-        } failure:nil];
+        } failure:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject, NSError * _Nonnull error) {
+            if (block) {
+                block(NO);
+            }
+        }];
     } else {
         if (block) {
-            block();
+            block(YES);
         }
     }
 }
@@ -96,12 +100,16 @@
                 if (tempArray.count>0) {
                     @weakify(self)
                     self.isSyncing = YES;
-                    [self uploadPictures:tempArray complete:^{
+                    [self uploadPictures:tempArray complete:^(BOOL filished) {
                         @strongify(self)
-                        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
-                            queue.status = @1;//正在同步
-                            [self.socketManager sendRequest:reqeust];
-                        }];
+                        if (filished) {
+                            [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+                                queue.status = @1;//正在同步
+                                [self.socketManager sendRequest:reqeust];
+                            }];
+                        } else {
+                            self.isSyncing = NO;
+                        }
                     }];
                 } else {
                     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {

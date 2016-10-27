@@ -222,11 +222,14 @@ DDLogDebug(@"******************************请求完成(%lu)********************
     
     //请求网络数据
     __weak typeof(self) weakSelf = self;
-    NSURLSessionDataTask *dataTask = [self GET:requestUrl parameters:reqeustParams progress:downloadProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [weakSelf handleSussecc:task response:responseObject success:success failure:failure];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [weakSelf handleFailure:task error:error failure:failure];
-    }];
+    NSURLSessionDataTask *dataTask = [self GET:requestUrl
+                                    parameters:reqeustParams
+                                      progress:downloadProgress
+                                       success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                           [weakSelf handleSussecc:task response:responseObject success:success failure:failure];
+                                       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                           [weakSelf handleFailure:task error:error failure:failure];
+                                       }];
     
     return dataTask;
 }
@@ -253,11 +256,15 @@ DDLogDebug(@"******************************请求完成(%lu)********************
     
     //请求网络数据
     __weak typeof(self) weakSelf = self;
-    NSURLSessionDataTask *dataTask = [self POST:requestUrl parameters:reqeustParams constructingBodyWithBlock:block progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [weakSelf handleSussecc:task response:responseObject success:success failure:failure];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [weakSelf handleFailure:task error:error failure:failure];
-    }];
+    NSURLSessionDataTask *dataTask = [self POST:requestUrl
+                                     parameters:reqeustParams
+                      constructingBodyWithBlock:block
+                                       progress:uploadProgress
+                                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                            [weakSelf handleSussecc:task response:responseObject success:success failure:failure];
+                                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                            [weakSelf handleFailure:task error:error failure:failure];
+                                        }];
     
     return dataTask;
 }

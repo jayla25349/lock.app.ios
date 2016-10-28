@@ -8,17 +8,18 @@
 
 #import "DCHumitureCell.h"
 
+@interface DCHumitureCell ()
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *humidityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
+@end
+
 @implementation DCHumitureCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)configWithHumiture:(Humiture *)humiture {
+    self.titleLabel.text = humiture.room_name;
+    self.humidityLabel.text = [NSString stringWithFormat:@"湿度：%.0f%%", humiture.humidity.floatValue*100];
+    self.temperatureLabel.text = [NSString stringWithFormat:@"湿度：%.02f°C", humiture.temperature.floatValue];
 }
 
 @end

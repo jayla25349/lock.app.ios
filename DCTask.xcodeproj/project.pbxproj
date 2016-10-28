@@ -77,6 +77,8 @@
 		EC0EB2F51DC187AB003AFDAA /* DCWebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0EB2F01DC187AB003AFDAA /* DCWebSocketManager.m */; };
 		EC0EB2F61DC187AB003AFDAA /* DCWebSocketRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0EB2F21DC187AB003AFDAA /* DCWebSocketRequest.m */; };
 		EC0EB2F71DC187AB003AFDAA /* DCWebSocketResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0EB2F41DC187AB003AFDAA /* DCWebSocketResponse.m */; };
+		ECAF575D1DC2E08C002E32A2 /* locks.json in Resources */ = {isa = PBXBuildFile; fileRef = ECAF575C1DC2E08C002E32A2 /* locks.json */; };
+		ECAF575F1DC2E0AC002E32A2 /* humiture.json in Resources */ = {isa = PBXBuildFile; fileRef = ECAF575E1DC2E0AC002E32A2 /* humiture.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -218,6 +220,8 @@
 		EC0EB2F21DC187AB003AFDAA /* DCWebSocketRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWebSocketRequest.m; sourceTree = "<group>"; };
 		EC0EB2F31DC187AB003AFDAA /* DCWebSocketResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebSocketResponse.h; sourceTree = "<group>"; };
 		EC0EB2F41DC187AB003AFDAA /* DCWebSocketResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWebSocketResponse.m; sourceTree = "<group>"; };
+		ECAF575C1DC2E08C002E32A2 /* locks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locks.json; sourceTree = "<group>"; };
+		ECAF575E1DC2E0AC002E32A2 /* humiture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = humiture.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +267,8 @@
 			children = (
 				E3109FA11D854EB3006DD8EF /* plan.json */,
 				E3C538F11D9656E6008C1990 /* replay.json */,
+				ECAF575C1DC2E08C002E32A2 /* locks.json */,
+				ECAF575E1DC2E0AC002E32A2 /* humiture.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -772,9 +778,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECAF575F1DC2E0AC002E32A2 /* humiture.json in Resources */,
 				E3C538F21D9656E6008C1990 /* replay.json in Resources */,
 				E305EAF91D89AB83008DD4E8 /* Main.storyboard in Resources */,
 				E3109FA21D854EB3006DD8EF /* plan.json in Resources */,
+				ECAF575D1DC2E08C002E32A2 /* locks.json in Resources */,
 				E352D5BF1D7B222A00CB4B93 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -824,7 +832,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

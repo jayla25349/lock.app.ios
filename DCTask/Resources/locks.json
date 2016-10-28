@@ -1,0 +1,10 @@
+{
+    "business": "LOCKS_AUTH",
+    "locks": [{
+              "lock_mac": "00:00:00:00:01",
+              "lock_name": "锁名称1/柜锁名称1"
+              }, {
+              "lock_mac": "00:00:00:00:02",
+              "lock_name": "锁名称2/柜锁名称2"
+              }]
+}

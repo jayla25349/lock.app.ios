@@ -10,4 +10,6 @@
 
 @interface DCHumitureCell : UITableViewCell
 
+- (void)configWithHumiture:(Humiture *)humiture;
+
 @end

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DCLoginVC.h"
 #import "DCRegisterVC.h"
+#import <JSPatchPlatform/JSPatch.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +18,7 @@
 @implementation AppDelegate
 
 + (void)initialize {
+    [JSPatch startWithAppKey:@"6b71c529af64abac"];
     [DCAppEngine registerManager:[DCAppEngine shareEngine].dataManager];
     [DCAppEngine registerManager:[DCAppEngine shareEngine].userManager];
 }
@@ -60,6 +62,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [JSPatch sync];
     [[DCAppEngine shareEngine] applicationDidBecomeActive:application];
 }
 

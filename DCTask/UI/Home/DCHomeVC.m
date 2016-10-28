@@ -48,8 +48,6 @@ static NSString *cellIdentifier = @"DCHomeCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initView];
-    
     [Plan MR_performFetch:self.fetchedResultsController1];
     [self controllerDidChangeContent:self.fetchedResultsController1];
     
@@ -93,18 +91,6 @@ static NSString *cellIdentifier = @"DCHomeCell";
 /**********************************************************************/
 #pragma mark - Private
 /**********************************************************************/
-
-- (void)initView {
-//    CGRect bounds = CGRectMake(0, 0, 44, 22);
-//    UIImage *image = [UIImage imageWithSize:bounds.size drawBlock:^(CGContextRef  _Nonnull context) {
-//        CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
-//        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(bounds, 0.5, 0.5)
-//                                                        cornerRadius:5.0f];
-//        [path setLineWidth:1.0f];
-//        [path stroke];
-//    }];
-//    [self.openDoorButton setBackgroundImage:image forState:UIControlStateNormal];
-}
 
 - (NSFetchedResultsController *)fetchedResultsController1 {
     if (_fetchedResultsController1 != nil) {

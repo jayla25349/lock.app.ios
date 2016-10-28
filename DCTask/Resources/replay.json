@@ -1,12 +1,12 @@
 {
     "business": "RESULT_RETURN",
-    "plan_id": "巡检计划id",
+    "plan_id": "1",
     "state": "巡检状态（2-处理中、3-已完成）",
     "items": [{
               "item_id": "计划数据项id1",
-              "state": "数据项状态（1-成功，0-失败）"
+              "state": 0
               }, {
               "item_id": "计划数据项id2",
-              "state": "数据项状态（1-成功，0-失败）"
+              "state": 1
               }]
 }

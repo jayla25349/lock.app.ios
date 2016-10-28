@@ -16,10 +16,6 @@
 
 @implementation DCPopView
 
-- (void)dealloc {
-    DDLogDebug(@"%s", __PRETTY_FUNCTION__);
-}
-
 - (instancetype)init {
     self = [super init];
     if (self) {

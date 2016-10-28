@@ -138,11 +138,14 @@
     [self.socketManager connect];
     
     //测试数据
-    NSURL *jsonUrl = [[NSBundle mainBundle] URLForResource:@"plan" withExtension:@"json"];
-    NSData *jsonData = [NSData dataWithContentsOfURL:jsonUrl];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    DCWebSocketResponse *response = [DCWebSocketResponse responseWithId:@"123" payload:jsonString];
-    [self webSocketManager:self.socketManager didReceiveData:response];
+    NSArray<NSString *> *items = @[@"plan", @"locks", @"humiture"];
+    [items enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSURL *jsonUrl = [[NSBundle mainBundle] URLForResource:obj withExtension:@"json"];
+        NSData *jsonData = [NSData dataWithContentsOfURL:jsonUrl];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        DCWebSocketResponse *response = [DCWebSocketResponse responseWithId:[NSString stringWithFormat:@"%ld", idx] payload:jsonString];
+        [self webSocketManager:self.socketManager didReceiveData:response];
+    }];
 }
 
 - (void)userLogout {
@@ -231,7 +234,12 @@
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id=%@", request.Id];
             Queue *queue = [Queue MR_findFirstWithPredicate:predicate inContext:localContext];
             if (queue) {
-                [localContext deleteObject:queue];
+                
+                if (queue.plan.type.integerValue == 2) {//拒绝任务
+                    [localContext deleteObject:queue.plan];
+                } else {
+                    [localContext deleteObject:queue];
+                }
             }
         }];
     } else if ([business isEqualToString:@"RESULT"]) {

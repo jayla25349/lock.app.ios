@@ -3,7 +3,7 @@
     "plan_id": "1",
     "plan_name": "ups监视输出电压",
     "dispatch_man": "刘经理",
-    "plan_date": "2016-8-26 20:00",
+    "plan_date": 12345,
     "room_name": "巡检机房",
     "lock_mac": "00:00:00:00:00",
     "items": [{
@@ -12,13 +12,31 @@
               "equipment_name": "巡检设备",
               "cabinet_name": "巡检机柜名称",
               "cabinet_lock_mac": "00:00:00:00:01",
-              "item_name": "输出电压"
+              "item_name": "输出电压",
+              "item_flag": 0
               }, {
               "item_id": "2",
               "item_cate_name": "UPS",
               "equipment_name": "巡检设备",
               "cabinet_name": "巡检机柜名称",
               "cabinet_lock_mac": "00:00:00:00:02",
-              "item_name": "输出电点流"
+              "item_name": "输出电点流",
+              "item_flag": 0
+              }, {
+              "item_id": "3",
+              "item_cate_name": "温湿度",
+              "equipment_name": "巡检设备",
+              "cabinet_name": "巡检机柜名称",
+              "cabinet_lock_mac": "00:00:00:00:03",
+              "item_name": "温度",
+              "item_flag": 1
+              }, {
+              "item_id": "4",
+              "item_cate_name": "温湿度",
+              "equipment_name": "巡检设备",
+              "cabinet_name": "巡检机柜名称",
+              "cabinet_lock_mac": "00:00:00:00:04",
+              "item_name": "湿度",
+              "item_flag": 2
               }]
 }

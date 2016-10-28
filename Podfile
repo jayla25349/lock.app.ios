@@ -14,4 +14,5 @@ target 'DCTask' do
     pod 'UITableView+FDTemplateLayoutCell'
     pod 'IQKeyboardManager'
     pod 'MWPhotoBrowser'
+    pod 'JSPatchPlatform'
 end

@@ -24,6 +24,9 @@ PODS:
     - CocoaLumberjack/Default
   - DACircularProgress (2.3.1)
   - IQKeyboardManager (3.3.7)
+  - JSPatchPlatform (1.6.2):
+    - JSPatchPlatform/Core (= 1.6.2)
+  - JSPatchPlatform/Core (1.6.2)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
@@ -56,6 +59,7 @@ DEPENDENCIES:
   - AFNetworking
   - CocoaLumberjack
   - IQKeyboardManager
+  - JSPatchPlatform
   - MagicalRecord
   - Masonry
   - MJRefresh
@@ -72,6 +76,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
+  JSPatchPlatform: 105e331f1b899a397d2bc0300a9ace9f9d7b8f08
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -85,6 +90,6 @@ SPEC CHECKSUMS:
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: d99f87c53a3699e980ff46d38b766aba69f3191b
+PODFILE CHECKSUM: 092b6418a2e17cd036c620146ea552ce4377c9b4
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

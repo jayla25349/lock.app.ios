@@ -81,8 +81,7 @@ static NSString * const characteristic_value_failure = @"0x04FC020002";
     DDLogDebug(@"%s", __PRETTY_FUNCTION__);
     
     if (central.state == CBCentralManagerStatePoweredOn) {
-        [central scanForPeripheralsWithServices:nil
-                                        options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @YES}];
+        [central scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @YES}];
     }
 }
 
@@ -181,7 +180,7 @@ static NSString * const characteristic_value_failure = @"0x04FC020002";
     DDLogDebug(@"%s %@ %@", __PRETTY_FUNCTION__, characteristic, error);
     if ([self.delegate respondsToSelector:@selector(bluetoothManager:didOpen:)]) {
         dispatch_async_on_main_queue(^{
-            if (!error && [characteristic.value.hexString isEqualToString:@"0x04FC020001"]) {
+            if (!error && [characteristic.value.hexString isEqualToString:characteristic_value_success]) {
                 [self.delegate bluetoothManager:self didOpen:YES];
             } else {
                 [self.delegate bluetoothManager:self didOpen:NO];

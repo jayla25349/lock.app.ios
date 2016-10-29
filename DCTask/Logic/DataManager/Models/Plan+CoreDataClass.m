@@ -82,7 +82,7 @@
 - (nullable NSArray<PlanItem *> *)unfinishedItems {
     NSMutableArray *tempArray = [NSMutableArray array];
     [self.items enumerateObjectsUsingBlock:^(PlanItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.state.integerValue==-1) {
+        if (obj.item_flag.integerValue==0 && obj.state.integerValue==-1) {
             [tempArray addObject:obj];
         }
     }];

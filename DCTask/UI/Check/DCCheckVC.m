@@ -10,7 +10,8 @@
 #import "DCCheckListCell.h"
 #import "DCCheckMenuCell.h"
 
-static NSString * const listCellIdentifier = @"DCCheckListCell";
+static NSString * const listCell1Identifier = @"DCCheckListCell1";
+static NSString * const listCell2Identifier = @"DCCheckListCell2";
 static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 
 @interface DCCheckVC ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, DCCheckListCellDelegate, MWPhotoBrowserDelegate>
@@ -37,19 +38,19 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
     if (!self.editable) {
         self.navigationItem.rightBarButtonItem = nil;
     }
+    
+    [self reloadData];
 }
 
 /**********************************************************************/
 #pragma mark - Private
 /**********************************************************************/
 
-
-- (void)setPlan:(Plan *)plan {
-    _plan = plan;
+- (void)reloadData {
     
     //分类
     NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
-    [plan.items enumerateObjectsUsingBlock:^(PlanItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.plan.items enumerateObjectsUsingBlock:^(PlanItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableArray *tempArray = tempDic[obj.item_cate_name];
         if (!tempArray) {
             tempArray = [NSMutableArray array];
@@ -67,6 +68,12 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
             return [obj1.item_name compare:obj2.item_name];
         }];
     }];
+    
+    //设置默认选中
+    if (self.categorys.count>0) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.menuTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
 }
 
 /**********************************************************************/
@@ -130,18 +137,24 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 }
 
 - (IBAction)lastAction:(UIButton *)sender {
-    NSIndexPath *indexPath = [self.menuTableView indexPathForSelectedRow];
-    if (indexPath && indexPath.row-1>=0) {
-        indexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.row-1];
-        [self.contentTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    NSInteger index = self.menuTableView.indexPathForSelectedRow.row - 1;
+    if (index>=0 && index<self.categorys.count) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.menuTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self.contentTableView reloadData];
+    } else {
+        [SVProgressHUD showInfoWithStatus:@"已是最开始一项！"];
     }
 }
 
 - (IBAction)nextAction:(UIButton *)sender {
-    NSIndexPath *indexPath = [self.menuTableView indexPathForSelectedRow];
-    if (indexPath && indexPath.row+1<self.categorys.count) {
-        indexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.row+1];
-        [self.contentTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    NSInteger index = self.menuTableView.indexPathForSelectedRow.row + 1;
+    if (index>=0 && index<self.categorys.count) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.menuTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self.contentTableView reloadData];
+    } else {
+        [SVProgressHUD showInfoWithStatus:@"已是最后一项！"];
     }
 }
 
@@ -150,16 +163,13 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 /**********************************************************************/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (tableView == self.contentTableView) {
-        return self.categorys.count;
-    } else {
-        return 1;
-    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.contentTableView) {
-        NSString *category = self.categorys[section];
+        NSInteger index = self.menuTableView.indexPathForSelectedRow.row;
+        NSString *category = self.categorys[index];
         NSArray<PlanItem *> *items = self.dataSource[category];
         return items.count;
     } else {
@@ -169,8 +179,9 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (tableView == self.contentTableView) {
-        NSString *category = self.categorys[section];
-        return [NSString stringWithFormat:@"%ld.%@", section+1, category];
+        NSInteger index = self.menuTableView.indexPathForSelectedRow.row;
+        NSString *category = self.categorys[index];
+        return [NSString stringWithFormat:@"%ld.%@", index+1, category];
     } else {
         return @"选择巡检类别";
     }
@@ -178,11 +189,14 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.contentTableView) {
-        return [tableView fd_heightForCellWithIdentifier:listCellIdentifier configuration:^(DCCheckListCell *cell) {
-            NSString *category = self.categorys[indexPath.section];
-            NSArray<PlanItem *> *items = self.dataSource[category];
-            PlanItem *planItem = items[indexPath.row];
-            [cell configWithPlanItem:planItem indexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        NSInteger index = self.menuTableView.indexPathForSelectedRow.row;
+        NSString *category = self.categorys[index];
+        NSArray<PlanItem *> *items = self.dataSource[category];
+        PlanItem *planItem = items[indexPath.row];
+        
+        NSString *cellIndentifier = planItem.item_flag.integerValue == 0?listCell1Identifier:listCell2Identifier;
+        return [tableView fd_heightForCellWithIdentifier:cellIndentifier configuration:^(DCCheckListCell *cell) {
+            [cell configWithPlanItem:planItem serial:[NSString stringWithFormat:@"%ld.%ld", index+1, indexPath.row+1]];
         }];
     } else {
         return 44;
@@ -190,19 +204,23 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *category = self.categorys[indexPath.section];
     
     if (tableView == self.contentTableView) {
-        DCCheckListCell *cell = [tableView dequeueReusableCellWithIdentifier:listCellIdentifier];
-        cell.delegate = self;
-        cell.editable = self.editable;
-        
+        NSInteger index = self.menuTableView.indexPathForSelectedRow.row;
+        NSString *category = self.categorys[index];
         NSArray<PlanItem *> *items = self.dataSource[category];
         PlanItem *planItem = items[indexPath.row];
-        [cell configWithPlanItem:planItem indexPath:indexPath];
+        
+        NSString *cellIndentifier = planItem.item_flag.integerValue == 0?listCell1Identifier:listCell2Identifier;
+        DCCheckListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+        cell.delegate = self;
+        cell.editable = self.editable;
+        [cell configWithPlanItem:planItem serial:[NSString stringWithFormat:@"%ld.%ld", index+1, indexPath.row+1]];
         
         return cell;
     } else {
+        NSString *category = self.categorys[indexPath.row];
+        
         DCCheckMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier];
         cell.textLabel.text = [NSString stringWithFormat:@"%ld.%@", indexPath.row+1, category];
         
@@ -210,19 +228,10 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    if (tableView == self.contentTableView) {
-        [self.menuTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:section inSection:0]
-                                        animated:YES
-                                  scrollPosition:UITableViewScrollPositionTop];
-    }
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.menuTableView) {
-        [self.contentTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:indexPath.row]
-                                     atScrollPosition:UITableViewScrollPositionTop
-                                             animated:YES];
+        [self.contentTableView reloadData];
+        [self menuAction:self.menuButton];
     }
 }
 

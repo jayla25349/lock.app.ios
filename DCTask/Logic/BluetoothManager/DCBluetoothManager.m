@@ -81,7 +81,8 @@ static NSString * const characteristic_value_failure = @"0x04FC020002";
     DDLogDebug(@"%s", __PRETTY_FUNCTION__);
     
     if (central.state == CBCentralManagerStatePoweredOn) {
-        [central scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @YES}];
+        [central scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:service_UUID]]
+                                        options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @YES}];
     }
 }
 

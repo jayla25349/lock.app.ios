@@ -8,10 +8,10 @@
 
 #import "DCCheckListCell.h"
 #import "DCCheckImageCell.h"
-#import "DCCheckEditCell.h"
+#import "DCCheckAddCell.h"
 
 static NSString * const imageCellIdentifier = @"DCCheckImageCell";
-static NSString * const editCellIdentifier = @"DCCheckEditCell";
+static NSString * const editCellIdentifier = @"DCCheckAddCell";
 
 @interface DCCheckListCell ()<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -73,13 +73,43 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
 #pragma mark - Public
 /**********************************************************************/
 
-- (void)configWithPlanItem:(PlanItem *)planItem indexPath:(NSIndexPath *)indexPath {
+- (void)configWithPlanItem:(PlanItem *)planItem serial:(NSString *)serial {
     self.planItem = planItem;
     
-    self.titleLabel.text = [NSString stringWithFormat:@"%ld.%ld %@", indexPath.section+1, indexPath.row+1, planItem.item_name];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@ %@", serial, planItem.item_name];
     self.normalButton.selected = (planItem.state.integerValue==0)?YES:NO;
     self.errorButton.selected = (planItem.state.integerValue==1)?YES:NO;
-    self.inputTextView.text = planItem.result;
+    switch (planItem.item_flag.integerValue) {
+        case 0:{
+            self.inputTextView.text = planItem.result;
+        }break;
+        case 1:{
+            Humiture *humiture = [Humiture MR_findFirstByAttribute:@"room_name" withValue:planItem.plan.room_name];
+            if (humiture && planItem.result.length==0) {
+                self.inputTextView.text = [NSString stringWithFormat:@"温度：%.1f°C", humiture.temperature.floatValue];
+            } else {
+                self.inputTextView.text = planItem.result;
+            }
+        }break;
+        case 2:{
+            Humiture *humiture = [Humiture MR_findFirstByAttribute:@"room_name" withValue:planItem.plan.room_name];
+            if (humiture && planItem.result.length==0) {
+                self.inputTextView.text = [NSString stringWithFormat:@"湿度：%.0f%%", humiture.humidity.floatValue*100];
+            } else {
+                self.inputTextView.text = planItem.result;
+            }
+        }break;
+        case 3:{
+            Humiture *humiture = [Humiture MR_findFirstByAttribute:@"room_name" withValue:planItem.plan.room_name];
+            if (humiture && planItem.result.length==0) {
+                self.inputTextView.text = [NSString stringWithFormat:@"温度：%.1f°C\n湿度：%.0f%%",
+                                           humiture.temperature.floatValue,
+                                           humiture.humidity.floatValue*100];
+            } else {
+                self.inputTextView.text = planItem.result;
+            }
+        }break;
+    }
     self.noteTextField.text = planItem.note;
     
     [self.collectionView reloadData];
@@ -145,7 +175,7 @@ static NSString * const editCellIdentifier = @"DCCheckEditCell";
         
         return cell;
     } else {
-        DCCheckEditCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:editCellIdentifier forIndexPath:indexPath];
+        DCCheckAddCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:editCellIdentifier forIndexPath:indexPath];
         
         return cell;
     }

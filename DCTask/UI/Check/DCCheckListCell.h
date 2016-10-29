@@ -14,7 +14,7 @@
 @property (nonatomic, readonly) PlanItem *planItem;
 @property (nonatomic, assign) BOOL editable;
 
-- (void)configWithPlanItem:(PlanItem *)planItem indexPath:(NSIndexPath *)indexPath;
+- (void)configWithPlanItem:(PlanItem *)planItem serial:(NSString *)serial;
 
 @end
 

@@ -43,7 +43,7 @@
     self.messageLabel.textColor = [UIColor redColor];
     self.lockView.userInteractionEnabled = NO;
     
-    [self performSelector:@selector(showMessage:) withObject:@"请输入手势密码" afterDelay:1.5f];
+    [self performSelector:@selector(showMessage:) withObject:@"请输入手势密码" afterDelay:1.0f];
 }
 
 /**********************************************************************/

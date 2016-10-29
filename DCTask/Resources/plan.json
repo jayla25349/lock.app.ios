@@ -4,7 +4,7 @@
     "plan_name": "ups监视输出电压",
     "dispatch_man": "刘经理",
     "plan_date": 12345,
-    "room_name": "巡检机房",
+    "room_name": "数据收集机房",
     "lock_mac": "00:00:00:00:00",
     "items": [{
               "item_id": "1",

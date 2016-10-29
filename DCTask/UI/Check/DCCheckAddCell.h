@@ -1,13 +1,13 @@
 //
-//  DCCheckEditCell.m
+//  DCCheckAddCell.h
 //  DCTask
 //
 //  Created by 青秀斌 on 16/9/20.
 //  Copyright © 2016年 kylincc. All rights reserved.
 //
 
-#import "DCCheckEditCell.h"
+#import <UIKit/UIKit.h>
 
-@implementation DCCheckEditCell
+@interface DCCheckAddCell : UICollectionViewCell
 
 @end

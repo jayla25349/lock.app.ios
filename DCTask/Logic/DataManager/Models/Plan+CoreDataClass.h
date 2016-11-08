@@ -27,9 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 //提交
 - (void)submit;
 
-//未完成项
-- (nullable NSArray<PlanItem *> *)unfinishedItems;
-
 @end
 
 NS_ASSUME_NONNULL_END

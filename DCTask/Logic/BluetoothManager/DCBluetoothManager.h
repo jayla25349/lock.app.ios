@@ -14,7 +14,7 @@
 @property (nonatomic, weak) id<DCBluetoothManagerDelegate> delegate;
 @property (nonatomic, readonly) NSMutableArray<CBPeripheral *> *peripherals;
 
-- (instancetype)initWithNumber:(int)number;
+- (instancetype)initWithNumber:(NSString *)number password:(NSString *)password;
 - (void)openDoor:(CBPeripheral *)peripheral;
 
 @end

@@ -102,7 +102,7 @@
     if (count>0) {
         [self.tableView dismissBlank];
     } else {
-        [self.tableView showBlankLoadNoData:nil];
+        [self.tableView showBlankWithImage:[UIImage imageNamed:@"home_blank"] title:nil message:nil action:nil offsetY:-100];
     }
 }
 

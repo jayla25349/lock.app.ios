@@ -37,14 +37,15 @@ NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
                    success:(void (^)(User *user))success
                    failure:(void (^)(NSError *error))failure{
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
-        self.user = [User MR_createEntityInContext:localContext];
-        self.user.createDate = [NSDate date];
-        self.user.loginDate = [NSDate date];
-        self.user.number = number;
-        self.user.name = name;
-        self.user.password = password;
-        self.user.gesture = gesture;
+        User *user = [User MR_createEntityInContext:localContext];
+        user.createDate = [NSDate date];
+        user.loginDate = [NSDate date];
+        user.number = number;
+        user.name = name;
+        user.password = password;
+        user.gesture = gesture;
     } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+        self.user = [User MR_findFirstOrderedByAttribute:@"loginDate" ascending:NO];
         if (!error) {
             [[NSNotificationCenter defaultCenter] postNotificationName:DCUserLoginNotification object:self];
             if (success) {
@@ -69,13 +70,19 @@ NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
                  success:(void (^)(User *user))success
                  failure:(void (^)(NSError *error))failure {
     if (self.user && [self.user.gesture isEqualToString:gesture]) {
-        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
-            self.user.loginDate = [NSDate date];
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+            User *user = [self.user MR_inContext:localContext];
+            user.loginDate = [NSDate date];
+        } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:DCUserLoginNotification object:self];
+            if (success) {
+                success(self.user);
+            } else {
+                if (failure) {
+                    failure(error);
+                }
+            }
         }];
-        [[NSNotificationCenter defaultCenter] postNotificationName:DCUserLoginNotification object:self];
-        if (success) {
-            success(self.user);
-        }
     } else {
         if (failure) {
             failure(nil);
@@ -94,20 +101,25 @@ NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
 - (void)updatePassword:(NSString *)password
                success:(void (^)(User *user))success
                failure:(void (^)(NSError *error))failure {
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
-        User *user = [self.user MR_inContext:localContext];
-        user.password = password;
-    } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
-        if (!error) {
+    if (self.user) {
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+            User *user = [self.user MR_inContext:localContext];
+            user.password = password;
+        } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:DCUserLoginNotification object:self];
             if (success) {
                 success(self.user);
+            } else {
+                if (failure) {
+                    failure(error);
+                }
             }
-        } else {
-            if (failure) {
-                failure(error);
-            }
+        }];
+    } else {
+        if (failure) {
+            failure(nil);
         }
-    }];
+    }
 }
 
 /**********************************************************************/

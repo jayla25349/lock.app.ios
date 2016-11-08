@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Humiture" representedClassName="Humiture" syncable="YES">
         <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="humidity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
@@ -49,7 +49,7 @@
         <attribute name="item_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="result" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="state" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="state" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="pics" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Picture" inverseName="planItem" inverseEntity="Picture" syncable="YES"/>
         <relationship name="plan" maxCount="1" deletionRule="Nullify" destinationEntity="Plan" inverseName="items" inverseEntity="Plan" syncable="YES"/>
     </entity>
@@ -76,7 +76,7 @@
         <element name="Lock" positionX="-468" positionY="-585" width="128" height="118"/>
         <element name="Picture" positionX="-56" positionY="-459" width="128" height="118"/>
         <element name="Plan" positionX="-468" positionY="-441" width="128" height="270"/>
-        <element name="PlanItem" positionX="-263" positionY="-523" width="128" height="223"/>
+        <element name="PlanItem" positionX="-263" positionY="-523" width="128" height="225"/>
         <element name="Queue" positionX="-261" positionY="-270" width="128" height="120"/>
         <element name="User" positionX="-668" positionY="-630" width="128" height="178"/>
     </elements>

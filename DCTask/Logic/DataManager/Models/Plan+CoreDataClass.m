@@ -25,10 +25,11 @@
             queue.id = [[NSUUID UUID] UUIDString];
             queue.createDate = plan.decideDate;
             queue.type = @0;    //状态队列
-            [plan addQueuesObject:queue];
+            queue.plan = plan;
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
                 [[DCAppEngine shareEngine].dataManager syncData];
+                [[DCAppEngine shareEngine].pushManager scheduleLocalNotification:self];
             }
         }];
     }
@@ -48,7 +49,7 @@
             queue.id = [[NSUUID UUID] UUIDString];
             queue.createDate = plan.decideDate;
             queue.type = @0;    //状态队列
-            [plan addQueuesObject:queue];
+            queue.plan = plan;
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
                 [[DCAppEngine shareEngine].dataManager syncData];
@@ -69,24 +70,13 @@
             queue.id = [[NSUUID UUID] UUIDString];
             queue.createDate = plan.submitDate;
             queue.type = @1;    //巡检队列
-            [plan addQueuesObject:queue];
+            queue.plan = plan;
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
                 [[DCAppEngine shareEngine].dataManager syncData];
             }
         }];
     }
-}
-
-//未完成项
-- (nullable NSArray<PlanItem *> *)unfinishedItems {
-    NSMutableArray *tempArray = [NSMutableArray array];
-    [self.items enumerateObjectsUsingBlock:^(PlanItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.item_flag.integerValue==0 && obj.state.integerValue==-1) {
-            [tempArray addObject:obj];
-        }
-    }];
-    return tempArray.count>0?tempArray:nil;
 }
 
 @end

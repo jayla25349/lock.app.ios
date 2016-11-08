@@ -10,8 +10,7 @@
 #import "DCCheckListCell.h"
 #import "DCCheckMenuCell.h"
 
-static NSString * const listCell1Identifier = @"DCCheckListCell1";
-static NSString * const listCell2Identifier = @"DCCheckListCell2";
+static NSString * const listCellIdentifier = @"DCCheckListCell";
 static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 
 @interface DCCheckVC ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, DCCheckListCellDelegate, MWPhotoBrowserDelegate>
@@ -81,9 +80,19 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 /**********************************************************************/
 
 - (IBAction)submitAction:(id)sender {
-    NSArray<PlanItem *> *items = [self.plan unfinishedItems];
-    if (items) {
-        [SVProgressHUD showInfoWithStatus:@"未完成巡检，请完善后再提交"];
+    __block NSString *message = nil;
+    [self.categorys enumerateObjectsUsingBlock:^(NSString * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+        NSArray<PlanItem *> *items = self.dataSource[obj1];
+        [items enumerateObjectsUsingBlock:^(PlanItem * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+            if (obj2.result.length==0 || obj2.state.integerValue==-1) {
+                message = [NSString stringWithFormat:@"%lu.%lu未填写巡检内容", idx1+1, idx2+1];
+                *stop1 = YES;
+                *stop2 = YES;
+            }
+        }];
+    }];
+    if (message) {
+        [SVProgressHUD showInfoWithStatus:message];
     } else {
         AlertView *alertView = [AlertView alertControllerWithTitle:@"确认要提交你的操作吗？" message:nil];
         [alertView addButtonWithTitle:@"确认" action:^(AlertView * _Nonnull alertView) {
@@ -115,7 +124,7 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
         [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             self.menuContentView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6f];
             [self.menuTableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(self.menuContentView.mas_centerX);
+                make.left.equalTo(self.menuContentView.mas_left);
             }];
             [self.menuContentView layoutIfNeeded];
         } completion:nil];
@@ -194,8 +203,7 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
         NSArray<PlanItem *> *items = self.dataSource[category];
         PlanItem *planItem = items[indexPath.row];
         
-        NSString *cellIndentifier = planItem.item_flag.integerValue == 0?listCell1Identifier:listCell2Identifier;
-        return [tableView fd_heightForCellWithIdentifier:cellIndentifier configuration:^(DCCheckListCell *cell) {
+        return [tableView fd_heightForCellWithIdentifier:listCellIdentifier configuration:^(DCCheckListCell *cell) {
             [cell configWithPlanItem:planItem serial:[NSString stringWithFormat:@"%ld.%ld", index+1, indexPath.row+1]];
         }];
     } else {
@@ -211,8 +219,7 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
         NSArray<PlanItem *> *items = self.dataSource[category];
         PlanItem *planItem = items[indexPath.row];
         
-        NSString *cellIndentifier = planItem.item_flag.integerValue == 0?listCell1Identifier:listCell2Identifier;
-        DCCheckListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+        DCCheckListCell *cell = [tableView dequeueReusableCellWithIdentifier:listCellIdentifier];
         cell.delegate = self;
         cell.editable = self.editable;
         [cell configWithPlanItem:planItem serial:[NSString stringWithFormat:@"%ld.%ld", index+1, indexPath.row+1]];

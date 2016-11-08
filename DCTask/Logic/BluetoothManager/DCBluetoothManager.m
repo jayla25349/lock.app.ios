@@ -11,21 +11,25 @@
 static NSString * const service_UUID = @"0xFF12";
 static NSString * const characteristic_UUID_write =@"FF01";
 static NSString * const characteristic_UUID_notify = @"FF02";
-static NSString * const characteristic_value_success = @"0x04FC020001";
-static NSString * const characteristic_value_failure = @"0x04FC020002";
+static NSString * const characteristic_value_success = @"04FC010001";
+static NSString * const characteristic_value_failure = @"04FC010002";
 
 @interface DCBluetoothManager ()<CBCentralManagerDelegate, CBPeripheralDelegate>
 @property (nonatomic, strong) CBCentralManager *centralManager;
 @property (nonatomic, strong) NSMutableArray<CBPeripheral *> *peripherals;
 
-@property (nonatomic, assign) int number;
+@property (nonatomic, strong) NSString * number;
+@property (nonatomic, strong) NSString * password;
 @end
 
 @implementation DCBluetoothManager
 
-- (instancetype)initWithNumber:(int)number {
+- (instancetype)initWithNumber:(NSString *)number password:(NSString *)password {
     self = [super init];
     if (self) {
+        self.number = number;
+        self.password = password;
+        
         self.peripherals = [NSMutableArray array];
         dispatch_queue_t centralQueue = dispatch_queue_create("com.manmanlai", DISPATCH_QUEUE_SERIAL);
         self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
@@ -38,21 +42,28 @@ static NSString * const characteristic_value_failure = @"0x04FC020002";
 /**********************************************************************/
 
 - (void)scan {
-    
+    if (self.centralManager.state == CBCentralManagerStatePoweredOn) {
+        [self.centralManager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
+    }
 }
 
-- (NSData *)dataWithNumber:(long)number{
+- (NSData *)dataWithNumber:(NSString *)number password:(NSString *)password{
+    if (number.length != 4 || password.length != 6) {
+        return nil;
+    }
+    
     Byte cmd[20] = {0x00};
     cmd[0] = 0x01;
     cmd[1] = 0xFC;
     cmd[2] = 0x82;
     cmd[3] = 0x0F;
     
-    cmd[4] = number>>32 & 0xFF;
-    cmd[5] = number>>24 & 0xFF;
-    cmd[6] = number>>16 & 0xFF;
-    cmd[7] = number>>8 & 0xFF;
-    cmd[8] = number & 0xFF;
+    NSString *tempString = [number stringByAppendingString:password];
+    cmd[4] = [tempString substringWithRange:NSMakeRange(0, 2)].charValue;
+    cmd[5] = [tempString substringWithRange:NSMakeRange(2, 2)].charValue;
+    cmd[6] = [tempString substringWithRange:NSMakeRange(4, 2)].charValue;
+    cmd[7] = [tempString substringWithRange:NSMakeRange(6, 2)].charValue;
+    cmd[8] = [tempString substringWithRange:NSMakeRange(8, 2)].charValue;
     
     for (int i=2; i<19; i++) {
         cmd[19] ^= cmd[i];
@@ -80,10 +91,7 @@ static NSString * const characteristic_value_failure = @"0x04FC020002";
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     DDLogDebug(@"%s", __PRETTY_FUNCTION__);
     
-    if (central.state == CBCentralManagerStatePoweredOn) {
-        [central scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:service_UUID]]
-                                        options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @YES}];
-    }
+    [self scan];
 }
 
 - (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *, id> *)dict {
@@ -162,9 +170,10 @@ static NSString * const characteristic_value_failure = @"0x04FC020002";
             [peripheral setNotifyValue:YES forCharacteristic:obj];
         }
         if ([obj.UUID isEqual:[CBUUID UUIDWithString:characteristic_UUID_write]]){
-            [peripheral writeValue:[self dataWithNumber:self.number]
-                 forCharacteristic:obj
-                              type:CBCharacteristicWriteWithResponse];
+            NSData *data = [self dataWithNumber:self.number password:self.password];
+            if (data) {
+                [peripheral writeValue:data forCharacteristic:obj type:CBCharacteristicWriteWithResponse];
+            }
         }
     }];
 }
@@ -186,6 +195,7 @@ static NSString * const characteristic_value_failure = @"0x04FC020002";
             } else {
                 [self.delegate bluetoothManager:self didOpen:NO];
             }
+            [self.centralManager cancelPeripheralConnection:peripheral];
         });
     }
 }

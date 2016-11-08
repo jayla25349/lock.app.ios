@@ -9,11 +9,13 @@
 #import "AppEngine.h"
 #import "DCDataManager.h"
 #import "DCUserManager.h"
+#import "DCPushManager.h"
 #import "DCBluetoothManager.h"
 
 @interface DCAppEngine : AppEngine
 @property (nonatomic, readonly) DCDataManager *dataManager;
 @property (nonatomic, readonly) DCUserManager *userManager;
+@property (nonatomic, readonly) DCPushManager *pushManager;
 
 + (instancetype)shareEngine;
 

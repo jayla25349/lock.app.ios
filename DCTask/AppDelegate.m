@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DCLoginVC.h"
 #import "DCRegisterVC.h"
+#import "DCPushManager.h"
 #import <JSPatchPlatform/JSPatch.h>
 
 @interface AppDelegate ()
@@ -21,6 +22,7 @@
     [JSPatch startWithAppKey:@"6b71c529af64abac"];
     [DCAppEngine registerManager:[DCAppEngine shareEngine].dataManager];
     [DCAppEngine registerManager:[DCAppEngine shareEngine].userManager];
+    [DCAppEngine registerManager:[DCAppEngine shareEngine].pushManager];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -69,6 +71,10 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [[DCAppEngine shareEngine] applicationWillTerminate:application];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [[DCAppEngine shareEngine] application:application didReceiveLocalNotification:notification];
 }
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {

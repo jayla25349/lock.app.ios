@@ -14,6 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DCWebSocketManager : NSObject
+@property (nonatomic, readonly) SRWebSocket *webSocket;
 @property (nonatomic, weak) id<DCWebSocketManagerDelegate> delegate;
 
 - (instancetype)initWithURL:(NSURL *)url;

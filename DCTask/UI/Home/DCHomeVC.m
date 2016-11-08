@@ -342,10 +342,11 @@ static NSString *cellIdentifier = @"DCHomeCell";
             [cell configWithPlan:plan index:indexPath.row+1];
         }break;
         case NSFetchedResultsChangeMove:{
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView reloadData];
+//            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+//                             withRowAnimation:UITableViewRowAnimationFade];
+//            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+//                             withRowAnimation:UITableViewRowAnimationFade];
         }break;
     }
 }
@@ -369,7 +370,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     if (count>0) {
         [tableView dismissBlank];
     } else {
-        [tableView showBlankLoadNoData:nil];
+        [tableView showBlankWithImage:[UIImage imageNamed:@"home_blank"] title:nil message:nil action:nil offsetY:-100];
     }
 }
 

@@ -11,6 +11,7 @@
 @interface DCAppEngine ()
 @property (nonatomic, strong) DCDataManager *dataManager;
 @property (nonatomic, strong) DCUserManager *userManager;
+@property (nonatomic, strong) DCPushManager *pushManager;
 @end
 
 @implementation DCAppEngine
@@ -20,6 +21,7 @@
     if (self) {
         self.dataManager = [DCDataManager new];
         self.userManager = [DCUserManager new];
+        self.pushManager = [DCPushManager new];
     }
     return self;
 }

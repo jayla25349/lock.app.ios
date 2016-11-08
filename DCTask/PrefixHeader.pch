@@ -43,8 +43,8 @@
 extern const int ddLogLevel;
 
 //#define URL_WEB_SERVICE     @"ws://echo.websocket.org"
-#define URL_WEB_SERVICE     @"ws://112.74.27.140:9000/sync/mobile"
-#define URL_SERVER          @"http://112.74.27.140:9002"
+#define URL_WEB_SERVICE     @"ws://sync.yongtiancheng.net:9000/sync/mobile/dev"
+#define URL_SERVER          @"http://sync.yongtiancheng.net:9002"
 #define HTTP_GET(action)    [DCAppEngine shareEngine].networkManager HTTP_GET:URL_SERVER api:action
 #define HTTP_POST(action)   [DCAppEngine shareEngine].networkManager HTTP_POST:URL_SERVER api:action
 

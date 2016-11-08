@@ -39,12 +39,12 @@
             DDLogInfo(@"上传进度%@", uploadProgress);
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                NSString *id = responseObject[@"id"];
+                NSString *Id = responseObject[@"id"];
                 NSString *href = responseObject[@"href"];
-                if (id.length>0) {
+                if (Id.length>0) {
                     [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
                         Picture *picture = [pic MR_inContext:localContext];
-                        picture.id = id;
+                        picture.id = Id;
                         picture.href = href;
                     } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
                         [self uploadPictures:pics complete:block];
@@ -75,10 +75,10 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status=0"];
     Queue *queue = [Queue MR_findFirstWithPredicate:predicate sortedBy:@"createDate" ascending:NO];
     if (queue) {
-        DCWebSocketRequest *reqeust = [DCWebSocketRequest reqeustWithId:queue.id payload:[queue toJSONObject]];
         
         switch (queue.type.integerValue) {
             case 0:{//状态队列
+                DCWebSocketRequest *reqeust = [DCWebSocketRequest reqeustWithId:queue.id payload:[queue toJSONObject]];
                 [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
                     queue.status = @1;//正在同步
                     [self.socketManager sendRequest:reqeust];
@@ -103,6 +103,7 @@
                     [self uploadPictures:tempArray complete:^(BOOL filished) {
                         @strongify(self)
                         if (filished) {
+                            DCWebSocketRequest *reqeust = [DCWebSocketRequest reqeustWithId:queue.id payload:[queue toJSONObject]];
                             [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
                                 queue.status = @1;//正在同步
                                 [self.socketManager sendRequest:reqeust];
@@ -112,6 +113,7 @@
                         }
                     }];
                 } else {
+                    DCWebSocketRequest *reqeust = [DCWebSocketRequest reqeustWithId:queue.id payload:[queue toJSONObject]];
                     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
                         queue.status = @1;//正在同步
                         [self.socketManager sendRequest:reqeust];
@@ -131,21 +133,21 @@
         return;
     }
     NSString *number = [DCAppEngine shareEngine].userManager.user.number;
-    NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@/%@", @"tongren", number];
+    NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@", number];
     NSURL *url = [NSURL URLWithString:urlString];
     self.socketManager = [[DCWebSocketManager alloc] initWithURL:url];
     self.socketManager.delegate = self;
     [self.socketManager connect];
     
-    //测试数据
-    NSArray<NSString *> *items = @[@"plan", @"locks", @"humiture"];
-    [items enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSURL *jsonUrl = [[NSBundle mainBundle] URLForResource:obj withExtension:@"json"];
-        NSData *jsonData = [NSData dataWithContentsOfURL:jsonUrl];
-        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        DCWebSocketResponse *response = [DCWebSocketResponse responseWithId:[NSString stringWithFormat:@"%ld", idx] payload:jsonString];
-        [self webSocketManager:self.socketManager didReceiveData:response];
-    }];
+//    //测试数据
+//    NSArray<NSString *> *items = @[@"plan", @"locks", @"humiture"];
+//    [items enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSURL *jsonUrl = [[NSBundle mainBundle] URLForResource:obj withExtension:@"json"];
+//        NSData *jsonData = [NSData dataWithContentsOfURL:jsonUrl];
+//        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        DCWebSocketResponse *response = [DCWebSocketResponse responseWithId:[NSString stringWithFormat:@"%ld", idx] payload:jsonString];
+//        [self webSocketManager:self.socketManager didReceiveData:response];
+//    }];
 }
 
 - (void)userLogout {
@@ -172,7 +174,7 @@
             plan.createDate = plan.createDate?:[NSDate date];
             plan.plan_name = response.payload[@"plan_name"];
             plan.dispatch_man = response.payload[@"dispatch_man"];
-            plan.plan_date = plan_data?[NSDate dateWithTimeIntervalSince1970:plan_data.floatValue]:nil;
+            plan.plan_date = plan_data?[NSDate dateWithTimeIntervalSince1970:plan_data.floatValue/1000.0f]:nil;
             plan.room_name = response.payload[@"room_name"];
             plan.lock_mac = response.payload[@"lock_mac"];
             plan.user = user;
@@ -187,9 +189,11 @@
                 planItem.cabinet_name = obj[@"cabinet_name"];
                 planItem.cabinet_lock_mac = obj[@"cabinet_lock_mac"];
                 planItem.item_name = obj[@"item_name"];
-                planItem.item_flag = obj[@"item_flag"];
+                planItem.item_flag = @([obj[@"item_flag"] integerValue]);
                 planItem.plan = plan;
             }];
+            
+            [[DCAppEngine shareEngine].pushManager presentLocalNotificationNow:plan];
         }];
     } else if ([business isEqualToString:@"RESULT_RETURN"]) {//提交回复
         
@@ -270,6 +274,7 @@
                 }];
                 
                 //删除数据库对象（级联删除）
+                [[DCAppEngine shareEngine].pushManager cancelLocalNotification:queue.plan];
                 [localContext deleteObject:queue.plan];
             }
         }];
@@ -287,7 +292,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelWarn];
-    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"DCTaskModel"];
+    [MagicalRecord setupAutoMigratingCoreDataStack];
     
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self

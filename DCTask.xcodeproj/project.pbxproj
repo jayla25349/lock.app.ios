@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E305EAF91D89AB83008DD4E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E305EAF81D89AB83008DD4E8 /* Main.storyboard */; };
-		E3109F9F1D8535D9006DD8EF /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3109F9E1D8535D9006DD8EF /* PushManager.m */; };
 		E3109FA21D854EB3006DD8EF /* plan.json in Resources */ = {isa = PBXBuildFile; fileRef = E3109FA11D854EB3006DD8EF /* plan.json */; };
 		E31904A41DB8F5700013F385 /* Lock+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E319049D1DB8F5700013F385 /* Lock+CoreDataClass.m */; };
 		E31904A51DB8F5700013F385 /* Humiture+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E319049F1DB8F5700013F385 /* Humiture+CoreDataClass.m */; };
@@ -64,6 +63,10 @@
 		E3A331721D845E0700CA36DF /* DCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331651D845E0700CA36DF /* DCSettingVC.m */; };
 		E3A3317A1D847E4700CA36DF /* DCAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A331791D847E4700CA36DF /* DCAppEngine.m */; };
 		E3A5A44F1D957A1E00B83735 /* DCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A5A44E1D957A1E00B83735 /* DCUtil.m */; };
+		E3ADBFB31DD227EE00AE27A0 /* DCWebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3ADBFAE1DD227EE00AE27A0 /* DCWebSocketManager.m */; };
+		E3ADBFB41DD227EE00AE27A0 /* DCWebSocketRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E3ADBFB01DD227EE00AE27A0 /* DCWebSocketRequest.m */; };
+		E3ADBFB51DD227EE00AE27A0 /* DCWebSocketResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E3ADBFB21DD227EE00AE27A0 /* DCWebSocketResponse.m */; };
+		E3ADBFB91DD2282800AE27A0 /* DCPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3ADBFB81DD2282800AE27A0 /* DCPushManager.m */; };
 		E3C538F21D9656E6008C1990 /* replay.json in Resources */ = {isa = PBXBuildFile; fileRef = E3C538F11D9656E6008C1990 /* replay.json */; };
 		E3C936EE1DC25253006080D5 /* DCPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C936ED1DC25253006080D5 /* DCPopView.m */; };
 		E3E6A2391D88E4E100FF5688 /* DCUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6A2381D88E4E100FF5688 /* DCUserManager.m */; };
@@ -74,9 +77,6 @@
 		E3EC34F51D871F5B00604301 /* WQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EC34F21D871F5B00604301 /* WQTextView.m */; };
 		E3F27F9F1D96E7D500575DD7 /* NSObject+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F27F9E1D96E7D500575DD7 /* NSObject+Core.m */; };
 		E3F5F1F61D7C15DE00697607 /* UIColor+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F5F1F51D7C15DE00697607 /* UIColor+Core.m */; };
-		EC0EB2F51DC187AB003AFDAA /* DCWebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0EB2F01DC187AB003AFDAA /* DCWebSocketManager.m */; };
-		EC0EB2F61DC187AB003AFDAA /* DCWebSocketRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0EB2F21DC187AB003AFDAA /* DCWebSocketRequest.m */; };
-		EC0EB2F71DC187AB003AFDAA /* DCWebSocketResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0EB2F41DC187AB003AFDAA /* DCWebSocketResponse.m */; };
 		ECAF575D1DC2E08C002E32A2 /* locks.json in Resources */ = {isa = PBXBuildFile; fileRef = ECAF575C1DC2E08C002E32A2 /* locks.json */; };
 		ECAF575F1DC2E0AC002E32A2 /* humiture.json in Resources */ = {isa = PBXBuildFile; fileRef = ECAF575E1DC2E0AC002E32A2 /* humiture.json */; };
 /* End PBXBuildFile section */
@@ -86,8 +86,6 @@
 		395DEC497A25828EF1B533CB /* Pods-DCTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DCTask/Pods-DCTask.debug.xcconfig"; sourceTree = "<group>"; };
 		D986234972209DE9D17A34F4 /* Pods-DCTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DCTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-DCTask/Pods-DCTask.release.xcconfig"; sourceTree = "<group>"; };
 		E305EAF81D89AB83008DD4E8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		E3109F9D1D8535D9006DD8EF /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
-		E3109F9E1D8535D9006DD8EF /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
 		E3109FA11D854EB3006DD8EF /* plan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plan.json; sourceTree = "<group>"; };
 		E319049C1DB8F5700013F385 /* Lock+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Lock+CoreDataClass.h"; sourceTree = "<group>"; };
 		E319049D1DB8F5700013F385 /* Lock+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Lock+CoreDataClass.m"; sourceTree = "<group>"; };
@@ -195,6 +193,14 @@
 		E3A331791D847E4700CA36DF /* DCAppEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCAppEngine.m; sourceTree = "<group>"; };
 		E3A5A44D1D957A1E00B83735 /* DCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUtil.h; sourceTree = "<group>"; };
 		E3A5A44E1D957A1E00B83735 /* DCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCUtil.m; sourceTree = "<group>"; };
+		E3ADBFAD1DD227EE00AE27A0 /* DCWebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebSocketManager.h; sourceTree = "<group>"; };
+		E3ADBFAE1DD227EE00AE27A0 /* DCWebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWebSocketManager.m; sourceTree = "<group>"; };
+		E3ADBFAF1DD227EE00AE27A0 /* DCWebSocketRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebSocketRequest.h; sourceTree = "<group>"; };
+		E3ADBFB01DD227EE00AE27A0 /* DCWebSocketRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWebSocketRequest.m; sourceTree = "<group>"; };
+		E3ADBFB11DD227EE00AE27A0 /* DCWebSocketResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebSocketResponse.h; sourceTree = "<group>"; };
+		E3ADBFB21DD227EE00AE27A0 /* DCWebSocketResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWebSocketResponse.m; sourceTree = "<group>"; };
+		E3ADBFB71DD2282800AE27A0 /* DCPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPushManager.h; sourceTree = "<group>"; };
+		E3ADBFB81DD2282800AE27A0 /* DCPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPushManager.m; sourceTree = "<group>"; };
 		E3C538F11D9656E6008C1990 /* replay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = replay.json; sourceTree = "<group>"; };
 		E3C936EC1DC25253006080D5 /* DCPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPopView.h; sourceTree = "<group>"; };
 		E3C936ED1DC25253006080D5 /* DCPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPopView.m; sourceTree = "<group>"; };
@@ -214,12 +220,6 @@
 		E3F27F9E1D96E7D500575DD7 /* NSObject+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Core.m"; sourceTree = "<group>"; };
 		E3F5F1F41D7C15DE00697607 /* UIColor+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Core.h"; sourceTree = "<group>"; };
 		E3F5F1F51D7C15DE00697607 /* UIColor+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Core.m"; sourceTree = "<group>"; };
-		EC0EB2EF1DC187AB003AFDAA /* DCWebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebSocketManager.h; sourceTree = "<group>"; };
-		EC0EB2F01DC187AB003AFDAA /* DCWebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWebSocketManager.m; sourceTree = "<group>"; };
-		EC0EB2F11DC187AB003AFDAA /* DCWebSocketRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebSocketRequest.h; sourceTree = "<group>"; };
-		EC0EB2F21DC187AB003AFDAA /* DCWebSocketRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWebSocketRequest.m; sourceTree = "<group>"; };
-		EC0EB2F31DC187AB003AFDAA /* DCWebSocketResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebSocketResponse.h; sourceTree = "<group>"; };
-		EC0EB2F41DC187AB003AFDAA /* DCWebSocketResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWebSocketResponse.m; sourceTree = "<group>"; };
 		ECAF575C1DC2E08C002E32A2 /* locks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locks.json; sourceTree = "<group>"; };
 		ECAF575E1DC2E0AC002E32A2 /* humiture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = humiture.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,15 +253,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E3109F9C1D8535BC006DD8EF /* Push */ = {
-			isa = PBXGroup;
-			children = (
-				E3109F9D1D8535D9006DD8EF /* PushManager.h */,
-				E3109F9E1D8535D9006DD8EF /* PushManager.m */,
-			);
-			path = Push;
-			sourceTree = "<group>";
-		};
 		E3109FA01D854EB3006DD8EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +267,12 @@
 		E3298AA11D91A2F500D7F92C /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				E3ADBFAD1DD227EE00AE27A0 /* DCWebSocketManager.h */,
+				E3ADBFAE1DD227EE00AE27A0 /* DCWebSocketManager.m */,
+				E3ADBFAF1DD227EE00AE27A0 /* DCWebSocketRequest.h */,
+				E3ADBFB01DD227EE00AE27A0 /* DCWebSocketRequest.m */,
+				E3ADBFB11DD227EE00AE27A0 /* DCWebSocketResponse.h */,
+				E3ADBFB21DD227EE00AE27A0 /* DCWebSocketResponse.m */,
 				E3298AA21D91A2F500D7F92C /* DCDataManager.h */,
 				E3298AA31D91A2F500D7F92C /* DCDataManager.m */,
 				E3298AA51D91A31D00D7F92C /* DCTaskModel.xcdatamodeld */,
@@ -402,7 +399,6 @@
 		E352D5CD1D7B23AC00CB4B93 /* Fundation */ = {
 			isa = PBXGroup;
 			children = (
-				E3109F9C1D8535BC006DD8EF /* Push */,
 				E352D5CE1D7B23AC00CB4B93 /* Extension */,
 				E352D5D11D7B23AC00CB4B93 /* Network */,
 			);
@@ -507,10 +503,10 @@
 		E3A331411D845E0700CA36DF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				E3ADBFB61DD2281800AE27A0 /* PushManager */,
 				E3E6A2351D88E4D100FF5688 /* BluetoothManager */,
 				E3298AA11D91A2F500D7F92C /* DataManager */,
 				E3A331771D847E2E00CA36DF /* Engine */,
-				EC0EB2EE1DC187AB003AFDAA /* SocketManager */,
 				E3E6A2361D88E4D100FF5688 /* UserManager */,
 				E3A5A44C1D957A1100B83735 /* Util */,
 			);
@@ -642,6 +638,15 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		E3ADBFB61DD2281800AE27A0 /* PushManager */ = {
+			isa = PBXGroup;
+			children = (
+				E3ADBFB71DD2282800AE27A0 /* DCPushManager.h */,
+				E3ADBFB81DD2282800AE27A0 /* DCPushManager.m */,
+			);
+			path = PushManager;
+			sourceTree = "<group>";
+		};
 		E3C936EB1DC25235006080D5 /* DCPopView */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,19 +708,6 @@
 				E3EC34F21D871F5B00604301 /* WQTextView.m */,
 			);
 			path = WQTextView;
-			sourceTree = "<group>";
-		};
-		EC0EB2EE1DC187AB003AFDAA /* SocketManager */ = {
-			isa = PBXGroup;
-			children = (
-				EC0EB2EF1DC187AB003AFDAA /* DCWebSocketManager.h */,
-				EC0EB2F01DC187AB003AFDAA /* DCWebSocketManager.m */,
-				EC0EB2F11DC187AB003AFDAA /* DCWebSocketRequest.h */,
-				EC0EB2F21DC187AB003AFDAA /* DCWebSocketRequest.m */,
-				EC0EB2F31DC187AB003AFDAA /* DCWebSocketResponse.h */,
-				EC0EB2F41DC187AB003AFDAA /* DCWebSocketResponse.m */,
-			);
-			path = SocketManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -859,12 +851,10 @@
 				E3298AC11D91A31E00D7F92C /* PlanItem+CoreDataClass.m in Sources */,
 				E3EC34F51D871F5B00604301 /* WQTextView.m in Sources */,
 				E31904A71DB8F5700013F385 /* Lock+CoreDataProperties.m in Sources */,
-				EC0EB2F71DC187AB003AFDAA /* DCWebSocketResponse.m in Sources */,
 				E352D5EF1D7B23AC00CB4B93 /* NetworkManager.m in Sources */,
 				E3298AC31D91A31E00D7F92C /* Queue+CoreDataClass.m in Sources */,
 				E3F27F9F1D96E7D500575DD7 /* NSObject+Core.m in Sources */,
 				E3A331711D845E0700CA36DF /* DCChangePwdVC.m in Sources */,
-				EC0EB2F51DC187AB003AFDAA /* DCWebSocketManager.m in Sources */,
 				E3A3316C1D845E0700CA36DF /* DCHomeVC.m in Sources */,
 				E3A3316D1D845E0700CA36DF /* DCLoginVC.m in Sources */,
 				E34D7D5B1DC4BDF000DF8CF4 /* DCCheckImageCell.m in Sources */,
@@ -873,8 +863,8 @@
 				E3298ABC1D91A31D00D7F92C /* DCTaskModel.xcdatamodeld in Sources */,
 				E352D5F51D7B23AC00CB4B93 /* WQRefreshFooter.m in Sources */,
 				E3A331691D845E0700CA36DF /* DCLockView.m in Sources */,
-				EC0EB2F61DC187AB003AFDAA /* DCWebSocketRequest.m in Sources */,
 				E352D5F61D7B23AC00CB4B93 /* WQRefreshHeader.m in Sources */,
+				E3ADBFB31DD227EE00AE27A0 /* DCWebSocketManager.m in Sources */,
 				E3298AC51D91A31E00D7F92C /* User+CoreDataClass.m in Sources */,
 				E38DB2CE1DC27AE0007B54FB /* DCHumitureVC.m in Sources */,
 				E3308DF11D97FB35003C259E /* BSTableViewController.m in Sources */,
@@ -886,12 +876,15 @@
 				E34D7D5A1DC4BDF000DF8CF4 /* DCCheckAddCell.m in Sources */,
 				E352D5F71D7B23AC00CB4B93 /* WQRefreshCollectionView.m in Sources */,
 				E352D5F11D7B23AC00CB4B93 /* NSError+HTTP.m in Sources */,
+				E3ADBFB51DD227EE00AE27A0 /* DCWebSocketResponse.m in Sources */,
 				E3A3316B1D845E0700CA36DF /* DCHomeCell.m in Sources */,
 				E3EC34F31D871F5B00604301 /* WQLineView.m in Sources */,
 				E34D7D5D1DC4BDF000DF8CF4 /* DCCheckMenuCell.m in Sources */,
 				E352D5F81D7B23AC00CB4B93 /* WQRefreshTableView.m in Sources */,
+				E3ADBFB41DD227EE00AE27A0 /* DCWebSocketRequest.m in Sources */,
 				E3A3316E1D845E0700CA36DF /* DCRegisterVC.m in Sources */,
 				E3E6A2391D88E4E100FF5688 /* DCUserManager.m in Sources */,
+				E3ADBFB91DD2282800AE27A0 /* DCPushManager.m in Sources */,
 				E3EC34F41D871F5B00604301 /* WQTextField.m in Sources */,
 				E3298AA41D91A2F500D7F92C /* DCDataManager.m in Sources */,
 				E34D7D5C1DC4BDF000DF8CF4 /* DCCheckListCell.m in Sources */,
@@ -901,7 +894,6 @@
 				E352D5EC1D7B23AC00CB4B93 /* AppEngine.m in Sources */,
 				E352D5B71D7B222A00CB4B93 /* AppDelegate.m in Sources */,
 				E34D7D5E1DC4BDF000DF8CF4 /* DCCheckVC.m in Sources */,
-				E3109F9F1D8535D9006DD8EF /* PushManager.m in Sources */,
 				E3A3316F1D845E0700CA36DF /* DCOpenDoorVC.m in Sources */,
 				E3298ABF1D91A31E00D7F92C /* Plan+CoreDataClass.m in Sources */,
 				E38DB2D11DC27AFC007B54FB /* DCHumitureCell.m in Sources */,

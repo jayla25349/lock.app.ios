@@ -101,7 +101,10 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
     
     request.status = DCReqeustStatusRuning;
     [self.reqeusts addObject:request];
-    [self.webSocket send:[request data]];
+    
+    NSString *dataString = [request data];
+    [self.webSocket send:dataString];
+    DDLogDebug(@"%s %@",__PRETTY_FUNCTION__, dataString);
 }
 
 //发送响应数据
@@ -111,7 +114,9 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
         return;
     }
     
-    [self.webSocket send:[response ask]];
+    NSString *dataString = [response ask];
+    [self.webSocket send:dataString];
+    DDLogDebug(@"%s %@",__PRETTY_FUNCTION__, dataString);
 }
 
 /**********************************************************************/

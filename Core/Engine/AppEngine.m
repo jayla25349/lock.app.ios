@@ -18,7 +18,6 @@ static NSMutableArray<id<UIApplicationDelegate>> *managers = nil;
 
 @interface AppEngine ()
 @property (nonatomic, strong) NetworkManager *networkManager;
-@property (nonatomic, strong) PushManager *pushManager;
 @end
 
 @implementation AppEngine
@@ -32,7 +31,6 @@ static NSMutableArray<id<UIApplicationDelegate>> *managers = nil;
         [DDLog addLogger:[DDASLLogger sharedInstance] withLevel:DDLogLevelInfo];
         
         self.networkManager = [NetworkManager new];
-        self.pushManager = [PushManager new];
     }
     return self;
 }

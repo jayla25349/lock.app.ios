@@ -29,7 +29,7 @@
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@", [DCAppEngine shareEngine].userManager.user];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@", APPENGINE.userManager.user];
     _fetchedResultsController = [Humiture MR_fetchAllSortedBy:@"createDate"
                                                     ascending:NO
                                                 withPredicate:predicate

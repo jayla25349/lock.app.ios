@@ -68,7 +68,7 @@
             return;
         }
         
-        [[DCAppEngine shareEngine].userManager registerWithNumber:self.number name:self.name password:self.password gesture:self.gesture success:^(User *user) {
+        [APPENGINE.userManager registerWithNumber:self.number name:self.name password:self.password gesture:self.gesture success:^(User *user) {
             [lockView clear];
             self.gesture = nil;
             [self performSegueWithIdentifier:@"ShowHomeVC" sender:self];
@@ -76,7 +76,7 @@
             self.gesture = nil;
         }];
     } else {
-        [[DCAppEngine shareEngine].userManager loginWithGesture:password success:^(User *user) {
+        [APPENGINE.userManager loginWithGesture:password success:^(User *user) {
             [lockView clear];
             self.gesture = nil;
             [self performSegueWithIdentifier:@"ShowHomeVC" sender:self];

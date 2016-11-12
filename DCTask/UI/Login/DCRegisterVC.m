@@ -27,7 +27,7 @@
                                                                 self.password1TextField.rac_textSignal,
                                                                 self.password2TextField.rac_textSignal]
                                                        reduce:^id{
-                                                           return @(self.nameTextField.text.length>0 &&
+                                                           return @(self.numberTextField.text.length>0 &&
                                                            self.nameTextField.text.length>0 &&
                                                            self.password1TextField.text.length>0 &&
                                                            self.password2TextField.text.length>0);

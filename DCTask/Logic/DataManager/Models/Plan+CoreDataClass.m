@@ -28,8 +28,8 @@
             queue.plan = plan;
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
-                [[DCAppEngine shareEngine].dataManager syncData];
-                [[DCAppEngine shareEngine].pushManager scheduleLocalNotification:self];
+                [APPENGINE.dataManager syncData];
+                [APPENGINE.pushManager scheduleLocalNotification:self];
             }
         }];
     }
@@ -52,7 +52,7 @@
             queue.plan = plan;
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
-                [[DCAppEngine shareEngine].dataManager syncData];
+                [APPENGINE.dataManager syncData];
             }
         }];
     }
@@ -73,7 +73,7 @@
             queue.plan = plan;
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
-                [[DCAppEngine shareEngine].dataManager syncData];
+                [APPENGINE.dataManager syncData];
             }
         }];
     }

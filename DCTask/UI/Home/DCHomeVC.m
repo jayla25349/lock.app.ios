@@ -58,12 +58,12 @@ static NSString *cellIdentifier = @"DCHomeCell";
     [self controllerDidChangeContent:self.fetchedResultsController3];
     
     //监听同步
-    [RACObserve([DCAppEngine shareEngine].dataManager, isSyncing) subscribeNext:^(NSNumber * isSyncing) {
+    [RACObserve(APPENGINE.dataManager, isSyncing) subscribeNext:^(NSNumber * isSyncing) {
         self.syncStatusLabel.hidden = !isSyncing.boolValue;
     }];
     
     //同步数据
-    [[DCAppEngine shareEngine].dataManager syncData];
+    [APPENGINE.dataManager syncData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -96,7 +96,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     if (_fetchedResultsController1 != nil) {
         return _fetchedResultsController1;
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND type=0", [DCAppEngine shareEngine].userManager.user];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND type=0", APPENGINE.userManager.user];
     _fetchedResultsController1 = [Plan MR_fetchAllSortedBy:@"createDate"
                                                  ascending:NO
                                              withPredicate:predicate
@@ -109,7 +109,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     if (_fetchedResultsController2 != nil) {
         return _fetchedResultsController2;
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND type=1", [DCAppEngine shareEngine].userManager.user];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND type=1", APPENGINE.userManager.user];
     _fetchedResultsController2 = [Plan MR_fetchAllSortedBy:@"decideDate"
                                                  ascending:NO
                                              withPredicate:predicate
@@ -122,7 +122,7 @@ static NSString *cellIdentifier = @"DCHomeCell";
     if (_fetchedResultsController3 != nil) {
         return _fetchedResultsController3;
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND type=3", [DCAppEngine shareEngine].userManager.user];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user=%@ AND type=3", APPENGINE.userManager.user];
     _fetchedResultsController3 = [Plan MR_fetchAllSortedBy:@"submitDate"
                                                  ascending:NO
                                              withPredicate:predicate

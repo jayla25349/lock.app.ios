@@ -19,6 +19,9 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelWarn];
+        [MagicalRecord setupAutoMigratingCoreDataStack];
+        
         self.dataManager = [DCDataManager new];
         self.userManager = [DCUserManager new];
         self.pushManager = [DCPushManager new];

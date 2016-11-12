@@ -20,3 +20,5 @@
 + (instancetype)shareEngine;
 
 @end
+
+#define APPENGINE   [DCAppEngine shareEngine]

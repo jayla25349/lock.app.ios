@@ -68,6 +68,11 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
     }
 }
 
+//{ "data":{ "id":""}, "directive":"ping" }
+- (void)handlePing:(NSDictionary *)dic {
+    
+}
+
 /**********************************************************************/
 #pragma mark - Public
 /**********************************************************************/
@@ -178,6 +183,8 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
         [self handleData:data];
     } else if ([directive isEqualToString:@"ask"]) {
         [self handleAsk:data];
+    } else if ([directive isEqualToString:@"ping"]) {
+        [self handlePing:data];
     } else {
         DDLogError(@"不能解析的数据类型：%@", jsonObject);
     }

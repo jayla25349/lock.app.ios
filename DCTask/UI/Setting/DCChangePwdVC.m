@@ -37,7 +37,7 @@
 
 - (IBAction)confirmAction:(id)sender {
     NSString *password1 = self.passwordTextField1.text;
-    if (![password1 isEqualToString:[DCAppEngine shareEngine].userManager.user.password]) {
+    if (![password1 isEqualToString:APPENGINE.userManager.user.password]) {
         [SVProgressHUD showInfoWithStatus:@"旧开锁密码错误，请重新输入"];
         [self.passwordTextField1 becomeFirstResponder];
         return;
@@ -57,7 +57,7 @@
         return;
     }
     
-    [[DCAppEngine shareEngine].userManager updatePassword:password2 success:^(User *user) {
+    [APPENGINE.userManager updatePassword:password2 success:^(User *user) {
         [SVProgressHUD showSuccessWithStatus:@"修改开锁密码成功"];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {

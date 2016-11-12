@@ -47,6 +47,19 @@ extern NSNotificationName const DCUserLogoutNotification;
 
 
 /**
+ 用户登录
+ 
+ @param number   工号
+ @param password 密码
+ @param success  成功回调
+ @param failure  失败回调
+ */
+- (void)loginWithNumber:(NSString *)number password:(NSString *)password
+                success:(void (^)(User *user))success
+                failure:(void (^)(NSError *error))failure;
+
+
+/**
  更新密码
  
  @param password 密码
@@ -56,5 +69,11 @@ extern NSNotificationName const DCUserLogoutNotification;
 - (void)updatePassword:(NSString *)password
                success:(void (^)(User *user))success
                failure:(void (^)(NSError *error))failure;
+
+
+/**
+ 用户登出
+ */
+- (void)logout;
 
 @end

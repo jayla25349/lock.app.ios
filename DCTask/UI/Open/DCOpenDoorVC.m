@@ -21,8 +21,8 @@ static NSString *cellIdentifier = @"DCOpenDoorCell";
     [super viewDidLoad];
     self.title = @"开门";
     
-    self.bleManager = [[DCBluetoothManager alloc] initWithNumber:[DCAppEngine shareEngine].userManager.user.number
-                                                        password:[DCAppEngine shareEngine].userManager.user.password];
+    self.bleManager = [[DCBluetoothManager alloc] initWithNumber:APPENGINE.userManager.user.number
+                                                        password:APPENGINE.userManager.user.password];
     self.bleManager.delegate = self;
 }
 

@@ -2,7 +2,7 @@
 //  Queue+CoreDataProperties.m
 //  
 //
-//  Created by 青秀斌 on 2016/10/27.
+//  Created by 青秀斌 on 2016/11/12.
 //
 //
 
@@ -15,9 +15,8 @@
 }
 
 @dynamic createDate;
-@dynamic status;
-@dynamic type;
 @dynamic id;
+@dynamic type;
 @dynamic plan;
 
 @end

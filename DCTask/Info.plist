@@ -30,16 +30,18 @@
 		<true/>
 	</dict>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string></string>
+	<string>我们将使用蓝牙为你提供更好的服务</string>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>我们将使用相机为你提供更好的服务</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>我们将使用相册为你提供更好的服务</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

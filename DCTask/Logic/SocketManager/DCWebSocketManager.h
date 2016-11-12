@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)webSocketManager:(DCWebSocketManager *)manager didReceiveData:(DCWebSocketResponse *)response;
 - (void)webSocketManager:(DCWebSocketManager *)manager didReceiveAsk:(DCWebSocketRequest *)request;
 - (void)webSocketManagerDidFilishSend:(DCWebSocketManager *)manager;
+- (void)webSocketManagerDidOffline:(DCWebSocketManager *)manager;
 @end
 
 NS_ASSUME_NONNULL_END

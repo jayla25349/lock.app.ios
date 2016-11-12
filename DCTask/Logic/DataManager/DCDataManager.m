@@ -118,7 +118,7 @@
 #pragma mark - Action
 /**********************************************************************/
 
-- (void)userLogin {
+- (void)userLoginAction {
     if (self.socketManager) {
         return;
     }
@@ -140,7 +140,7 @@
 //    }];
 }
 
-- (void)userLogout {
+- (void)userLogoutAction {
     if (!self.socketManager) {
         return;
     }
@@ -157,11 +157,11 @@
     
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(userLogin)
+                                             selector:@selector(userLoginAction)
                                                  name:DCUserLoginNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(userLogout)
+                                             selector:@selector(userLogoutAction)
                                                  name:DCUserLogoutNotification
                                                object:nil];
     return YES;
@@ -297,6 +297,10 @@
 - (void)webSocketManagerDidFilishSend:(DCWebSocketManager *)manager {
     self.isSyncing = NO;
     [self syncData];
+}
+
+- (void)webSocketManagerDidOffline:(DCWebSocketManager *)manager {
+    [APPENGINE.userManager logout];
 }
 
 @end

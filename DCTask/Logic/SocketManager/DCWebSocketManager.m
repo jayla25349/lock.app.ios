@@ -38,11 +38,6 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
     if ([self.delegate respondsToSelector:@selector(webSocketManager:didReceiveData:)]) {
         [self.delegate webSocketManager:self didReceiveData:response];
     }
-    
-    //发送确认数据
-    if (self.webSocket && self.webSocket.readyState==SR_OPEN) {
-        [self.webSocket send:[response ask]];
-    }
 }
 
 //{"id":"62112"}
@@ -68,7 +63,15 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
     }
 }
 
-//{ "data":{ "id":""}, "directive":"ping" }
+//{"id":""}
+- (void)handleBye:(NSDictionary *)dic {
+    [self close];
+    if ([self.delegate respondsToSelector:@selector(webSocketManagerDidOffline:)]) {
+        [self.delegate webSocketManagerDidOffline:self];
+    }
+}
+
+//{ "id":""}
 - (void)handlePing:(NSDictionary *)dic {
     
 }
@@ -183,6 +186,8 @@ static NSErrorDomain errorDomain = @"DCNetwordDomain";
         [self handleData:data];
     } else if ([directive isEqualToString:@"ask"]) {
         [self handleAsk:data];
+    } else if ([directive isEqualToString:@"bye"]) {
+        [self handleBye:data];
     } else if ([directive isEqualToString:@"ping"]) {
         [self handlePing:data];
     } else {

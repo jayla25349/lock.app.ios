@@ -20,7 +20,6 @@
 
 - (IBAction)logoutAction:(id)sender {
     [APPENGINE.userManager logout];
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 /**********************************************************************/

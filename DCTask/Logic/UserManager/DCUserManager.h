@@ -76,4 +76,9 @@ extern NSNotificationName const DCUserLogoutNotification;
  */
 - (void)logout;
 
+/**
+ 用户离线
+ */
+- (void)offline;
+
 @end

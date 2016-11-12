@@ -54,7 +54,6 @@
         return;
     }
     [self.view endEditing:YES];
-    [self performSegueWithIdentifier:@"ShowHomeVC" sender:self];return;
     [self viewEditable:NO];
     
     [SVProgressHUD showWithStatus:@"正在登录，请稍候..."];

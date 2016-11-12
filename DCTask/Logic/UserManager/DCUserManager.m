@@ -11,6 +11,7 @@
 
 NSNotificationName const DCUserLoginNotification = @"DCUserLoginNotification";
 NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
+NSNotificationName const DCUserOfflineNotification = @"DCUserOfflineNotification";
 
 @interface DCUserManager ()<DCWebSocketManagerDelegate>
 @property (nonatomic, strong) DCWebSocketManager *socketManager;
@@ -116,8 +117,8 @@ NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
     DCWebSocketRequest *reqeust = [DCWebSocketRequest reqeustWithId:[[NSUUID UUID] UUIDString] payload:loginInfoDic];
     [self.socketManager sendRequest:reqeust];
     
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(logintimeOutAction) object:nil];
-    [self performSelector:@selector(logintimeOutAction) withObject:nil afterDelay:30];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeoutAction) object:nil];
+    [self performSelector:@selector(loginTimeoutAction) withObject:nil afterDelay:30];
 }
 
 /**
@@ -159,11 +160,19 @@ NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
     [[NSNotificationCenter defaultCenter] postNotificationName:DCUserLoginNotification object:self];
 }
 
+/**
+ 用户离线
+ */
+- (void)offline {
+    self.user = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:DCUserOfflineNotification object:self];
+}
+
 /**********************************************************************/
 #pragma mark - Action
 /**********************************************************************/
 
-- (void)logintimeOutAction {
+- (void)loginTimeoutAction {
     if (self.loginFailureBlock) {
         NSError *error = [NSError bussinessError:-1 message:@"登录超时"];
         self.loginFailureBlock(error);
@@ -172,7 +181,7 @@ NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
     self.loginFailureBlock = nil;
 }
 
-- (void)userLogin {
+- (void)userLoginAction {
     if (!self.socketManager) {
         return;
     }
@@ -180,7 +189,7 @@ NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
     self.socketManager = nil;
 }
 
-- (void)userLogout {
+- (void)userLogoutAction {
     if (self.socketManager) {
         return;
     }
@@ -196,15 +205,15 @@ NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
 /**********************************************************************/
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self userLogout];
+    [self userLogoutAction];
     
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(userLogin)
+                                             selector:@selector(userLoginAction)
                                                  name:DCUserLoginNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(userLogout)
+                                             selector:@selector(userLogoutAction)
                                                  name:DCUserLogoutNotification
                                                object:nil];
     return YES;
@@ -217,7 +226,7 @@ NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
 - (void)webSocketManager:(DCWebSocketManager *)manager didReceiveData:(DCWebSocketResponse *)response {
     NSString *business = response.payload[@"business"];
     if ([business isEqualToString:@"LOGIN_RETURN"]) {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(logintimeOutAction) object:nil];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeoutAction) object:nil];
         NSString *status = response.payload[@"state"];
         NSString *number = response.payload[@"number"];
         if (status.integerValue == 1) {
@@ -264,6 +273,10 @@ NSNotificationName const DCUserLogoutNotification = @"DCUserLogoutNotification";
     } else {
         DDLogError(@"响应数据类型无法处理：%@", request.payload);
     }
+}
+
+- (void)webSocketManagerDidOffline:(DCWebSocketManager *)manager {
+    [self userLogoutAction];
 }
 
 @end

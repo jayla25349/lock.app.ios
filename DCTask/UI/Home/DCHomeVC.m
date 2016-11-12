@@ -58,8 +58,24 @@ static NSString *cellIdentifier = @"DCHomeCell";
     [self controllerDidChangeContent:self.fetchedResultsController3];
     
     //监听同步
+    @weakify(self)
     [RACObserve(APPENGINE.dataManager, isSyncing) subscribeNext:^(NSNumber * isSyncing) {
+        @strongify(self)
         self.syncStatusLabel.hidden = !isSyncing.boolValue;
+    }];
+    
+    //登录通知
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:DCUserLogoutNotification object:nil] subscribeNext:^(id x) {
+        @strongify(self)
+        [SVProgressHUD showInfoWithStatus:@"登出成功！"];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    //下线通知
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:DCUserLogoutNotification object:nil] subscribeNext:^(id x) {
+        @strongify(self)
+        [SVProgressHUD showInfoWithStatus:@"用户已在其它端登录！"];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }];
     
     //同步数据

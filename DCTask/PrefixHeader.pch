@@ -42,7 +42,7 @@
 
 extern const int ddLogLevel;
 
-//#define URL_WEB_SERVICE     @"ws://echo.websocket.org"
+//#define URL_WEB_SERVICE     @"ws://sync.yongtiancheng.net:9000/sync/mobile/tongren_test"
 #define URL_WEB_SERVICE     @"ws://sync.yongtiancheng.net:9000/sync/mobile/dev"
 #define URL_SERVER          @"http://sync.yongtiancheng.net:9002"
 #define HTTP_GET(action)    APPENGINE.networkManager HTTP_GET:URL_SERVER api:action

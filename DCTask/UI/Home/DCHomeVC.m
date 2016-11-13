@@ -65,18 +65,16 @@ static NSString *cellIdentifier = @"DCHomeCell";
     }];
     
     //登录通知
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:DCUserLogoutNotification object:nil] subscribeNext:^(id x) {
-        @strongify(self)
-        [SVProgressHUD showInfoWithStatus:@"登出成功！"];
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    }];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(logoutAction)
+                                                 name:DCUserLogoutNotification
+                                               object:nil];
     
     //下线通知
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:DCUserLogoutNotification object:nil] subscribeNext:^(id x) {
-        @strongify(self)
-        [SVProgressHUD showInfoWithStatus:@"用户已在其它端登录！"];
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    }];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(offlineAction)
+                                                 name:DCUserOfflineNotification
+                                               object:nil];
     
     //同步数据
     [APPENGINE.dataManager syncData];
@@ -183,6 +181,21 @@ static NSString *cellIdentifier = @"DCHomeCell";
     CGRect frame = self.scrollView.bounds;
     frame.origin.x = sender.frame.origin.x*3;
     [self.scrollView scrollRectToVisible:frame animated:YES];
+}
+
+- (void)logoutAction {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [SVProgressHUD showInfoWithStatus:@"登出成功！"];
+}
+
+- (void)offlineAction {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"下线通知"
+                                                        message:@"您的账号已在其他设备登录！"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 /**********************************************************************/

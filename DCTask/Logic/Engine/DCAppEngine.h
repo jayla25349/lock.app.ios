@@ -21,4 +21,5 @@
 
 @end
 
-#define APPENGINE   [DCAppEngine shareEngine]
+#define APPDELEGATE     [[UIApplication sharedApplication] delegate]
+#define APPENGINE       [DCAppEngine shareEngine]

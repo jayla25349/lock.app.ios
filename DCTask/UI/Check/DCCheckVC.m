@@ -178,9 +178,13 @@ static NSString * const menuCellIdentifier = @"DCCheckMenuCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.contentTableView) {
         NSInteger index = self.menuTableView.indexPathForSelectedRow.row;
-        NSString *category = self.categorys[index];
-        NSArray<PlanItem *> *items = self.dataSource[category];
-        return items.count;
+        if (index<self.categorys.count) {
+            NSString *category = self.categorys[index];
+            NSArray<PlanItem *> *items = self.dataSource[category];
+            return items.count;
+        } else {
+            return 0;
+        }
     } else {
         return self.categorys.count;
     }

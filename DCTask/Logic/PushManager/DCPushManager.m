@@ -10,6 +10,10 @@
 
 @implementation DCPushManager
 
+/**********************************************************************/
+#pragma mark - Public
+/**********************************************************************/
+
 - (void)presentLocalNotificationNow:(Plan *)plan {
     UILocalNotification *localNote = [[UILocalNotification alloc] init];
     if ([UIDevice systemVersion]>=8.2) {

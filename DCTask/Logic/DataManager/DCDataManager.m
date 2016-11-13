@@ -164,6 +164,10 @@
                                              selector:@selector(userLogoutAction)
                                                  name:DCUserLogoutNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userLogoutAction)
+                                                 name:DCUserOfflineNotification
+                                               object:nil];
     return YES;
 }
 
@@ -300,7 +304,7 @@
 }
 
 - (void)webSocketManagerDidOffline:(DCWebSocketManager *)manager {
-    [APPENGINE.userManager logout];
+    [APPENGINE.userManager offline];
 }
 
 @end

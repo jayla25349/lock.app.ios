@@ -11,6 +11,7 @@
 
 extern NSNotificationName const DCUserLoginNotification;
 extern NSNotificationName const DCUserLogoutNotification;
+extern NSNotificationName const DCUserOfflineNotification;
 
 @interface DCUserManager : NSObject<UIApplicationDelegate>
 @property (nonatomic, readonly) User *user;

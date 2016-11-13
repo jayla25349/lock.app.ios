@@ -17,7 +17,7 @@ NSNotificationName const DCUserOfflineNotification = @"DCUserOfflineNotification
 @property (nonatomic, strong) DCWebSocketManager *socketManager;
 @property (nonatomic, copy) void (^loginSuccessBlock)(User *user);
 @property (nonatomic, copy) void (^loginFailureBlock)(NSError *error);
-
+@property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) User *user;
 @end
 
@@ -112,6 +112,7 @@ NSNotificationName const DCUserOfflineNotification = @"DCUserOfflineNotification
     
     self.loginSuccessBlock = success;
     self.loginFailureBlock = failure;
+    self.password = password;
     
     NSDictionary *loginInfoDic = @{@"business":@"LOGIN", @"user_job_number": number, @"lock_password": [password md5String]};
     DCWebSocketRequest *reqeust = [DCWebSocketRequest reqeustWithId:[[NSUUID UUID] UUIDString] payload:loginInfoDic];
@@ -157,7 +158,7 @@ NSNotificationName const DCUserOfflineNotification = @"DCUserOfflineNotification
  */
 - (void)logout {
     self.user = nil;
-    [[NSNotificationCenter defaultCenter] postNotificationName:DCUserLoginNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DCUserLogoutNotification object:self];
 }
 
 /**
@@ -172,15 +173,6 @@ NSNotificationName const DCUserOfflineNotification = @"DCUserOfflineNotification
 #pragma mark - Action
 /**********************************************************************/
 
-- (void)loginTimeoutAction {
-    if (self.loginFailureBlock) {
-        NSError *error = [NSError bussinessError:-1 message:@"登录超时"];
-        self.loginFailureBlock(error);
-    }
-    self.loginSuccessBlock = nil;
-    self.loginFailureBlock = nil;
-}
-
 - (void)userLoginAction {
     if (!self.socketManager) {
         return;
@@ -193,11 +185,21 @@ NSNotificationName const DCUserOfflineNotification = @"DCUserOfflineNotification
     if (self.socketManager) {
         return;
     }
-    NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%d", arc4random_uniform(10000) + 10000];
+    NSString *urlString = [URL_WEB_SERVICE stringByAppendingFormat:@"/%@", [[NSUUID UUID] UUIDString]];
     NSURL *url = [NSURL URLWithString:urlString];
     self.socketManager = [[DCWebSocketManager alloc] initWithURL:url];
     self.socketManager.delegate = self;
     [self.socketManager connect];
+}
+
+- (void)loginTimeoutAction {
+    if (self.loginFailureBlock) {
+        NSError *error = [NSError bussinessError:-1 message:@"登录超时"];
+        self.loginFailureBlock(error);
+    }
+    self.loginSuccessBlock = nil;
+    self.loginFailureBlock = nil;
+    self.password = nil;
 }
 
 /**********************************************************************/
@@ -216,6 +218,10 @@ NSNotificationName const DCUserOfflineNotification = @"DCUserOfflineNotification
                                              selector:@selector(userLogoutAction)
                                                  name:DCUserLogoutNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userLogoutAction)
+                                                 name:DCUserOfflineNotification
+                                               object:nil];
     return YES;
 }
 
@@ -228,12 +234,13 @@ NSNotificationName const DCUserOfflineNotification = @"DCUserOfflineNotification
     if ([business isEqualToString:@"LOGIN_RETURN"]) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeoutAction) object:nil];
         NSString *status = response.payload[@"state"];
-        NSString *number = response.payload[@"number"];
+        NSString *number = response.payload[@"user_job_number"];
         if (status.integerValue == 1) {
             [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
                 User *user = [User MR_findFirstOrCreateByAttribute:@"number" withValue:number inContext:localContext];
                 user.createDate = user.createDate?:[NSDate date];
                 user.loginDate = [NSDate date];
+                user.password = self.password;
             } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
                 self.user = [User MR_findFirstOrderedByAttribute:@"loginDate" ascending:NO];
                 if (!error) {
@@ -249,14 +256,16 @@ NSNotificationName const DCUserOfflineNotification = @"DCUserOfflineNotification
                 }
                 self.loginSuccessBlock = nil;
                 self.loginFailureBlock = nil;
+                self.password = nil;
             }];
         } else {
             if (self.loginFailureBlock) {
-                NSError *error = [NSError bussinessError:-3 message:@"登录失败"];
+                NSError *error = [NSError bussinessError:-3 message:@"工号或开锁密码错误"];
                 self.loginFailureBlock(error);
             }
             self.loginSuccessBlock = nil;
             self.loginFailureBlock = nil;
+            self.password = nil;
         }
     } else {
         DDLogError(@"响应数据类型无法处理：%@", response.payload);

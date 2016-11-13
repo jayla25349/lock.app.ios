@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.h
 //  
 //
-//  Created by 青秀斌 on 2016/10/20.
+//  Created by 青秀斌 on 2016/11/13.
 //
 //
 

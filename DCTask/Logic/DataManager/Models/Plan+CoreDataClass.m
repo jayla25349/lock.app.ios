@@ -29,7 +29,7 @@
         } completion:^(BOOL contextDidSave, NSError * _Nullable error) {
             if (contextDidSave) {
                 [APPENGINE.dataManager syncData];
-                [APPENGINE.pushManager scheduleLocalNotification:self];
+//                [APPENGINE.pushManager scheduleLocalNotification:self];//定期提醒
             }
         }];
     }
